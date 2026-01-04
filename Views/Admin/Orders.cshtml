@@ -1,0 +1,172 @@
+@model IEnumerable<BabyShopWeb2.Models.Order>
+@{
+    ViewData["Title"] = "Kelola Pesanan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Daftar Pesanan</h3>
+    <div class="d-flex gap-2">
+        <select class="form-select" id="statusFilter" onchange="filterOrders()">
+            <option value="">Semua Status</option>
+            <option value="Pending">Menunggu</option>
+            <option value="Processing">Diproses</option>
+            <option value="Shipped">Dikirim</option>
+            <option value="Delivered">Terkirim</option>
+            <option value="Cancelled">Dibatalkan</option>
+        </select>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover" id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>No. Pesanan</th>
+                            <th>Pelanggan</th>
+                            <th>Tanggal</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model)
+                        {
+                            <tr data-status="@order.Status">
+                                <td>
+                                    <strong class="text-pink">@order.OrderNumber</strong>
+                                </td>
+                                <td>
+                                    <div>
+                                        <strong>@order.CustomerName</strong>
+                                        <br>
+                                        <small class="text-muted">@order.CustomerEmail</small>
+                                        <br>
+                                        <small class="text-muted">@order.CustomerPhone</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @order.OrderDate.ToString("dd/MM/yyyy")
+                                        <br>
+                                        <small class="text-muted">@order.OrderDate.ToString("HH:mm")</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-dark">
+                                        @order.OrderItems.Count item(s)
+                                    </span>
+                                    <br>
+                                    <small class="text-muted">
+                                        @order.OrderItems.Sum(oi => oi.Quantity) produk
+                                    </small>
+                                </td>
+                                <td>
+                                    <strong>Rp @order.TotalAmount.ToString("N0")</strong>
+                                </td>
+                                <td>
+                                    @switch (order.Status)
+                                    {
+                                        case BabyShopWeb2.Models.OrderStatus.Pending:
+                                            <span class="badge bg-warning">Menunggu</span>
+                                            break;
+                                        case BabyShopWeb2.Models.OrderStatus.Processing:
+                                            <span class="badge bg-info">Diproses</span>
+                                            break;
+                                        case BabyShopWeb2.Models.OrderStatus.Shipped:
+                                            <span class="badge bg-primary">Dikirim</span>
+                                            break;
+                                        case BabyShopWeb2.Models.OrderStatus.Delivered:
+                                            <span class="badge bg-success">Terkirim</span>
+                                            break;
+                                        case BabyShopWeb2.Models.OrderStatus.Cancelled:
+                                            <span class="badge bg-danger">Dibatalkan</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="OrderDetails" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary" title="Detail">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        @if (order.Status != BabyShopWeb2.Models.OrderStatus.Delivered && order.Status != BabyShopWeb2.Models.OrderStatus.Cancelled)
+                                        {
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" title="Update Status">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    @if (order.Status == BabyShopWeb2.Models.OrderStatus.Pending)
+                                                    {
+                                                        <li><a class="dropdown-item" href="#" onclick="updateStatus(@order.Id, 'Processing')">Proses Pesanan</a></li>
+                                                    }
+                                                    @if (order.Status == BabyShopWeb2.Models.OrderStatus.Processing)
+                                                    {
+                                                        <li><a class="dropdown-item" href="#" onclick="updateStatus(@order.Id, 'Shipped')">Kirim Pesanan</a></li>
+                                                    }
+                                                    @if (order.Status == BabyShopWeb2.Models.OrderStatus.Shipped)
+                                                    {
+                                                        <li><a class="dropdown-item" href="#" onclick="updateStatus(@order.Id, 'Delivered')">Tandai Terkirim</a></li>
+                                                    }
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item text-danger" href="#" onclick="updateStatus(@order.Id, 'Cancelled')">Batalkan Pesanan</a></li>
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Belum ada pesanan</h5>
+                <p class="text-muted">Pesanan akan muncul di sini setelah pelanggan melakukan pembelian</p>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Status Update Form -->
+<form id="statusUpdateForm" method="post" asp-action="UpdateOrderStatus" style="display: none;">
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="orderId" name="id" />
+    <input type="hidden" id="orderStatus" name="status" />
+</form>
+
+@section Scripts {
+    <script>
+        function filterOrders() {
+            const filter = document.getElementById('statusFilter').value;
+            const rows = document.querySelectorAll('#ordersTable tbody tr');
+            
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                if (filter === '' || status === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+        
+        function updateStatus(orderId, status) {
+            if (confirm(`Apakah Anda yakin ingin mengubah status pesanan ini?`)) {
+                document.getElementById('orderId').value = orderId;
+                document.getElementById('orderStatus').value = status;
+                document.getElementById('statusUpdateForm').submit();
+            }
+        }
+    </script>
+}

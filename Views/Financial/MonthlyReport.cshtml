@@ -1,0 +1,378 @@
+@model BabyShopWeb2.Models.MonthlyReportViewModel
+@{
+    ViewData["Title"] = "Laporan Bulanan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+<style>
+    /* Print Styles */
+    @@media print {
+        /* Hide elements not needed in print */
+        .no-print, .btn, nav, .sidebar, .admin-sidebar, 
+        .admin-header, form, .navbar, footer {
+            display: none !important;
+        }
+        
+        /* Full width for print */
+        .container-fluid {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+        }
+        
+        /* Page setup */
+        @@page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        
+        body {
+            background: white !important;
+            color: black !important;
+        }
+        
+        /* Print header */
+        .print-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #333;
+        }
+        
+        .card {
+            border: 1px solid #ddd !important;
+            box-shadow: none !important;
+            page-break-inside: avoid;
+        }
+        
+        canvas {
+            max-width: 100% !important;
+        }
+    }
+    
+    @@media screen {
+        .print-only {
+            display: none;
+        }
+    }
+</style>
+}
+
+<div class="container-fluid py-4">
+    <!-- Print Header (only visible when printing) -->
+    <div class="print-header print-only">
+        <h1>🏪 BabyShop3Berlian</h1>
+        <p>Laporan Keuangan Bulanan</p>
+        <p><strong>@Model.MonthName</strong></p>
+        <p style="font-size: 10pt;">Dicetak: @DateTime.Now.ToString("dd MMMM yyyy HH:mm")</p>
+    </div>
+    
+    <!-- Screen Header -->
+    <div class="row mb-4 no-print">
+        <div class="col-md-8">
+            <h2 class="mb-0"><i class="fas fa-file-invoice"></i> Laporan Keuangan Bulanan</h2>
+            <p class="text-muted">@Model.MonthName</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="fas fa-print"></i> Cetak Laporan
+            </button>
+        </div>
+    </div>
+
+    <!-- Month Selector (hide on print) -->
+    <div class="card mb-4 no-print">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Bulan</label>
+                    <select name="month" class="form-select" onchange="this.form.submit()">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option value="@i" selected="@(i == Model.Month)">@(new DateTime(2000, i, 1).ToString("MMMM"))</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tahun</label>
+                    <select name="year" class="form-select" onchange="this.form.submit()">
+                        @for (int i = DateTime.Now.Year; i >= DateTime.Now.Year - 5; i--)
+                        {
+                            <option value="@i" selected="@(i == Model.Year)">@i</option>
+                        }
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h6>Total Pemasukan</h6>
+                    <h2 class="mb-0">Rp @Model.TotalIncome.ToString("N0")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white">
+                <div class="card-body text-center">
+                    <h6>Total Pengeluaran</h6>
+                    <h2 class="mb-0">Rp @Model.TotalExpense.ToString("N0")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card @(Model.NetBalance >= 0 ? "bg-primary" : "bg-warning") text-white">
+                <div class="card-body text-center">
+                    <h6>Saldo Bersih</h6>
+                    <h2 class="mb-0">Rp @Model.NetBalance.ToString("N0")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Income Breakdown -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Rincian Pemasukan</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Penjualan Produk:</span>
+                        <strong>Rp @Model.SalesIncome.ToString("N0")</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Pemasukan Lain:</span>
+                        <strong>Rp @Model.OtherIncome.ToString("N0")</strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total:</strong>
+                        <strong class="text-success">Rp @Model.TotalIncome.ToString("N0")</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Rincian Pengeluaran</h5>
+                </div>
+                <div class="card-body">
+                    @foreach (var expense in Model.ExpenseByCategory)
+                    {
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>@GetCategoryName(expense.Key):</span>
+                            <strong>Rp @expense.Value.ToString("N0")</strong>
+                        </div>
+                    }
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total:</strong>
+                        <strong class="text-danger">Rp @Model.TotalExpense.ToString("N0")</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Chart -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Grafik Harian</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="dailyChart" height="80"></canvas>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0"><i class="fas fa-chart-pie"></i> Perbandingan Pemasukan vs Pengeluaran</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <canvas id="pieChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Semua Transaksi</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Transactions.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jenis</th>
+                                <th>Kategori</th>
+                                <th>Deskripsi</th>
+                                <th class="text-end">Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var transaction in Model.Transactions)
+                            {
+                                <tr>
+                                    <td>@transaction.TransactionDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>
+                                        @if (transaction.Type == TransactionType.Income)
+                                        {
+                                            <span class="badge bg-success">Pemasukan</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Pengeluaran</span>
+                                        }
+                                    </td>
+                                    <td>@GetCategoryName(transaction.Category)</td>
+                                    <td>@transaction.Description</td>
+                                    <td class="text-end">
+                                        <strong class="@(transaction.Type == TransactionType.Income ? "text-success" : "text-danger")">
+                                            Rp @transaction.Amount.ToString("N0")
+                                        </strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-center text-muted py-4">Tidak ada transaksi</p>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.DailySummaries));
+        const totalIncome = @Model.TotalIncome;
+        const totalExpense = @Model.TotalExpense;
+        
+        // Daily Bar Chart
+        const ctx = document.getElementById('dailyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.map(d => new Date(d.date).getDate()),
+                datasets: [
+                    {
+                        label: 'Pemasukan',
+                        data: chartData.map(d => d.income),
+                        backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                        borderColor: '#28a745',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Pengeluaran',
+                        data: chartData.map(d => d.expense),
+                        backgroundColor: 'rgba(220, 53, 69, 0.7)',
+                        borderColor: '#dc3545',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rp ' + value.toLocaleString('id-ID');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pemasukan', 'Pengeluaran'],
+                datasets: [{
+                    data: [totalIncome, totalExpense],
+                    backgroundColor: [
+                        'rgba(40, 167, 69, 0.8)',
+                        'rgba(220, 53, 69, 0.8)'
+                    ],
+                    borderColor: ['#28a745', '#dc3545'],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14, weight: 'bold' },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = totalIncome + totalExpense;
+                                const percentage = total > 0 ? ((context.parsed / total) * 100).toFixed(1) : 0;
+                                return context.label + ': Rp ' + context.parsed.toLocaleString('id-ID') + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+@functions {
+    string GetCategoryName(TransactionCategory category)
+    {
+        return category switch
+        {
+            TransactionCategory.Sales => "Penjualan",
+            TransactionCategory.OtherIncome => "Pemasukan Lain",
+            TransactionCategory.ProductPurchase => "Pembelian Produk",
+            TransactionCategory.OperationalCost => "Biaya Operasional",
+            TransactionCategory.Salary => "Gaji",
+            TransactionCategory.Rent => "Sewa",
+            TransactionCategory.Utilities => "Utilitas",
+            TransactionCategory.Marketing => "Marketing",
+            TransactionCategory.OtherExpense => "Pengeluaran Lain",
+            _ => category.ToString()
+        };
+    }
+}

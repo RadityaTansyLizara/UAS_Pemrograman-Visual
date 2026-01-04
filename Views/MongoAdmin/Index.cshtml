@@ -1,0 +1,176 @@
+@{
+    ViewData["Title"] = "MongoDB Management";
+    Layout = "_AdminLayout";
+}
+
+<link rel="stylesheet" href="~/css/mongodb-admin.css" asp-append-version="true" />
+
+<div class="mongodb-container">
+    <!-- Header -->
+    <div class="mongodb-header">
+        <div class="header-content">
+            <div class="header-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="header-text">
+                <h1>🍃 MongoDB Management</h1>
+                <p>Kelola database MongoDB BabyShop3Berlian</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Status -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Checking MongoDB connection...</span>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid" id="statsGrid" style="display: none;">
+        <div class="stat-card">
+            <div class="stat-icon products">
+                <i class="fas fa-box"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="productsCount">0</h3>
+                <p>Products</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon categories">
+                <i class="fas fa-tags"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="categoriesCount">0</h3>
+                <p>Categories</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon orders">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="ordersCount">0</h3>
+                <p>Orders</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon admins">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="stat-content">
+                <h3 id="adminsCount">0</h3>
+                <p>Admin Users</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-section" id="actionsSection" style="display: none;">
+        <h2>⚡ Quick Actions</h2>
+        
+        <div class="actions-grid">
+            <!-- Seed Data -->
+            <div class="action-card">
+                <div class="action-icon seed">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Seed Data</h3>
+                <p>Tambahkan data awal ke MongoDB (categories, products, admin user)</p>
+                <button class="btn-action btn-seed" onclick="seedMongoDB()">
+                    <i class="fas fa-seedling"></i> Seed MongoDB
+                </button>
+            </div>
+
+            <!-- Migrate from SQLite -->
+            <div class="action-card">
+                <div class="action-icon migrate">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3>Migrate from SQLite</h3>
+                <p>Copy semua data dari SQLite ke MongoDB</p>
+                <button class="btn-action btn-migrate" onclick="migrateSQLiteToMongoDB()">
+                    <i class="fas fa-exchange-alt"></i> Migrate Data
+                </button>
+            </div>
+
+            <!-- Refresh Status -->
+            <div class="action-card">
+                <div class="action-icon refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Refresh Status</h3>
+                <p>Update informasi koneksi dan jumlah data</p>
+                <button class="btn-action btn-refresh" onclick="checkMongoDB()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Clear Data -->
+            <div class="action-card">
+                <div class="action-icon clear">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <h3>Clear Data</h3>
+                <p>Hapus semua data di MongoDB (hati-hati!)</p>
+                <button class="btn-action btn-clear" onclick="clearMongoDB()">
+                    <i class="fas fa-trash-alt"></i> Clear MongoDB
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sample Products -->
+    <div class="sample-products" id="sampleProducts" style="display: none;">
+        <h2>📦 Sample Products</h2>
+        <div class="products-list" id="productsList">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Database Info -->
+    <div class="database-info" id="databaseInfo" style="display: none;">
+        <h2>ℹ️ Database Information</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>Connection String:</strong>
+                <span>mongodb://localhost:27017</span>
+            </div>
+            <div class="info-item">
+                <strong>Database Name:</strong>
+                <span>BabyShop3Berlian</span>
+            </div>
+            <div class="info-item">
+                <strong>Status:</strong>
+                <span class="status-badge" id="statusBadge">Connected</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="loading-modal" id="loadingModal" style="display: none;">
+    <div class="loading-content">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+        <p id="loadingText">Processing...</p>
+    </div>
+</div>
+
+<!-- Result Modal -->
+<div class="result-modal" id="resultModal" style="display: none;">
+    <div class="result-content">
+        <div class="result-icon" id="resultIcon"></div>
+        <h3 id="resultTitle"></h3>
+        <p id="resultMessage"></p>
+        <button class="btn-close" onclick="closeResultModal()">Close</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/mongodb-admin.js" asp-append-version="true"></script>
+}

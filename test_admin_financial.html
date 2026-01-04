@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Admin Dashboard Financial - BabyShop3Berlian</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #ff6b9d; }
+        .preview { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card-row { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .card { flex: 1; min-width: 250px; padding: 20px; border-radius: 8px; color: white; }
+        .card.green { background: linear-gradient(135deg, #28a745, #20c997); }
+        .card.red { background: linear-gradient(135deg, #dc3545, #e83e8c); }
+        .card.blue { background: linear-gradient(135deg, #007bff, #6610f2); }
+        .card.primary { background: linear-gradient(135deg, #0d6efd, #0dcaf0); }
+        .card.info { background: linear-gradient(135deg, #17a2b8, #20c997); }
+        .card.secondary { background: linear-gradient(135deg, #6c757d, #adb5bd); }
+        .card.dark { background: linear-gradient(135deg, #212529, #495057); }
+        .card h3 { margin: 0 0 10px 0; font-size: 2em; }
+        .card p { margin: 5px 0; opacity: 0.9; }
+        .card small { opacity: 0.8; font-size: 0.85em; }
+        .section-title { background: #ff6b9d; color: white; padding: 10px 15px; border-radius: 5px; margin: 30px 0 15px 0; }
+        .test-step { background: #e7f3ff; padding: 15px; margin: 10px 0; border-left: 4px solid #007bff; border-radius: 4px; }
+        .success { background: #d4edda; border-left-color: #28a745; }
+        .info { background: #d1ecf1; border-left-color: #17a2b8; }
+        .warning { background: #fff3cd; border-left-color: #ffc107; }
+        .button-row { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; color: white; }
+        .btn-pink { background: #ff6b9d; }
+        .btn-primary { background: #007bff; border: 2px solid #007bff; color: #007bff; background: white; }
+        .btn-success { background: #28a745; border: 2px solid #28a745; color: #28a745; background: white; }
+        .btn-warning { background: #ffc107; border: 2px solid #ffc107; color: #856404; background: white; }
+        .btn-info { background: #17a2b8; border: 2px solid #17a2b8; color: #17a2b8; background: white; }
+        .btn-secondary { background: #6c757d; border: 2px solid #6c757d; color: #6c757d; background: white; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #007bff; color: white; }
+        tr:hover { background: #f8f9fa; }
+        .badge { padding: 5px 10px; border-radius: 12px; font-size: 0.85em; }
+        .badge-success { background: #28a745; color: white; }
+        .badge-danger { background: #dc3545; color: white; }
+        .badge-info { background: #17a2b8; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Admin Dashboard Financial - BabyShop3Berlian</h1>
+        
+        <div class="preview">
+            <h2>📊 Preview Dashboard Admin (Updated)</h2>
+            
+            <div class="section-title">
+                <h3 style="margin: 0;">📅 Keuangan Hari Ini - 26 Desember 2025</h3>
+            </div>
+            
+            <div class="card-row">
+                <div class="card green">
+                    <p style="margin: 0; font-size: 0.9em;">Pemasukan Hari Ini</p>
+                    <h3>Rp 150.000</h3>
+                    <small>Realtime</small>
+                </div>
+                <div class="card red">
+                    <p style="margin: 0; font-size: 0.9em;">Pengeluaran Hari Ini</p>
+                    <h3>Rp 50.000</h3>
+                    <small>Realtime</small>
+                </div>
+                <div class="card blue">
+                    <p style="margin: 0; font-size: 0.9em;">Saldo Hari Ini</p>
+                    <h3>Rp 100.000</h3>
+                    <small>Pemasukan - Pengeluaran</small>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <h3 style="margin: 0;">📊 Rekap Bulanan - Desember 2025</h3>
+            </div>
+            
+            <div class="card-row">
+                <div class="card green">
+                    <p style="margin: 0; font-size: 0.9em;">Pemasukan Bulan Ini</p>
+                    <h3>Rp 2.500.000</h3>
+                    <small>Total pemasukan</small>
+                </div>
+                <div class="card red">
+                    <p style="margin: 0; font-size: 0.9em;">Pengeluaran Bulan Ini</p>
+                    <h3>Rp 1.200.000</h3>
+                    <small>Total pengeluaran</small>
+                </div>
+                <div class="card blue">
+                    <p style="margin: 0; font-size: 0.9em;">Saldo Bulan Ini</p>
+                    <h3>Rp 1.300.000</h3>
+                    <small>Laba/Rugi bersih</small>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <h3 style="margin: 0;">🏪 Statistik Bisnis</h3>
+            </div>
+            
+            <div class="card-row">
+                <div class="card primary">
+                    <h3>15</h3>
+                    <p>Total Produk</p>
+                </div>
+                <div class="card info">
+                    <h3>8</h3>
+                    <p>Total Pesanan</p>
+                </div>
+                <div class="card secondary">
+                    <h3>Rp 2.500.000</h3>
+                    <p>Total Pendapatan</p>
+                </div>
+                <div class="card dark">
+                    <h3>26/12</h3>
+                    <p>Hari Ini</p>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                <h3 style="margin: 0;">⚡ Aksi Cepat</h3>
+            </div>
+            
+            <div class="button-row">
+                <button class="btn btn-pink">➕ Tambah Produk</button>
+                <button class="btn btn-primary">📋 Lihat Produk</button>
+                <button class="btn btn-success">🛒 Lihat Pesanan</button>
+                <button class="btn btn-warning">➕ Tambah Transaksi</button>
+                <button class="btn btn-info">📊 Detail Keuangan</button>
+                <button class="btn btn-secondary">🌐 Lihat Website</button>
+            </div>
+        </div>
+
+        <div class="preview">
+            <h2>🧪 Langkah Testing</h2>
+            
+            <div class="test-step success">
+                <h3>✅ Step 1: Akses Dashboard Admin</h3>
+                <p><strong>URL:</strong> <code>http://localhost:5055/Admin</code></p>
+                <p><strong>Atau:</strong> Klik tombol "Admin" di navbar website</p>
+                <p><strong>Expected:</strong> Dashboard terbuka dengan 3 section financial cards di bagian atas</p>
+            </div>
+
+            <div class="test-step info">
+                <h3>📊 Step 2: Verifikasi Data Keuangan Hari Ini</h3>
+                <p><strong>Check:</strong></p>
+                <ul>
+                    <li>Card "Pemasukan Hari Ini" menampilkan angka (warna hijau)</li>
+                    <li>Card "Pengeluaran Hari Ini" menampilkan angka (warna merah)</li>
+                    <li>Card "Saldo Hari Ini" menampilkan selisih (warna biru/merah)</li>
+                    <li>Label "Realtime" terlihat di bawah angka</li>
+                </ul>
+            </div>
+
+            <div class="test-step info">
+                <h3>📈 Step 3: Verifikasi Rekap Bulanan</h3>
+                <p><strong>Check:</strong></p>
+                <ul>
+                    <li>Card "Pemasukan Bulan Ini" menampilkan total bulanan</li>
+                    <li>Card "Pengeluaran Bulan Ini" menampilkan total bulanan</li>
+                    <li>Card "Saldo Bulan Ini" menampilkan laba/rugi bersih</li>
+                    <li>Nama bulan dan tahun terlihat di header section</li>
+                </ul>
+            </div>
+
+            <div class="test-step info">
+                <h3>🛒 Step 4: Test Transaksi Otomatis</h3>
+                <p><strong>Langkah:</strong></p>
+                <ol>
+                    <li>Buka website (klik "Lihat Website")</li>
+                    <li>Tambah produk ke cart</li>
+                    <li>Checkout dan bayar</li>
+                    <li>Kembali ke Dashboard Admin</li>
+                    <li>Refresh halaman</li>
+                </ol>
+                <p><strong>Expected:</strong> Angka "Pemasukan Hari Ini" dan "Pemasukan Bulan Ini" bertambah sesuai total order</p>
+            </div>
+
+            <div class="test-step info">
+                <h3>➕ Step 5: Test Tambah Transaksi Manual</h3>
+                <p><strong>Langkah:</strong></p>
+                <ol>
+                    <li>Klik tombol "Tambah Transaksi" di Aksi Cepat</li>
+                    <li>Isi form transaksi (Pengeluaran - Pembelian Produk - Rp 100.000)</li>
+                    <li>Simpan</li>
+                    <li>Kembali ke Dashboard Admin</li>
+                </ol>
+                <p><strong>Expected:</strong> Angka "Pengeluaran Hari Ini" bertambah Rp 100.000</p>
+            </div>
+
+            <div class="test-step info">
+                <h3>📊 Step 6: Test Detail Keuangan</h3>
+                <p><strong>Langkah:</strong></p>
+                <ol>
+                    <li>Klik tombol "Detail Keuangan" di Aksi Cepat</li>
+                    <li>Lihat halaman keuangan lengkap</li>
+                </ol>
+                <p><strong>Expected:</strong> Halaman Financial/Index terbuka dengan grafik dan detail transaksi</p>
+            </div>
+
+            <div class="test-step warning">
+                <h3>🔄 Step 7: Test Realtime Update</h3>
+                <p><strong>Langkah:</strong></p>
+                <ol>
+                    <li>Catat angka pemasukan saat ini</li>
+                    <li>Buat order baru dan bayar</li>
+                    <li>Refresh Dashboard Admin</li>
+                </ol>
+                <p><strong>Expected:</strong> Angka pemasukan berubah sesuai order baru</p>
+            </div>
+        </div>
+
+        <div class="preview">
+            <h2>✅ Checklist Fitur</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fitur</th>
+                        <th>Status</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>📅 Keuangan Hari Ini</td>
+                        <td><span class="badge badge-success">✅ READY</span></td>
+                        <td>3 cards: Pemasukan, Pengeluaran, Saldo</td>
+                    </tr>
+                    <tr>
+                        <td>📊 Rekap Bulanan</td>
+                        <td><span class="badge badge-success">✅ READY</span></td>
+                        <td>3 cards: Total pemasukan, pengeluaran, saldo bulan ini</td>
+                    </tr>
+                    <tr>
+                        <td>🏪 Statistik Bisnis</td>
+                        <td><span class="badge badge-success">✅ READY</span></td>
+                        <td>4 cards: Produk, Pesanan, Revenue, Tanggal</td>
+                    </tr>
+                    <tr>
+                        <td>⚡ Aksi Cepat</td>
+                        <td><span class="badge badge-success">✅ UPDATED</span></td>
+                        <td>6 tombol termasuk Tambah Transaksi & Detail Keuangan</td>
+                    </tr>
+                    <tr>
+                        <td>🔄 Realtime Update</td>
+                        <td><span class="badge badge-success">✅ WORKING</span></td>
+                        <td>Data terupdate otomatis saat ada transaksi baru</td>
+                    </tr>
+                    <tr>
+                        <td>🎨 Visual Design</td>
+                        <td><span class="badge badge-success">✅ DONE</span></td>
+                        <td>Warna sesuai (hijau=pemasukan, merah=pengeluaran)</td>
+                    </tr>
+                    <tr>
+                        <td>🔗 Navigation</td>
+                        <td><span class="badge badge-success">✅ DONE</span></td>
+                        <td>Link ke Financial/Index dan CreateTransaction</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="preview" style="background: #d4edda; border: 2px solid #28a745;">
+            <h2>✅ Status Implementasi</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3>✅ Completed Features:</h3>
+                    <ul>
+                        <li>✅ Dashboard menampilkan keuangan harian</li>
+                        <li>✅ Dashboard menampilkan rekap bulanan</li>
+                        <li>✅ Data realtime dari database</li>
+                        <li>✅ Visual cards dengan warna sesuai</li>
+                        <li>✅ Tombol aksi cepat ke fitur keuangan</li>
+                        <li>✅ Integrasi dengan FinancialService</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🎯 Access Points:</h3>
+                    <ul>
+                        <li>🌐 <strong>Dashboard:</strong> http://localhost:5055/Admin</li>
+                        <li>💰 <strong>Detail Keuangan:</strong> http://localhost:5055/Financial</li>
+                        <li>➕ <strong>Tambah Transaksi:</strong> http://localhost:5055/Financial/CreateTransaction</li>
+                        <li>📊 <strong>Laporan Bulanan:</strong> http://localhost:5055/Financial/MonthlyReport</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview" style="background: #fff3cd; border: 2px solid #ffc107;">
+            <h2>⚠️ Important Notes</h2>
+            <ul>
+                <li><strong>Data Realtime:</strong> Dashboard menampilkan data terbaru dari database</li>
+                <li><strong>Transaksi Otomatis:</strong> Setiap order yang dibayar otomatis tercatat sebagai pemasukan</li>
+                <li><strong>Refresh:</strong> Refresh halaman untuk melihat data terbaru setelah transaksi</li>
+                <li><strong>Warna Dinamis:</strong> Warna saldo berubah otomatis (biru=untung, merah=rugi)</li>
+                <li><strong>Navigation:</strong> Gunakan tombol "Detail Keuangan" untuk melihat grafik lengkap</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

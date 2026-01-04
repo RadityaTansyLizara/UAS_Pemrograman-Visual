@@ -1,0 +1,95 @@
+.contact-hero {
+    background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%);
+}
+
+.contact-info-card {
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bg-pink-light {
+    background-color: #FFE5EC;
+}
+
+.bg-blue-light {
+    background-color: #E3F2FD;
+}
+
+.bg-yellow-light {
+    background-color: #FFF9E6;
+}
+
+.bg-success-light {
+    background-color: #E8F5E9;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.social-icons-large {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-icon-large {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon-large:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.social-icon-large.facebook { background: #3B5998; }
+.social-icon-large.instagram { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); }
+.social-icon-large.twitter { background: #1DA1F2; }
+.social-icon-large.whatsapp { background: #25D366; }
+.social-icon-large.youtube { background: #FF0000; }
+
+.map-container {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .contact-info-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .icon-wrapper {
+        margin: 0 auto;
+    }
+}

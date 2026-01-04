@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login Debug - BabyShop3Berlian</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffeef8 0%, #e0f7ff 100%);
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff69b4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #ff69b4;
+        }
+        .step h3 {
+            color: #ff69b4;
+            margin-top: 0;
+        }
+        .command {
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .link {
+            display: inline-block;
+            background: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        .link:hover {
+            background: #ff1493;
+        }
+        .credential {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #ffc107;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #28a745;
+            margin: 10px 0;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #ffc107;
+            margin: 10px 0;
+        }
+        .links-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Test Login Debug - BabyShop3Berlian</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Masalah:</strong> Login gagal dengan pesan "Username atau password salah"
+        </div>
+
+        <div class="step">
+            <h3>📋 Langkah 1: Stop Aplikasi</h3>
+            <p>Tekan <code>Ctrl+C</code> di terminal untuk menghentikan aplikasi yang sedang berjalan.</p>
+        </div>
+
+        <div class="step">
+            <h3>🗑️ Langkah 2: Hapus Database Lama</h3>
+            <p>Jalankan command berikut di terminal:</p>
+            <div class="command">del babyshop.db<br>del babyshop.db-shm<br>del babyshop.db-wal</div>
+        </div>
+
+        <div class="step">
+            <h3>▶️ Langkah 3: Jalankan Ulang Aplikasi</h3>
+            <div class="command">dotnet run</div>
+            <p><strong>Perhatikan output console!</strong> Seharusnya muncul:</p>
+            <div class="command">Admin user created: username=admin, password=admin123<br>Database recreated with latest schema</div>
+        </div>
+
+        <div class="step">
+            <h3>✅ Langkah 4: Verifikasi Admin User</h3>
+            <p>Klik link berikut untuk melihat admin user di database:</p>
+            <div class="links-container">
+                <a href="http://localhost:5055/Auth/CheckAdmin" target="_blank" class="link">
+                    🔍 Check Admin User
+                </a>
+            </div>
+            <p>Anda akan melihat:</p>
+            <ul>
+                <li>Total admin users</li>
+                <li>Username dan password hash</li>
+                <li>Test hash untuk password "admin123"</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>🔐 Langkah 5: Login</h3>
+            <p>Klik link berikut untuk membuka halaman login:</p>
+            <div class="links-container">
+                <a href="http://localhost:5055/Auth/Login" target="_blank" class="link">
+                    🚪 Halaman Login
+                </a>
+            </div>
+            
+            <div class="credential">
+                <strong>Kredensial Default:</strong><br>
+                <strong>Username:</strong> admin<br>
+                <strong>Password:</strong> admin123
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>📊 Langkah 6: Cek Console Log</h3>
+            <p>Setelah klik tombol Login, perhatikan output di console/terminal. Akan muncul informasi debug:</p>
+            <div class="command">
+Login attempt - Username: admin<br>
+Password hash generated: jSMHbaS/QnVJRt5q6xKufA8JX4d2nxPWw5J3+5JQZH4=<br>
+User found in DB - Username: admin<br>
+Stored password hash: jSMHbaS/QnVJRt5q6xKufA8JX4d2nxPWw5J3+5JQZH4=<br>
+Hashes match: True
+            </div>
+        </div>
+
+        <div class="success">
+            <strong>🎉 Setelah Login Berhasil:</strong><br>
+            Anda akan diarahkan ke Admin Dashboard dan session akan aktif selama 2 jam.
+        </div>
+
+        <div class="step">
+            <h3>🔗 Link Penting</h3>
+            <div class="links-container">
+                <a href="http://localhost:5055/" target="_blank" class="link">🏠 Beranda</a>
+                <a href="http://localhost:5055/Auth/Login" target="_blank" class="link">🔐 Login</a>
+                <a href="http://localhost:5055/Auth/CheckAdmin" target="_blank" class="link">🔍 Check Admin</a>
+                <a href="http://localhost:5055/Admin" target="_blank" class="link">📊 Admin Dashboard</a>
+                <a href="http://localhost:5055/Auth/Logout" target="_blank" class="link">🚪 Logout</a>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>💡 Tips Troubleshooting</h3>
+            <ul>
+                <li>Pastikan aplikasi sudah berjalan (dotnet run)</li>
+                <li>Pastikan tidak ada typo saat input username/password</li>
+                <li>Username dan password case-sensitive</li>
+                <li>Cek console output untuk detail error</li>
+                <li>Jika masih gagal, ulangi dari langkah 1</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

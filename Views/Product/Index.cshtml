@@ -1,0 +1,318 @@
+@model IEnumerable<BabyShopWeb2.Models.Product>
+@{
+    ViewData["Title"] = "Semua Produk";
+}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="fw-bold text-dark mb-3">Semua Produk</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Beranda</a></li>
+                    <li class="breadcrumb-item active">Produk</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" id="filterForm" class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Kategori</label>
+                            <select name="categoryId" id="categorySelect" class="form-select">
+                                <option value="">Semua Kategori</option>
+                                @if (ViewBag.Categories != null)
+                                {
+                                    @foreach (var category in (List<BabyShopWeb2.Models.Category>)ViewBag.Categories)
+                                    {
+                                        @if (ViewBag.CurrentCategory == category.Id)
+                                        {
+                                            <option value="@category.Id" selected>@category.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@category.Id">@category.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Cari Produk</label>
+                            <input type="text" name="search" id="searchInput" class="form-control" placeholder="Nama produk..." value="@ViewBag.CurrentSearch">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Urutkan</label>
+                            <select name="sortBy" id="sortBySelect" class="form-select">
+                                @if (string.IsNullOrEmpty(ViewBag.CurrentSort))
+                                {
+                                    <option value="" selected>Default</option>
+                                }
+                                else
+                                {
+                                    <option value="">Default</option>
+                                }
+                                
+                                @if (ViewBag.CurrentSort == "name")
+                                {
+                                    <option value="name" selected>Nama A-Z</option>
+                                }
+                                else
+                                {
+                                    <option value="name">Nama A-Z</option>
+                                }
+                                
+                                @if (ViewBag.CurrentSort == "price_asc")
+                                {
+                                    <option value="price_asc" selected>Harga Terendah</option>
+                                }
+                                else
+                                {
+                                    <option value="price_asc">Harga Terendah</option>
+                                }
+                                
+                                @if (ViewBag.CurrentSort == "price_desc")
+                                {
+                                    <option value="price_desc" selected>Harga Tertinggi</option>
+                                }
+                                else
+                                {
+                                    <option value="price_desc">Harga Tertinggi</option>
+                                }
+                            </select>
+                        </div>
+                    </form>
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex align-items-center">
+                            <button type="button" onclick="resetFilters()" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-redo me-1"></i>Reset Filter
+                            </button>
+                            <span class="text-muted ms-3 small">
+                                <i class="fas fa-info-circle me-1"></i>Filter otomatis diterapkan saat Anda memilih kategori atau urutan
+                            </span>
+                            <div id="loadingIndicator" class="ms-auto" style="display: none;">
+                                <span class="spinner-border spinner-border-sm text-pink me-2" role="status"></span>
+                                <span class="text-pink small fw-bold">Memuat produk...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="row g-4">
+        @if (Model.Any())
+        {
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl" alt="@product.Name" class="img-fluid">
+                            }
+                            else
+                            {
+                                <div class="product-placeholder">
+                                    <i class="@product.Category.IconClass fa-3x text-white"></i>
+                                </div>
+                            }
+                            @if (product.DiscountPrice.HasValue)
+                            {
+                                <span class="discount-badge">DISKON</span>
+                            }
+                            @if (product.Stock <= 0)
+                            {
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0,0,0,0.7);">
+                                    <span class="text-white fw-bold">STOK HABIS</span>
+                                </div>
+                            }
+                        </div>
+                        <div class="product-info p-3">
+                            <h6 class="product-title mb-2">@product.Name</h6>
+                            <p class="product-category text-muted small mb-2">@product.Category.Name</p>
+                            <div class="product-price mb-2">
+                                @if (product.DiscountPrice.HasValue)
+                                {
+                                    <span class="price-original text-muted text-decoration-line-through">Rp @product.Price.ToString("N0")</span>
+                                    <span class="price-discount text-pink fw-bold">Rp @product.DiscountPrice.Value.ToString("N0")</span>
+                                }
+                                else
+                                {
+                                    <span class="price-current text-pink fw-bold">Rp @product.Price.ToString("N0")</span>
+                                }
+                            </div>
+                            <div class="mb-3">
+                                @if (product.Stock <= 0)
+                                {
+                                    <span class="badge stock-out">Stok Habis</span>
+                                }
+                                else if (product.Stock <= 5)
+                                {
+                                    <span class="badge stock-low">Stok Terbatas (@product.Stock)</span>
+                                }
+                                else
+                                {
+                                    <span class="badge stock-available">Tersedia (@product.Stock)</span>
+                                }
+                            </div>
+                            <div class="product-actions">
+                                <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-outline-pink btn-sm me-2">
+                                    <i class="fas fa-eye me-1"></i>Detail
+                                </a>
+                                @if (product.Stock > 0)
+                                {
+                                    <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <input type="hidden" name="quantity" value="1" />
+                                        <button type="submit" class="btn btn-pink btn-sm">
+                                            <i class="fas fa-cart-plus me-1"></i>Beli
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-secondary btn-sm" disabled>
+                                        <i class="fas fa-times me-1"></i>Habis
+                                    </button>
+                                }
+                            </div>
+                            
+                            <!-- Admin Actions -->
+                            <div class="admin-actions mt-2">
+                                <a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@product.Id" class="btn btn-outline-warning btn-sm me-1" title="Edit Produk">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmDeleteProduct(@product.Id, '@product.Name')" title="Hapus Produk">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">Produk tidak ditemukan</h4>
+                    <p class="text-muted">Coba ubah filter pencarian Anda</p>
+                    <a asp-action="Index" class="btn btn-pink">Lihat Semua Produk</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Konfirmasi Hapus Produk</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus produk <strong id="productNameToDelete"></strong>?</p>
+                <p class="text-danger small">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    Tindakan ini tidak dapat dibatalkan.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <form id="deleteProductForm" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i>Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.admin-actions {
+    border-top: 1px solid #eee;
+    padding-top: 8px;
+}
+
+.admin-actions .btn {
+    padding: 4px 8px;
+    font-size: 12px;
+}
+</style>
+
+<script>
+// Auto-submit form when category or sort changes
+document.addEventListener('DOMContentLoaded', function() {
+    const filterForm = document.getElementById('filterForm');
+    const categorySelect = document.getElementById('categorySelect');
+    const sortBySelect = document.getElementById('sortBySelect');
+    const searchInput = document.getElementById('searchInput');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    
+    // Show loading indicator
+    function showLoading() {
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'block';
+        }
+    }
+    
+    // Auto-submit on category change
+    categorySelect.addEventListener('change', function() {
+        showLoading();
+        filterForm.submit();
+    });
+    
+    // Auto-submit on sort change
+    sortBySelect.addEventListener('change', function() {
+        showLoading();
+        filterForm.submit();
+    });
+    
+    // Submit on Enter key in search input
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            showLoading();
+            filterForm.submit();
+        }
+    });
+    
+    // Optional: Auto-submit search after user stops typing (debounce)
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            if (searchInput.value.length >= 3 || searchInput.value.length === 0) {
+                showLoading();
+                filterForm.submit();
+            }
+        }, 800); // Wait 800ms after user stops typing
+    });
+});
+
+function resetFilters() {
+    document.getElementById('loadingIndicator').style.display = 'block';
+    window.location.href = '@Url.Action("Index", "Product")';
+}
+
+function confirmDeleteProduct(productId, productName) {
+    document.getElementById('productNameToDelete').textContent = productName;
+    document.getElementById('deleteProductForm').action = '/Admin/DeleteProduct/' + productId;
+    new bootstrap.Modal(document.getElementById('deleteProductModal')).show();
+}
+</script>

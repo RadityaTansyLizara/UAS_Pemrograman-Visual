@@ -1,0 +1,937 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\BabyShopWeb2\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BabyShopWeb2.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BabyShopWeb2.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\about.css",
+      "PackagePath": "staticwebassets\\css\\about.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\admin-baby-theme.css",
+      "PackagePath": "staticwebassets\\css\\admin-baby-theme.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\contact.css",
+      "PackagePath": "staticwebassets\\css\\contact.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\mongodb-admin.css",
+      "PackagePath": "staticwebassets\\css\\mongodb-admin.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\newsletter-thankyou.css",
+      "PackagePath": "staticwebassets\\css\\newsletter-thankyou.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0050872d-7bcb-4f37-bc6d-9d4ae3e51196.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0050872d-7bcb-4f37-bc6d-9d4ae3e51196.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\00a5e348-a4ee-483c-8d1e-22e0c02d6a7c.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\00a5e348-a4ee-483c-8d1e-22e0c02d6a7c.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\00eb306e-46fe-4e72-8e61-bfb9fdf3df48.png",
+      "PackagePath": "staticwebassets\\images\\products\\00eb306e-46fe-4e72-8e61-bfb9fdf3df48.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\05904fd3-3109-49a4-9bb4-0c5837497e74.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\05904fd3-3109-49a4-9bb4-0c5837497e74.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\07f9b987-9ada-45d4-8271-785ed173cb68.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\07f9b987-9ada-45d4-8271-785ed173cb68.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\08dc3c84-c089-4bb7-ba8f-371485fd870c.png",
+      "PackagePath": "staticwebassets\\images\\products\\08dc3c84-c089-4bb7-ba8f-371485fd870c.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0b2b767c-5d26-48c0-8ea5-ac04f77e1737.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0b2b767c-5d26-48c0-8ea5-ac04f77e1737.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0c32230b-d1a2-428d-9883-4ef0c0e1a152.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0c32230b-d1a2-428d-9883-4ef0c0e1a152.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0c76f85b-4b38-438d-8b62-8945ba238ab6.png",
+      "PackagePath": "staticwebassets\\images\\products\\0c76f85b-4b38-438d-8b62-8945ba238ab6.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0c89d5bc-ce3a-417e-885c-9fa4bd105526.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0c89d5bc-ce3a-417e-885c-9fa4bd105526.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0d31c852-9985-447a-97c0-4fc38864013c.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0d31c852-9985-447a-97c0-4fc38864013c.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0d37ab57-3196-4ddc-8711-24949ae5cf9d.png",
+      "PackagePath": "staticwebassets\\images\\products\\0d37ab57-3196-4ddc-8711-24949ae5cf9d.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0ef361cd-778a-4791-8271-5b8c76adf71e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0ef361cd-778a-4791-8271-5b8c76adf71e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0f432871-7762-485d-aa38-f246909a0d2d.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0f432871-7762-485d-aa38-f246909a0d2d.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0fc210b2-4755-4618-bd72-2f61b9d05cb5.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0fc210b2-4755-4618-bd72-2f61b9d05cb5.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\0ff7ec82-314d-4a45-9718-5db3ce1a4b76.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0ff7ec82-314d-4a45-9718-5db3ce1a4b76.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\10c0fbdb-7f02-47d5-b229-e9e8fdb1a76f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\10c0fbdb-7f02-47d5-b229-e9e8fdb1a76f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1419c81c-8847-473c-8c79-f2636946b8e9.jpeg",
+      "PackagePath": "staticwebassets\\images\\products\\1419c81c-8847-473c-8c79-f2636946b8e9.jpeg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\142f3911-1645-4a89-9915-02b0f6deecb7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\142f3911-1645-4a89-9915-02b0f6deecb7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1760e02c-f221-48c4-9bb8-55bc2ccfc3b6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\1760e02c-f221-48c4-9bb8-55bc2ccfc3b6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\178c9c00-60b4-49fe-a44d-6302c31682d6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\178c9c00-60b4-49fe-a44d-6302c31682d6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\188d3138-93cd-4d60-87f0-0180a04f02ea.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\188d3138-93cd-4d60-87f0-0180a04f02ea.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\18f59a1b-fb5d-465d-ae18-858f480ba3bb.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\18f59a1b-fb5d-465d-ae18-858f480ba3bb.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\190e6779-76be-48f5-a8b4-f9253309aabe.png",
+      "PackagePath": "staticwebassets\\images\\products\\190e6779-76be-48f5-a8b4-f9253309aabe.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1af3cbba-e59d-49a8-8029-f2dc1549090b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\1af3cbba-e59d-49a8-8029-f2dc1549090b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1b646dcc-2887-45ea-b2db-a05552a82c0e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\1b646dcc-2887-45ea-b2db-a05552a82c0e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1e28108c-5f9b-4606-93a5-41bd004a089f.png",
+      "PackagePath": "staticwebassets\\images\\products\\1e28108c-5f9b-4606-93a5-41bd004a089f.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1e52c191-2723-4910-8896-1915f50a2668.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\1e52c191-2723-4910-8896-1915f50a2668.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1e80919e-98b7-43ec-802b-7a169f5c37ad.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\1e80919e-98b7-43ec-802b-7a169f5c37ad.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\1edf709b-13cb-4bd7-a2b8-48a736d2e83a.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\1edf709b-13cb-4bd7-a2b8-48a736d2e83a.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\21afab1d-8494-4fb7-a8cd-be6a360f401e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\21afab1d-8494-4fb7-a8cd-be6a360f401e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\28e3b143-63de-4c14-aefe-7d28e62da6fe.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\28e3b143-63de-4c14-aefe-7d28e62da6fe.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\2b9981d5-f885-4789-928c-acc3cd4b238b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2b9981d5-f885-4789-928c-acc3cd4b238b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\2cdb521a-6d48-45c6-8fd6-d58673295103.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2cdb521a-6d48-45c6-8fd6-d58673295103.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\2d56d03a-344d-4dff-86c7-3ed316e1cc83.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2d56d03a-344d-4dff-86c7-3ed316e1cc83.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\2df8d448-f831-4d1a-b165-2423a219e8f5.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2df8d448-f831-4d1a-b165-2423a219e8f5.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\2dfe20c5-c568-4e24-99d9-7e3b6a4f2690.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2dfe20c5-c568-4e24-99d9-7e3b6a4f2690.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\2e5b77b0-7b9e-4632-a523-ef02f1574e6e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2e5b77b0-7b9e-4632-a523-ef02f1574e6e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\303b5f0f-663a-40b3-adac-2a1e5d86ca3e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\303b5f0f-663a-40b3-adac-2a1e5d86ca3e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\31edd766-646f-4069-b0c0-9361bfe922aa.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\31edd766-646f-4069-b0c0-9361bfe922aa.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\327bcbdb-8894-464f-bf50-d4e8b4bafa2b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\327bcbdb-8894-464f-bf50-d4e8b4bafa2b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\34d61500-8d92-441e-876c-8411188c8bb3.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\34d61500-8d92-441e-876c-8411188c8bb3.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\365c7afa-885b-4b8a-a874-55042e5a55dd.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\365c7afa-885b-4b8a-a874-55042e5a55dd.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\37766ec0-f049-4c53-bc49-566a0f8c33a1.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\37766ec0-f049-4c53-bc49-566a0f8c33a1.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\38da4322-ce6d-4110-8b4c-1429011f43f0.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\38da4322-ce6d-4110-8b4c-1429011f43f0.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\3d72b289-2eed-46ab-b122-a502b589c1a6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\3d72b289-2eed-46ab-b122-a502b589c1a6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\3d81d63a-8570-42c0-b27a-5554043e4b66.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\3d81d63a-8570-42c0-b27a-5554043e4b66.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\3e5ab94f-a0ad-4ca1-89e1-ba8fce399bf4.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\3e5ab94f-a0ad-4ca1-89e1-ba8fce399bf4.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\3fc5faa5-bc99-4961-bfd3-cc7bfb7d6e3d.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\3fc5faa5-bc99-4961-bfd3-cc7bfb7d6e3d.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4058b3db-6599-4914-83b3-9d73b45c9cc0.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4058b3db-6599-4914-83b3-9d73b45c9cc0.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\423b41d6-439c-4a15-8df1-5f7dd5950213.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\423b41d6-439c-4a15-8df1-5f7dd5950213.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\45e04eae-9b17-402b-b9d2-45d376e411a9.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\45e04eae-9b17-402b-b9d2-45d376e411a9.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4665f254-6c61-49a1-b838-488a289ec2c3.jpeg",
+      "PackagePath": "staticwebassets\\images\\products\\4665f254-6c61-49a1-b838-488a289ec2c3.jpeg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4a88cc44-f2ec-4a18-adcc-82d0d61ca2c7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4a88cc44-f2ec-4a18-adcc-82d0d61ca2c7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4ac143c2-73b0-47b0-a590-15d5673bd958.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4ac143c2-73b0-47b0-a590-15d5673bd958.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4ca7aab6-c6c3-47fe-9635-88c49da428fa.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4ca7aab6-c6c3-47fe-9635-88c49da428fa.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4cdebd36-4cff-4125-9186-6d939029cdc6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4cdebd36-4cff-4125-9186-6d939029cdc6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4f82ec95-8e9d-402b-b48d-e29677738efa.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4f82ec95-8e9d-402b-b48d-e29677738efa.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\4fcf6df5-b8bf-4e5e-bf51-39e3be224ae5.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4fcf6df5-b8bf-4e5e-bf51-39e3be224ae5.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\50eb2008-aab7-4ec0-9f5e-0a347e97f644.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\50eb2008-aab7-4ec0-9f5e-0a347e97f644.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5177d85c-fd57-4385-8ab1-993903097be7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5177d85c-fd57-4385-8ab1-993903097be7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5a874136-b6a3-480f-a6ae-6729df12e0f6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5a874136-b6a3-480f-a6ae-6729df12e0f6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5b727501-87bd-40d4-9db5-7b64816a447c.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5b727501-87bd-40d4-9db5-7b64816a447c.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5be704ec-7927-4686-b031-3b957009f6d1.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5be704ec-7927-4686-b031-3b957009f6d1.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5cdd8f9d-b864-4838-b07d-4caea20d940f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5cdd8f9d-b864-4838-b07d-4caea20d940f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5e6b9d8f-3e68-4101-ae0a-9d4d78d701aa.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5e6b9d8f-3e68-4101-ae0a-9d4d78d701aa.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5f33f7a1-46d9-43de-b345-9795feb84790.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5f33f7a1-46d9-43de-b345-9795feb84790.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\5f51c813-8959-4f3a-8a0d-cfe157176e7b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\5f51c813-8959-4f3a-8a0d-cfe157176e7b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\6106df1f-4c29-403f-afb7-ac5574c807d1.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\6106df1f-4c29-403f-afb7-ac5574c807d1.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\62484582-61c6-4c12-a33e-57dc6164cba7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\62484582-61c6-4c12-a33e-57dc6164cba7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\62bc77ce-baea-490d-96bd-971f0b90f151.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\62bc77ce-baea-490d-96bd-971f0b90f151.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\62c00904-0126-4c6a-8825-4a5fb9541e9a.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\62c00904-0126-4c6a-8825-4a5fb9541e9a.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\647ea4a5-25a0-4a66-a16b-290e4b18c200.jpeg",
+      "PackagePath": "staticwebassets\\images\\products\\647ea4a5-25a0-4a66-a16b-290e4b18c200.jpeg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\64c5989e-00f0-4081-990b-8fe46132e966.png",
+      "PackagePath": "staticwebassets\\images\\products\\64c5989e-00f0-4081-990b-8fe46132e966.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\682e8dad-bea2-4858-83d5-8fa88bb238b7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\682e8dad-bea2-4858-83d5-8fa88bb238b7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\68c45bf3-f806-46a5-9208-ecffd9732b39.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\68c45bf3-f806-46a5-9208-ecffd9732b39.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\68dd0305-e62b-4fe3-b928-3fc609472d9b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\68dd0305-e62b-4fe3-b928-3fc609472d9b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\6b4f0aa7-0ec3-481d-900a-54b873b43575.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\6b4f0aa7-0ec3-481d-900a-54b873b43575.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\6b98585c-6088-4940-9a27-fc6b5cc17ee8.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\6b98585c-6088-4940-9a27-fc6b5cc17ee8.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\6ddf38f3-60ed-4d9f-b108-c68bce339e73.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\6ddf38f3-60ed-4d9f-b108-c68bce339e73.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\71817846-3989-453d-a02f-0f3a2c174121.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\71817846-3989-453d-a02f-0f3a2c174121.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\7210d482-6334-4fdc-9c6c-65b628cfb782.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\7210d482-6334-4fdc-9c6c-65b628cfb782.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\75e431b2-aa88-40d1-bc81-394df5b426fc.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\75e431b2-aa88-40d1-bc81-394df5b426fc.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\79667659-3c29-49fa-8219-8e704bc1913e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\79667659-3c29-49fa-8219-8e704bc1913e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\79b7e137-8962-4761-951a-00c26d34aef3.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\79b7e137-8962-4761-951a-00c26d34aef3.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\7cc3f1f3-c9e0-4c84-bcd3-ca6bce3507c1.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\7cc3f1f3-c9e0-4c84-bcd3-ca6bce3507c1.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\7dbfcf4f-62d6-4c3c-ad78-2cddbbc29cd6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\7dbfcf4f-62d6-4c3c-ad78-2cddbbc29cd6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\7e5e1194-f7f7-43e7-8b3d-520b3b3d5885.webp",
+      "PackagePath": "staticwebassets\\images\\products\\7e5e1194-f7f7-43e7-8b3d-520b3b3d5885.webp"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\80158b12-6392-48ee-9f54-3895b6619851.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\80158b12-6392-48ee-9f54-3895b6619851.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\8329287e-1b22-4bd5-9785-cd54ae4053e2.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\8329287e-1b22-4bd5-9785-cd54ae4053e2.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\8449f24b-dc25-4e5a-85b1-c7ce43e29910.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\8449f24b-dc25-4e5a-85b1-c7ce43e29910.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\8636b26d-4192-45dc-bcf8-a4f6227134db.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\8636b26d-4192-45dc-bcf8-a4f6227134db.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\88df4f62-f8f1-4df5-982f-b90afc2717d5.png",
+      "PackagePath": "staticwebassets\\images\\products\\88df4f62-f8f1-4df5-982f-b90afc2717d5.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\8ae40b8c-ab05-4dd8-8718-c737c4c811c6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\8ae40b8c-ab05-4dd8-8718-c737c4c811c6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\90af55a0-af20-4616-9c03-87944ec8e98e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\90af55a0-af20-4616-9c03-87944ec8e98e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\90f463ac-4c96-4a5c-b395-9d6cf8457324.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\90f463ac-4c96-4a5c-b395-9d6cf8457324.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\92955934-badc-4b80-b8bd-ec738b70db9d.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\92955934-badc-4b80-b8bd-ec738b70db9d.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\92fb308a-5224-473a-9771-52c5d435cd0e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\92fb308a-5224-473a-9771-52c5d435cd0e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\968d95f5-a11b-4f02-a139-ce2846785fc7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\968d95f5-a11b-4f02-a139-ce2846785fc7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\9970a4ff-b24d-4cb0-9b2c-6e1c86799e26.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\9970a4ff-b24d-4cb0-9b2c-6e1c86799e26.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\9a8f8d7d-3a7e-4787-aefe-433efd968f5f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\9a8f8d7d-3a7e-4787-aefe-433efd968f5f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\9ed95f52-feb0-42a1-ac66-ceb0e6b52366.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\9ed95f52-feb0-42a1-ac66-ceb0e6b52366.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\9f2c4b0b-ba61-4a5b-abd9-a8c1637767e8.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\9f2c4b0b-ba61-4a5b-abd9-a8c1637767e8.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\a007b362-2548-47c8-b502-7ae9f12e1d26.jpeg",
+      "PackagePath": "staticwebassets\\images\\products\\a007b362-2548-47c8-b502-7ae9f12e1d26.jpeg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\a1cb8791-766d-4b0a-acec-6cce868eb14f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\a1cb8791-766d-4b0a-acec-6cce868eb14f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\a29fc7e0-1454-406c-a512-a85cea49010f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\a29fc7e0-1454-406c-a512-a85cea49010f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\a9376bd8-1dbb-4ca5-8f34-e5735ddea18a.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\a9376bd8-1dbb-4ca5-8f34-e5735ddea18a.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\a9cbd9ce-4215-44f1-a869-6250faa4eabd.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\a9cbd9ce-4215-44f1-a869-6250faa4eabd.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b01165a4-30d4-4312-a0f2-4cf1526579b3.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b01165a4-30d4-4312-a0f2-4cf1526579b3.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b1dfea63-07bd-42dd-849f-9360e3bacb11.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b1dfea63-07bd-42dd-849f-9360e3bacb11.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b2a20ad4-526a-4173-9088-e4623be1d754.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b2a20ad4-526a-4173-9088-e4623be1d754.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b38d3f7f-f572-4204-887c-6443ac79b639.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b38d3f7f-f572-4204-887c-6443ac79b639.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b4074092-509a-415a-88fa-2c65517a1082.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b4074092-509a-415a-88fa-2c65517a1082.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b45c7a65-cfc7-40a5-adb7-86911631957f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b45c7a65-cfc7-40a5-adb7-86911631957f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b554da93-135b-4022-ad8e-683f7a14f7fa.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b554da93-135b-4022-ad8e-683f7a14f7fa.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b7d311bd-8c2e-499f-a969-51e7412f1c17.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b7d311bd-8c2e-499f-a969-51e7412f1c17.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\b93f1f34-0e2a-4217-b22c-46bc5d0940af.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b93f1f34-0e2a-4217-b22c-46bc5d0940af.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\bbaaaa4e-a859-40be-8b9f-87bee4394a93.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\bbaaaa4e-a859-40be-8b9f-87bee4394a93.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\bdb38cf9-7c2b-401c-b911-844833e6f8ec.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\bdb38cf9-7c2b-401c-b911-844833e6f8ec.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\bf461fc8-7f56-4f57-8c53-93fd366fa198.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\bf461fc8-7f56-4f57-8c53-93fd366fa198.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c232a01b-f9b8-4c74-b9ba-c70366f06c6a.png",
+      "PackagePath": "staticwebassets\\images\\products\\c232a01b-f9b8-4c74-b9ba-c70366f06c6a.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c23f5205-9c92-42c8-8d29-a207521cf228.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c23f5205-9c92-42c8-8d29-a207521cf228.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c25e632d-a354-4928-8c83-737d4fdd3d14.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c25e632d-a354-4928-8c83-737d4fdd3d14.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c35cb50a-3a86-4695-a996-45d5ceb9456e.png",
+      "PackagePath": "staticwebassets\\images\\products\\c35cb50a-3a86-4695-a996-45d5ceb9456e.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c35e66a2-4a79-4db7-842b-b12d02c2bf06.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c35e66a2-4a79-4db7-842b-b12d02c2bf06.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c4cbca5f-8f8f-427b-90a4-606ebcc48786.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c4cbca5f-8f8f-427b-90a4-606ebcc48786.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c6fb9e53-a408-4e5c-aefd-4881e0f664f6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c6fb9e53-a408-4e5c-aefd-4881e0f664f6.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\c9dd1b3a-6f61-48ea-a77a-ee0b6d587c6b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c9dd1b3a-6f61-48ea-a77a-ee0b6d587c6b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\ca9b9cfc-0372-47ab-832c-f1427031fa67.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\ca9b9cfc-0372-47ab-832c-f1427031fa67.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\cb0ec182-015a-4caa-93af-2e3be12badbf.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\cb0ec182-015a-4caa-93af-2e3be12badbf.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\cb3f5a5b-2026-43d2-9944-62a2f1d40018.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\cb3f5a5b-2026-43d2-9944-62a2f1d40018.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\cc536687-76e7-4e6a-b1c6-a61097267671.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\cc536687-76e7-4e6a-b1c6-a61097267671.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\cdaa2a7b-5f57-4483-95a1-b0ae9117b3d1.webp",
+      "PackagePath": "staticwebassets\\images\\products\\cdaa2a7b-5f57-4483-95a1-b0ae9117b3d1.webp"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\ce66d2b9-f920-41f4-aa42-0870ab0ba820.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\ce66d2b9-f920-41f4-aa42-0870ab0ba820.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\ce8dab59-3ac5-4469-b708-4c871e36084f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\ce8dab59-3ac5-4469-b708-4c871e36084f.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\cffc076c-9223-4612-85e3-e7cbcb6048bf.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\cffc076c-9223-4612-85e3-e7cbcb6048bf.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d1341122-0662-465e-bf54-62d32fa28e28.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d1341122-0662-465e-bf54-62d32fa28e28.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d16eb81f-70c5-499c-8d38-ce9aa50d41ba.png",
+      "PackagePath": "staticwebassets\\images\\products\\d16eb81f-70c5-499c-8d38-ce9aa50d41ba.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d1cb902f-3a4c-455c-a000-f24f1067baf7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d1cb902f-3a4c-455c-a000-f24f1067baf7.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d26663a5-c958-4e5b-a98a-e94cc05355da.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d26663a5-c958-4e5b-a98a-e94cc05355da.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d554c3b2-b249-4187-8b9f-28c0a295fe5d.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d554c3b2-b249-4187-8b9f-28c0a295fe5d.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d7b67e3e-b1f1-453e-85a9-9530f070722b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d7b67e3e-b1f1-453e-85a9-9530f070722b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d8867813-af20-4f8a-bdfa-7435f1071e43.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d8867813-af20-4f8a-bdfa-7435f1071e43.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d8a38c03-2f5a-4ee0-b3bd-89841c998872.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d8a38c03-2f5a-4ee0-b3bd-89841c998872.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\d9668547-59dc-4595-a7c3-3ff8d9946e3d.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d9668547-59dc-4595-a7c3-3ff8d9946e3d.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\da22f54c-8238-4b9a-95c8-1b9e7b3f88dd.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\da22f54c-8238-4b9a-95c8-1b9e7b3f88dd.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\db6838ef-2ef4-4230-b03e-b870232f5278.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\db6838ef-2ef4-4230-b03e-b870232f5278.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\dc683570-6c61-4ce9-9c76-3eb8144e4dde.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\dc683570-6c61-4ce9-9c76-3eb8144e4dde.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\dea65e0e-041f-4f11-9311-33e40bb1607b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\dea65e0e-041f-4f11-9311-33e40bb1607b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\df4a8cd0-74b8-4100-b5cc-e8a914693a3e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\df4a8cd0-74b8-4100-b5cc-e8a914693a3e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\e3183ccd-92e2-49ca-9767-51b8bc1b401e.png",
+      "PackagePath": "staticwebassets\\images\\products\\e3183ccd-92e2-49ca-9767-51b8bc1b401e.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\e37543fc-212d-49c8-9c4a-51db1e1d67cc.jpeg",
+      "PackagePath": "staticwebassets\\images\\products\\e37543fc-212d-49c8-9c4a-51db1e1d67cc.jpeg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\e8658087-4e0c-46da-8feb-f134fb10d67b.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\e8658087-4e0c-46da-8feb-f134fb10d67b.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\efe55fa1-a4a8-40fd-9009-9ce044280f4c.png",
+      "PackagePath": "staticwebassets\\images\\products\\efe55fa1-a4a8-40fd-9009-9ce044280f4c.png"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\f272b5f5-364a-42a0-9f17-04308f34a89a.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\f272b5f5-364a-42a0-9f17-04308f34a89a.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\f35afbc6-4843-4729-9674-0965bdc63a65.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\f35afbc6-4843-4729-9674-0965bdc63a65.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\f35b4d53-e81b-4828-af06-e12532afc0d3.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\f35b4d53-e81b-4828-af06-e12532afc0d3.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\f43dda2a-5e27-4ed6-821a-24824d08343d.jpeg",
+      "PackagePath": "staticwebassets\\images\\products\\f43dda2a-5e27-4ed6-821a-24824d08343d.jpeg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\f47fb84f-676e-46bc-8c83-fec9b597a95e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\f47fb84f-676e-46bc-8c83-fec9b597a95e.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\f6158058-9d21-4132-bb28-586c2775e83a.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\f6158058-9d21-4132-bb28-586c2775e83a.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\images\\products\\feb8d079-b923-4915-b626-f11c3ca45c71.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\feb8d079-b923-4915-b626-f11c3ca45c71.jpg"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\js\\mongodb-admin.js",
+      "PackagePath": "staticwebassets\\js\\mongodb-admin.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\BabyShopWeb2\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BabyShopWeb2.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BabyShopWeb2.props",
+      "PackagePath": "build\\BabyShopWeb2.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BabyShopWeb2.props",
+      "PackagePath": "buildMultiTargeting\\BabyShopWeb2.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BabyShopWeb2.props",
+      "PackagePath": "buildTransitive\\BabyShopWeb2.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

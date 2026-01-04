@@ -1,0 +1,138 @@
+@model IEnumerable<BabyShopWeb2.Models.ContactMessage>
+@{
+    ViewData["Title"] = "Pesan Kontak";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">
+            <i class="fas fa-envelope me-2"></i>Pesan Kontak dari Customer
+        </h2>
+        <div class="badge bg-info fs-6">
+            @Model.Count(m => !m.IsRead) Pesan Belum Dibaca
+        </div>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                    <p class="text-muted">Belum ada pesan dari customer</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 50px;">
+                                    <i class="fas fa-circle"></i>
+                                </th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Subjek</th>
+                                <th>Tanggal</th>
+                                <th style="width: 200px;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var message in Model)
+                            {
+                                <tr class="@(message.IsRead ? "" : "table-info")">
+                                    <td class="text-center">
+                                        @if (!message.IsRead)
+                                        {
+                                            <i class="fas fa-circle text-primary" style="font-size: 8px;" title="Belum dibaca"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="far fa-circle text-muted" style="font-size: 8px;" title="Sudah dibaca"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        <strong>@message.Name</strong>
+                                    </td>
+                                    <td>
+                                        <a href="mailto:@message.Email" class="text-decoration-none">
+                                            @message.Email
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if (message.Subject.Length > 50)
+                                        {
+                                            @message.Subject.Substring(0, 50)<text>...</text>
+                                        }
+                                        else
+                                        {
+                                            @message.Subject
+                                        }
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">
+                                            @message.CreatedAt.ToString("dd MMM yyyy HH:mm")
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <a asp-action="MessageDetails" asp-route-id="@message.Id" 
+                                           class="btn btn-sm btn-primary me-1">
+                                            <i class="fas fa-eye"></i> Lihat
+                                        </a>
+                                        <form asp-action="DeleteMessage" asp-route-id="@message.Id" 
+                                              method="post" class="d-inline"
+                                              onsubmit="return confirm('Yakin ingin menghapus pesan ini?');">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">
+                    <i class="fas fa-chart-bar me-2"></i>Statistik Pesan
+                </h5>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded">
+                            <h3 class="fw-bold text-primary mb-0">@Model.Count()</h3>
+                            <small class="text-muted">Total Pesan</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded">
+                            <h3 class="fw-bold text-info mb-0">@Model.Count(m => !m.IsRead)</h3>
+                            <small class="text-muted">Belum Dibaca</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded">
+                            <h3 class="fw-bold text-success mb-0">@Model.Count(m => m.IsRead)</h3>
+                            <small class="text-muted">Sudah Dibaca</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,332 @@
+@model BabyShopWeb2.Models.FinancialDashboardViewModel
+@{
+    ViewData["Title"] = "Keuangan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-baby-theme.css" />
+}
+
+<div class="container-fluid" style="padding-top: 0.5rem; padding-bottom: 1rem;">
+    <!-- Header -->
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <h2 class="mb-1"><i class="fas fa-chart-line"></i> Manajemen Keuangan</h2>
+            <p class="text-muted mb-0">Pemasukan & Pengeluaran Realtime</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="@Url.Action("CreateTransaction", "Financial")" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Tambah Transaksi
+            </a>
+            <a href="@Url.Action("MonthlyReport", "Financial", new { month = Model.SelectedMonth, year = Model.SelectedYear })" class="btn btn-info btn-sm">
+                <i class="fas fa-file-alt"></i> Laporan
+            </a>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Date Selector -->
+    <div class="card mb-3">
+        <div class="card-body" style="padding: 1rem;">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Tanggal Harian</label>
+                    <input type="date" name="date" class="form-control" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Bulan</label>
+                    <select name="month" class="form-select" onchange="this.form.submit()">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option value="@i" selected="@(i == Model.SelectedMonth)">@(new DateTime(2000, i, 1).ToString("MMMM"))</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Tahun</label>
+                    <select name="year" class="form-select" onchange="this.form.submit()">
+                        @for (int i = DateTime.Now.Year; i >= DateTime.Now.Year - 5; i--)
+                        {
+                            <option value="@i" selected="@(i == Model.SelectedYear)">@i</option>
+                        }
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Daily Summary Cards -->
+    <div class="row mb-3">
+        <div class="col-md-4 mb-3">
+            <div class="card border-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">Pemasukan Hari Ini</h6>
+                            <h3 class="mb-0 text-success">Rp @Model.DailyIncome.ToString("N0")</h3>
+                            <small class="text-muted">@Model.SelectedDate.ToString("dd MMMM yyyy")</small>
+                        </div>
+                        <div class="text-success">
+                            <i class="fas fa-arrow-up fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card border-danger">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">Pengeluaran Hari Ini</h6>
+                            <h3 class="mb-0 text-danger">Rp @Model.DailyExpense.ToString("N0")</h3>
+                            <small class="text-muted">@Model.SelectedDate.ToString("dd MMMM yyyy")</small>
+                        </div>
+                        <div class="text-danger">
+                            <i class="fas fa-arrow-down fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">Saldo Hari Ini</h6>
+                            <h3 class="mb-0 @(Model.DailyBalance >= 0 ? "text-primary" : "text-danger")">
+                                Rp @Model.DailyBalance.ToString("N0")
+                            </h3>
+                            <small class="text-muted">@Model.TotalTransactionsToday transaksi</small>
+                        </div>
+                        <div class="@(Model.DailyBalance >= 0 ? "text-primary" : "text-danger")">
+                            <i class="fas fa-wallet fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Summary Cards -->
+    <div class="row mb-3">
+        <div class="col-md-4 mb-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h6 class="mb-2">Pemasukan Bulan Ini</h6>
+                    <h3 class="mb-0">Rp @Model.MonthlyIncome.ToString("N0")</h3>
+                    <small>@(new DateTime(Model.SelectedYear, Model.SelectedMonth, 1).ToString("MMMM yyyy"))</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h6 class="mb-2">Pengeluaran Bulan Ini</h6>
+                    <h3 class="mb-0">Rp @Model.MonthlyExpense.ToString("N0")</h3>
+                    <small>@(new DateTime(Model.SelectedYear, Model.SelectedMonth, 1).ToString("MMMM yyyy"))</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card @(Model.MonthlyBalance >= 0 ? "bg-primary" : "bg-warning") text-white">
+                <div class="card-body">
+                    <h6 class="mb-2">Saldo Bulan Ini</h6>
+                    <h3 class="mb-0">Rp @Model.MonthlyBalance.ToString("N0")</h3>
+                    <small>@Model.TotalTransactionsMonth transaksi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-3">
+        <div class="col-md-8 mb-3">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-line"></i> Grafik Tren Bulanan</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.MonthlyChart != null && Model.MonthlyChart.Any())
+                    {
+                        <canvas id="monthlyChart" height="80"></canvas>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center">
+                            <i class="fas fa-info-circle me-2"></i>Belum ada data transaksi bulan ini. 
+                            <a href="@Url.Action("CreateTransaction", "Financial")" class="alert-link">Tambahkan transaksi</a> untuk melihat grafik.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-chart-pie"></i> Perbandingan</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.MonthlyIncome > 0 || Model.MonthlyExpense > 0)
+                    {
+                        <canvas id="pieChart" height="200"></canvas>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center p-4">
+                            <i class="fas fa-info-circle me-2"></i>Belum ada data
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Transactions -->
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-list"></i> Transaksi Hari Ini - @Model.SelectedDate.ToString("dd MMMM yyyy")</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.DailyTransactions.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Jenis</th>
+                                <th>Kategori</th>
+                                <th>Deskripsi</th>
+                                <th class="text-end">Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var transaction in Model.DailyTransactions)
+                            {
+                                <tr>
+                                    <td>@transaction.TransactionDate.ToString("HH:mm")</td>
+                                    <td>
+                                        @if (transaction.Type == TransactionType.Income)
+                                        {
+                                            <span class="badge bg-success"><i class="fas fa-arrow-up"></i> Pemasukan</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger"><i class="fas fa-arrow-down"></i> Pengeluaran</span>
+                                        }
+                                    </td>
+                                    <td>@GetCategoryName(transaction.Category)</td>
+                                    <td>@transaction.Description</td>
+                                    <td class="text-end">
+                                        <strong class="@(transaction.Type == TransactionType.Income ? "text-success" : "text-danger")">
+                                            Rp @transaction.Amount.ToString("N0")
+                                        </strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">Belum ada transaksi hari ini</p>
+                    <a href="@Url.Action("CreateTransaction", "Financial")" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Tambah Transaksi
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.MonthlyChart));
+        const monthlyIncome = @Model.MonthlyIncome;
+        const monthlyExpense = @Model.MonthlyExpense;
+
+        // Monthly Chart
+        const ctx = document.getElementById('monthlyChart');
+        if (ctx && chartData && chartData.length > 0) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: chartData.map(d => new Date(d.date).getDate() + ' ' + new Date(d.date).toLocaleDateString('id-ID', { month: 'short' })),
+                    datasets: [{
+                        label: 'Pemasukan',
+                        data: chartData.map(d => d.income),
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Pengeluaran',
+                        data: chartData.map(d => d.expense),
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+        }
+
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart');
+        if (pieCtx && (monthlyIncome > 0 || monthlyExpense > 0)) {
+            new Chart(pieCtx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Pemasukan', 'Pengeluaran'],
+                    datasets: [{
+                        data: [monthlyIncome, monthlyExpense],
+                        backgroundColor: ['rgba(40, 167, 69, 0.8)', 'rgba(220, 53, 69, 0.8)']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+    </script>
+}
+
+@functions {
+    string GetCategoryName(TransactionCategory category)
+    {
+        return category switch
+        {
+            TransactionCategory.Sales => "Penjualan",
+            TransactionCategory.OtherIncome => "Pemasukan Lain",
+            TransactionCategory.ProductPurchase => "Pembelian Produk",
+            TransactionCategory.OperationalCost => "Biaya Operasional",
+            TransactionCategory.Salary => "Gaji",
+            TransactionCategory.Rent => "Sewa",
+            TransactionCategory.Utilities => "Utilitas",
+            TransactionCategory.Marketing => "Marketing",
+            TransactionCategory.OtherExpense => "Pengeluaran Lain",
+            _ => category.ToString()
+        };
+    }
+}

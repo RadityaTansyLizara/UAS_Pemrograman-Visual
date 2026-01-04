@@ -1,0 +1,180 @@
+@model IEnumerable<BabyShopWeb2.Models.Employee>
+@{
+    ViewData["Title"] = "Kelola Karyawan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">👥 Kelola Karyawan</h2>
+            <p class="text-muted">Manajemen data karyawan toko</p>
+        </div>
+        <a asp-action="CreateEmployee" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Tambah Karyawan
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID Karyawan</th>
+                            <th>Nama Lengkap</th>
+                            <th>Jabatan</th>
+                            <th>No. HP</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Status</th>
+                            <th>Shift</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            @foreach (var employee in Model)
+                            {
+                                <tr>
+                                    <td><strong>@employee.EmployeeId</strong></td>
+                                    <td>@employee.FullName</td>
+                                    <td>
+                                        <span class="badge bg-info">
+                                            @employee.Position
+                                        </span>
+                                    </td>
+                                    <td>@employee.PhoneNumber</td>
+                                    <td>@employee.JoinDate.ToString("dd MMM yyyy")</td>
+                                    <td>
+                                        @if (employee.Status == BabyShopWeb2.Models.EmployeeStatus.Aktif)
+                                        {
+                                            <span class="badge bg-success">Aktif</span>
+                                        }
+                                        else if (employee.Status == BabyShopWeb2.Models.EmployeeStatus.Nonaktif)
+                                        {
+                                            <span class="badge bg-danger">Nonaktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning">Cuti</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (employee.Shift == BabyShopWeb2.Models.EmployeeShift.Pagi)
+                                        {
+                                            <span class="badge bg-primary">☀️ Pagi</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning">🌤️ Siang</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a asp-action="EmployeeDetails" asp-route-id="@employee.Id" 
+                                               class="btn btn-sm btn-info" title="Detail">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a asp-action="EditEmployee" asp-route-id="@employee.Id" 
+                                               class="btn btn-sm btn-warning" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#deleteModal@(employee.Id)"
+                                                    title="Hapus">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Delete Modal -->
+                                <div class="modal fade" id="deleteModal@(employee.Id)" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah Anda yakin ingin menghapus karyawan <strong>@employee.FullName</strong>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                <form asp-action="DeleteEmployee" method="post" class="d-inline">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@employee.Id" />
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center py-5">
+                                    <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                                    <p class="text-muted">Belum ada data karyawan</p>
+                                    <a asp-action="CreateEmployee" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i> Tambah Karyawan Pertama
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="text-primary">@Model.Count()</h3>
+                        <p class="text-muted mb-0">Total Karyawan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="text-success">@Model.Count(e => e.Status == BabyShopWeb2.Models.EmployeeStatus.Aktif)</h3>
+                        <p class="text-muted mb-0">Karyawan Aktif</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="text-info">@Model.Count(e => e.Position == BabyShopWeb2.Models.EmployeePosition.Kasir)</h3>
+                        <p class="text-muted mb-0">Kasir</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="text-warning">@Model.Count(e => e.Shift == BabyShopWeb2.Models.EmployeeShift.Pagi)</h3>
+                        <p class="text-muted mb-0">Shift Pagi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

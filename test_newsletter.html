@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Newsletter Feature - BabyShop3Berlian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%);
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+        h1 {
+            color: #FF69B4;
+            text-align: center;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #FFF9E6;
+            border-radius: 15px;
+            border-left: 5px solid #FF69B4;
+        }
+        .test-section h2 {
+            color: #2C3E50;
+            margin-top: 0;
+        }
+        .test-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        .test-step strong {
+            color: #FF69B4;
+        }
+        .success {
+            color: #00B894;
+            font-weight: bold;
+        }
+        .url {
+            background: #2C3E50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #FF69B4;
+        }
+        .feature-list li:before {
+            content: "✓ ";
+            color: #00B894;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎉 Newsletter Feature Test Guide</h1>
+        
+        <div class="test-section">
+            <h2>📋 Feature Overview</h2>
+            <p>Newsletter subscription system dengan halaman thank you yang cute dan animasi confetti!</p>
+            <ul class="feature-list">
+                <li>Email validation dan duplicate checking</li>
+                <li>Halaman Thank You dengan animasi confetti</li>
+                <li>4 benefit cards dengan hover effects</li>
+                <li>Social media follow section</li>
+                <li>CTA buttons untuk shopping dan home</li>
+                <li>Responsive design untuk semua device</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Steps</h2>
+            
+            <div class="test-step">
+                <strong>Step 1:</strong> Buka aplikasi
+                <div class="url">http://localhost:5055</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2:</strong> Scroll ke bagian footer
+                <p>Cari form newsletter dengan judul "Berlangganan Newsletter"</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3:</strong> Masukkan email dan submit
+                <p>Contoh: test@example.com</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 4:</strong> Verifikasi redirect ke Thank You page
+                <div class="url">http://localhost:5055/Newsletter/ThankYou</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 5:</strong> Cek animasi dan elemen:
+                <ul>
+                    <li>✨ Confetti animation (emoji jatuh dari atas)</li>
+                    <li>✅ Success icon dengan pop animation</li>
+                    <li>🎁 4 benefit cards (Promo, Updates, Tips, Events)</li>
+                    <li>💌 Next steps section dengan background pink</li>
+                    <li>🛍️ "Mulai Belanja" button</li>
+                    <li>🏠 "Kembali ke Beranda" button</li>
+                    <li>📱 Social media icons (Facebook, Instagram, Twitter, WhatsApp)</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 6:</strong> Test duplicate email
+                <p>Kembali ke home, coba submit email yang sama lagi</p>
+                <p class="success">✓ Seharusnya tetap redirect ke Thank You page</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 7:</strong> Test invalid email
+                <p>Coba submit email tidak valid (tanpa @)</p>
+                <p class="success">✓ Seharusnya muncul validation error</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 8:</strong> Test responsive design
+                <p>Resize browser window atau buka di mobile device</p>
+                <p class="success">✓ Layout harus adjust dengan baik</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 9:</strong> Test CTA buttons
+                <p>Klik "Mulai Belanja" → redirect ke /Product</p>
+                <p>Klik "Kembali ke Beranda" → redirect ke /Home</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 10:</strong> Test hover effects
+                <p>Hover pada benefit cards, buttons, dan social icons</p>
+                <p class="success">✓ Seharusnya ada smooth transitions</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎨 Design Features</h2>
+            <ul class="feature-list">
+                <li>Gradient background (pink → blue → yellow)</li>
+                <li>White card dengan rounded corners (30px)</li>
+                <li>Success icon dengan green gradient</li>
+                <li>Confetti pieces dengan fall animation</li>
+                <li>Benefit cards dengan gradient backgrounds</li>
+                <li>Pink gradient untuk next steps section</li>
+                <li>Gradient buttons dengan hover lift effect</li>
+                <li>Social icons dengan brand colors</li>
+                <li>Fade in up animations dengan staggered delays</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>💾 Database</h2>
+            <p>Email subscribers disimpan di table <code>Newsletters</code> dengan fields:</p>
+            <ul class="feature-list">
+                <li>Id (Primary Key)</li>
+                <li>Email (Required, MaxLength 100)</li>
+                <li>SubscribedAt (DateTime)</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Expected Results</h2>
+            <ul class="feature-list">
+                <li>Form submission berhasil tanpa error</li>
+                <li>Redirect ke Thank You page dengan smooth transition</li>
+                <li>Semua animasi berjalan dengan baik</li>
+                <li>Tidak ada CSS/Razor syntax errors</li>
+                <li>Responsive di semua screen sizes</li>
+                <li>Hover effects smooth dan tidak glitchy</li>
+                <li>CTA buttons berfungsi dengan benar</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🐛 Fixed Issues</h2>
+            <ul class="feature-list">
+                <li>Moved all CSS from inline to external file</li>
+                <li>Fixed @keyframes Razor syntax conflict</li>
+                <li>Fixed @media Razor syntax conflict</li>
+                <li>Separated concerns (HTML in .cshtml, CSS in .css)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

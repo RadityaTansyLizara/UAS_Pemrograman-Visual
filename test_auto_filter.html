@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Auto Filter - BabyShop3Berlian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%);
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+        h1 {
+            color: #FF69B4;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #636E72;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #FFF9E6;
+            border-radius: 15px;
+            border-left: 5px solid #FF69B4;
+        }
+        .test-section h2 {
+            color: #2C3E50;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .test-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        .test-step strong {
+            color: #FF69B4;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .success {
+            color: #00B894;
+            font-weight: bold;
+        }
+        .url {
+            background: #2C3E50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #FF69B4;
+        }
+        .feature-list li:before {
+            content: "✓ ";
+            color: #00B894;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .improvement-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .comparison-item {
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .before {
+            background: #FFE5E5;
+            border: 2px solid #FF6B6B;
+        }
+        .after {
+            background: #E5FFE5;
+            border: 2px solid #00B894;
+        }
+        .comparison-item h3 {
+            margin-top: 0;
+            font-size: 1rem;
+        }
+        .before h3 {
+            color: #FF6B6B;
+        }
+        .after h3 {
+            color: #00B894;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🚀 Auto Filter Feature Test</h1>
+        <p class="subtitle">Filter Responsif Tanpa Tombol Submit</p>
+        
+        <div class="test-section">
+            <h2>📋 Feature Overview <span class="improvement-badge">NEW</span></h2>
+            <p>Filter produk sekarang lebih responsif dan user-friendly! Tidak perlu lagi menekan tombol "Filter".</p>
+            
+            <div class="comparison">
+                <div class="comparison-item before">
+                    <h3>❌ Sebelum (Old Way)</h3>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                        <li>Pilih kategori</li>
+                        <li>Klik tombol "Filter"</li>
+                        <li>Tunggu hasil</li>
+                        <li>Extra step = slower</li>
+                    </ul>
+                </div>
+                <div class="comparison-item after">
+                    <h3>✅ Sesudah (New Way)</h3>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                        <li>Pilih kategori</li>
+                        <li>Langsung berubah!</li>
+                        <li>Instant feedback</li>
+                        <li>Faster & smoother</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>✨ New Features</h2>
+            <ul class="feature-list">
+                <li>Auto-submit saat kategori dipilih (instant)</li>
+                <li>Auto-submit saat urutan dipilih (instant)</li>
+                <li>Auto-submit pencarian setelah 800ms user berhenti mengetik</li>
+                <li>Loading indicator untuk feedback visual</li>
+                <li>Tombol Reset Filter yang lebih jelas</li>
+                <li>Info text untuk menjelaskan fitur auto-filter</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Steps</h2>
+            
+            <div class="test-step">
+                <strong>Step 1: Buka halaman produk</strong>
+                <div class="url">http://localhost:5055/Product</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2: Test Auto-Filter Kategori</strong>
+                <p>1. Klik dropdown "Kategori"</p>
+                <p>2. Pilih salah satu kategori (misal: "Pakaian Bayi")</p>
+                <p class="success">✓ Halaman langsung reload dan menampilkan produk kategori tersebut</p>
+                <p class="success">✓ Loading indicator muncul sebentar</p>
+                <p class="success">✓ TIDAK perlu klik tombol "Filter"</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3: Test Auto-Filter Urutan</strong>
+                <p>1. Klik dropdown "Urutkan"</p>
+                <p>2. Pilih "Harga Terendah"</p>
+                <p class="success">✓ Produk langsung diurutkan dari harga terendah</p>
+                <p class="success">✓ Loading indicator muncul</p>
+                <p class="success">✓ Instant response tanpa tombol</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 4: Test Auto-Search (Debounced)</strong>
+                <p>1. Ketik di field "Cari Produk" (misal: "botol")</p>
+                <p>2. Tunggu 800ms setelah berhenti mengetik</p>
+                <p class="success">✓ Otomatis submit setelah 800ms</p>
+                <p class="success">✓ Hanya submit jika minimal 3 karakter atau kosong</p>
+                <p class="success">✓ Mencegah terlalu banyak request</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 5: Test Search dengan Enter</strong>
+                <p>1. Ketik di field "Cari Produk"</p>
+                <p>2. Tekan tombol Enter</p>
+                <p class="success">✓ Langsung submit tanpa tunggu debounce</p>
+                <p class="success">✓ Faster untuk user yang suka keyboard</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 6: Test Kombinasi Filter</strong>
+                <p>1. Pilih kategori "Mainan Bayi"</p>
+                <p>2. Pilih urutan "Harga Tertinggi"</p>
+                <p>3. Ketik pencarian "puzzle"</p>
+                <p class="success">✓ Semua filter bekerja bersamaan</p>
+                <p class="success">✓ Hasil sesuai dengan kombinasi filter</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 7: Test Reset Filter</strong>
+                <p>1. Setelah apply beberapa filter</p>
+                <p>2. Klik tombol "Reset Filter"</p>
+                <p class="success">✓ Kembali ke halaman produk tanpa filter</p>
+                <p class="success">✓ Semua dropdown kembali ke default</p>
+                <p class="success">✓ Search field kosong</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 8: Test Loading Indicator</strong>
+                <p>1. Pilih kategori atau urutan</p>
+                <p>2. Perhatikan area kanan bawah filter card</p>
+                <p class="success">✓ Muncul spinner pink dengan text "Memuat produk..."</p>
+                <p class="success">✓ Memberikan feedback bahwa sistem sedang bekerja</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 9: Test Info Text</strong>
+                <p>1. Lihat di bawah form filter</p>
+                <p class="success">✓ Ada info icon dengan text penjelasan</p>
+                <p class="success">✓ "Filter otomatis diterapkan saat Anda memilih kategori atau urutan"</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 10: Test Responsive Behavior</strong>
+                <p>1. Resize browser window</p>
+                <p>2. Test di mobile view</p>
+                <p class="success">✓ Layout tetap rapi</p>
+                <p class="success">✓ Auto-filter tetap berfungsi</p>
+                <p class="success">✓ Loading indicator tetap visible</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎨 UI/UX Improvements</h2>
+            <ul class="feature-list">
+                <li>Dropdown lebih lebar (col-md-4 instead of col-md-3)</li>
+                <li>Tombol Filter dihapus (tidak diperlukan lagi)</li>
+                <li>Tombol Reset lebih prominent dengan icon</li>
+                <li>Loading indicator dengan spinner pink</li>
+                <li>Info text untuk user guidance</li>
+                <li>Smooth transitions saat filter berubah</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>⚡ Performance Features</h2>
+            <ul class="feature-list">
+                <li><strong>Debouncing:</strong> Search auto-submit setelah 800ms idle</li>
+                <li><strong>Minimum Length:</strong> Search hanya submit jika ≥3 karakter</li>
+                <li><strong>Instant Feedback:</strong> Kategori & sort langsung submit</li>
+                <li><strong>Visual Feedback:</strong> Loading indicator saat processing</li>
+                <li><strong>No Extra Clicks:</strong> Mengurangi user effort</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Technical Implementation</h2>
+            <ul class="feature-list">
+                <li>JavaScript event listeners untuk auto-submit</li>
+                <li>Debounce function untuk search input</li>
+                <li>Loading indicator dengan display toggle</li>
+                <li>Form ID untuk JavaScript targeting</li>
+                <li>Enter key handler untuk search</li>
+                <li>Reset function dengan loading feedback</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Expected Results</h2>
+            <ul class="feature-list">
+                <li>Kategori berubah → Produk langsung filter</li>
+                <li>Urutan berubah → Produk langsung sort</li>
+                <li>Ketik search → Auto-submit setelah 800ms</li>
+                <li>Tekan Enter → Langsung search</li>
+                <li>Loading indicator muncul saat processing</li>
+                <li>Reset button menghapus semua filter</li>
+                <li>Tidak ada tombol "Filter" yang perlu diklik</li>
+                <li>User experience lebih smooth dan responsive</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 User Benefits</h2>
+            <ul class="feature-list">
+                <li><strong>Faster:</strong> Tidak perlu klik tombol extra</li>
+                <li><strong>Smoother:</strong> Instant feedback saat pilih filter</li>
+                <li><strong>Cleaner:</strong> UI lebih simple tanpa tombol Filter</li>
+                <li><strong>Smarter:</strong> Debouncing mencegah spam request</li>
+                <li><strong>Clearer:</strong> Loading indicator & info text</li>
+                <li><strong>Better UX:</strong> Modern web app experience</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>📱 Browser Compatibility</h2>
+            <ul class="feature-list">
+                <li>Chrome/Edge (Modern browsers) ✓</li>
+                <li>Firefox ✓</li>
+                <li>Safari ✓</li>
+                <li>Mobile browsers ✓</li>
+                <li>Uses standard JavaScript (no framework needed)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

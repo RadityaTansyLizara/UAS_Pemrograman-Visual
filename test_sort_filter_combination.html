@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Sort & Filter Combination - BabyShop3Berlian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%);
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+        h1 {
+            color: #FF69B4;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #636E72;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #FFF9E6;
+            border-radius: 15px;
+            border-left: 5px solid #FF69B4;
+        }
+        .test-section h2 {
+            color: #2C3E50;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .test-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        .test-step strong {
+            color: #FF69B4;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .success {
+            color: #00B894;
+            font-weight: bold;
+        }
+        .url {
+            background: #2C3E50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #FF69B4;
+        }
+        .feature-list li:before {
+            content: "✓ ";
+            color: #00B894;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .scenario {
+            background: linear-gradient(135deg, #FFE5EC, #E3F2FD);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .scenario-title {
+            font-weight: bold;
+            color: #FF69B4;
+            margin-bottom: 10px;
+        }
+        .scenario-steps {
+            margin-left: 20px;
+        }
+        .scenario-result {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #00B894;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔄 Test Sort & Filter Combination</h1>
+        <p class="subtitle">Verifikasi Kategori + Urutan Bekerja Bersamaan</p>
+        
+        <div class="test-section">
+            <h2>📋 What to Test</h2>
+            <p>Memastikan dropdown "Urutkan" berfungsi otomatis dan bekerja bersamaan dengan filter "Kategori".</p>
+            <ul class="feature-list">
+                <li>Auto-submit saat pilih urutan (Default, Nama A-Z, Harga Terendah, Harga Tertinggi)</li>
+                <li>Kombinasi kategori + urutan bekerja dengan benar</li>
+                <li>Loading indicator muncul saat processing</li>
+                <li>Selected option ter-highlight dengan benar</li>
+                <li>URL parameters tersimpan dengan benar</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Scenarios</h2>
+            
+            <div class="scenario">
+                <div class="scenario-title">Scenario 1: Sort Only (No Category Filter)</div>
+                <div class="scenario-steps">
+                    1. Buka halaman produk<br>
+                    2. Pastikan kategori = "Semua Kategori"<br>
+                    3. Pilih "Nama A-Z" dari dropdown Urutkan<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Halaman reload otomatis<br>
+                    - Semua produk diurutkan A-Z<br>
+                    - Dropdown "Urutkan" menunjukkan "Nama A-Z" selected<br>
+                    - URL: /Product?sortBy=name
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">Scenario 2: Category + Sort (Harga Terendah)</div>
+                <div class="scenario-steps">
+                    1. Pilih kategori "Pakaian Bayi"<br>
+                    2. Tunggu produk ter-filter<br>
+                    3. Pilih "Harga Terendah" dari dropdown Urutkan<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Halaman reload otomatis<br>
+                    - Hanya produk "Pakaian Bayi" yang muncul<br>
+                    - Produk diurutkan dari harga terendah<br>
+                    - URL: /Product?categoryId=X&sortBy=price_asc
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">Scenario 3: Category + Sort (Harga Tertinggi)</div>
+                <div class="scenario-steps">
+                    1. Pilih kategori "Mainan Bayi"<br>
+                    2. Tunggu produk ter-filter<br>
+                    3. Pilih "Harga Tertinggi" dari dropdown Urutkan<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Halaman reload otomatis<br>
+                    - Hanya produk "Mainan Bayi" yang muncul<br>
+                    - Produk diurutkan dari harga tertinggi<br>
+                    - URL: /Product?categoryId=X&sortBy=price_desc
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">Scenario 4: Change Sort Multiple Times</div>
+                <div class="scenario-steps">
+                    1. Pilih "Harga Terendah"<br>
+                    2. Tunggu hasil<br>
+                    3. Pilih "Harga Tertinggi"<br>
+                    4. Tunggu hasil<br>
+                    5. Pilih "Nama A-Z"<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Setiap perubahan langsung reload<br>
+                    - Urutan produk berubah sesuai pilihan<br>
+                    - Loading indicator muncul setiap kali<br>
+                    - Selected option selalu benar
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">Scenario 5: Category + Sort + Search</div>
+                <div class="scenario-steps">
+                    1. Pilih kategori "Peralatan Makan"<br>
+                    2. Pilih "Harga Terendah"<br>
+                    3. Ketik "botol" di search<br>
+                    4. Tunggu 800ms atau tekan Enter<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Produk "botol" di kategori "Peralatan Makan"<br>
+                    - Diurutkan dari harga terendah<br>
+                    - Semua filter bekerja bersamaan<br>
+                    - URL: /Product?categoryId=X&search=botol&sortBy=price_asc
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">Scenario 6: Reset After Multiple Filters</div>
+                <div class="scenario-steps">
+                    1. Apply kategori + sort + search<br>
+                    2. Klik tombol "Reset Filter"<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Semua filter cleared<br>
+                    - Kategori = "Semua Kategori"<br>
+                    - Urutan = "Default"<br>
+                    - Search = kosong<br>
+                    - URL: /Product
+                </div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">Scenario 7: Back to Default Sort</div>
+                <div class="scenario-steps">
+                    1. Pilih "Harga Terendah"<br>
+                    2. Tunggu hasil<br>
+                    3. Pilih "Default" dari dropdown<br>
+                </div>
+                <div class="scenario-result">
+                    <strong class="success">✓ Expected:</strong><br>
+                    - Halaman reload otomatis<br>
+                    - Produk kembali ke urutan default (by ID)<br>
+                    - URL: /Product (tanpa sortBy parameter)
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 What to Check</h2>
+            <ul class="feature-list">
+                <li><strong>Auto-Submit:</strong> Dropdown langsung submit saat berubah</li>
+                <li><strong>Loading Indicator:</strong> Spinner pink muncul saat processing</li>
+                <li><strong>Selected State:</strong> Opsi yang dipilih ter-highlight</li>
+                <li><strong>URL Parameters:</strong> categoryId & sortBy ada di URL</li>
+                <li><strong>Product Order:</strong> Produk benar-benar terurut sesuai pilihan</li>
+                <li><strong>Combination:</strong> Kategori + Sort bekerja bersamaan</li>
+                <li><strong>No Errors:</strong> Tidak ada error di console browser</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Verification Steps</h2>
+            
+            <div class="test-step">
+                <strong>Step 1: Open Product Page</strong>
+                <div class="url">http://localhost:5055/Product</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2: Test Sort Dropdown</strong>
+                <p>1. Klik dropdown "Urutkan"</p>
+                <p>2. Pilih "Harga Terendah"</p>
+                <p class="success">✓ Halaman langsung reload</p>
+                <p class="success">✓ Produk diurutkan harga terendah ke tertinggi</p>
+                <p class="success">✓ Dropdown menunjukkan "Harga Terendah" selected</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3: Test Category + Sort</strong>
+                <p>1. Pilih kategori "Mainan Bayi"</p>
+                <p>2. Pilih urutan "Nama A-Z"</p>
+                <p class="success">✓ Hanya mainan bayi yang muncul</p>
+                <p class="success">✓ Diurutkan A-Z</p>
+                <p class="success">✓ Kedua dropdown ter-highlight dengan benar</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 4: Check URL</strong>
+                <p>Setelah apply filter, check URL di address bar:</p>
+                <p class="success">✓ Harus ada parameter: ?categoryId=X&sortBy=name</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 5: Test All Sort Options</strong>
+                <p>Test satu per satu:</p>
+                <ul>
+                    <li>Default → Urutan by ID</li>
+                    <li>Nama A-Z → Urutan alfabetis</li>
+                    <li>Harga Terendah → Harga ascending</li>
+                    <li>Harga Tertinggi → Harga descending</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 6: Test Loading Indicator</strong>
+                <p>Setiap kali pilih sort atau kategori:</p>
+                <p class="success">✓ Spinner pink muncul di kanan bawah</p>
+                <p class="success">✓ Text "Memuat produk..." terlihat</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 7: Test Reset</strong>
+                <p>Setelah apply beberapa filter:</p>
+                <p>1. Klik "Reset Filter"</p>
+                <p class="success">✓ Semua filter cleared</p>
+                <p class="success">✓ Kembali ke tampilan default</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 8: Browser Console Check</strong>
+                <p>1. Buka Developer Tools (F12)</p>
+                <p>2. Lihat tab Console</p>
+                <p class="success">✓ Tidak ada error JavaScript</p>
+                <p class="success">✓ Event listeners berfungsi</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 Expected Behavior</h2>
+            <ul class="feature-list">
+                <li>Dropdown "Urutkan" auto-submit saat berubah</li>
+                <li>Tidak perlu klik tombol "Filter"</li>
+                <li>Loading indicator muncul setiap submit</li>
+                <li>Kategori + Urutan bekerja bersamaan</li>
+                <li>URL parameters tersimpan dengan benar</li>
+                <li>Selected option ter-highlight</li>
+                <li>Produk benar-benar terurut sesuai pilihan</li>
+                <li>Reset button menghapus semua filter</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🐛 Common Issues to Check</h2>
+            <ul class="feature-list">
+                <li><strong>Dropdown tidak auto-submit:</strong> Check JavaScript console untuk error</li>
+                <li><strong>Selected option tidak highlight:</strong> Check Razor syntax untuk selected attribute</li>
+                <li><strong>Urutan tidak berubah:</strong> Check controller sorting logic</li>
+                <li><strong>Loading indicator tidak muncul:</strong> Check element ID dan display style</li>
+                <li><strong>Kombinasi filter tidak bekerja:</strong> Check URL parameters</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Test Results Template</h2>
+            <div style="background: white; padding: 15px; border-radius: 10px; font-family: monospace;">
+                <strong>Test Date:</strong> _____________<br>
+                <strong>Browser:</strong> _____________<br><br>
+                
+                <strong>✓ Sort Auto-Submit:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ Category + Sort:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ Loading Indicator:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ Selected Highlight:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ URL Parameters:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ Product Order:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ Reset Function:</strong> [ ] Pass [ ] Fail<br>
+                <strong>✓ No Console Errors:</strong> [ ] Pass [ ] Fail<br><br>
+                
+                <strong>Overall:</strong> [ ] All Pass [ ] Some Fail<br>
+                <strong>Notes:</strong> _________________________________
+            </div>
+        </div>
+    </div>
+</body>
+</html>

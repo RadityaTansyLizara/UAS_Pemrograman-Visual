@@ -1,0 +1,284 @@
+@{
+    ViewData["Title"] = "Tentang Kami";
+}
+
+<link rel="stylesheet" href="~/css/about.css" asp-append-version="true" />
+
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="container py-5">
+        <!-- Centered Content -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="hero-content-center">
+                    <h1 class="display-3 fw-bold text-dark mb-3">BabyShop3Berlian</h1>
+                    <p class="lead text-muted mb-4 mx-auto" style="max-width: 700px;">
+                        Toko perlengkapan bayi terpercaya yang menyediakan produk berkualitas tinggi untuk buah hati Anda.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center mb-5">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-pink btn-lg">
+                            <i class="fas fa-shopping-bag me-2"></i>Belanja Sekarang
+                        </a>
+                        <a asp-action="Contact" class="btn btn-outline-pink btn-lg">
+                            <i class="fas fa-phone me-2"></i>Hubungi Kami
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Massive Cute Decorations All Over -->
+    <div class="cute-decorations">
+        <!-- Top Left Corner -->
+        <span class="deco-emoji deco-1">👶</span>
+        <span class="deco-emoji deco-2">🎈</span>
+        <span class="deco-emoji deco-3">🌟</span>
+        <span class="deco-emoji deco-4">💕</span>
+        <span class="deco-emoji deco-5">🧸</span>
+        
+        <!-- Top Right Corner -->
+        <span class="deco-emoji deco-6">🍼</span>
+        <span class="deco-emoji deco-7">🎀</span>
+        <span class="deco-emoji deco-8">⭐</span>
+        <span class="deco-emoji deco-9">🦄</span>
+        <span class="deco-emoji deco-10">🎪</span>
+        
+        <!-- Middle Left -->
+        <span class="deco-emoji deco-11">💝</span>
+        <span class="deco-emoji deco-12">🌈</span>
+        <span class="deco-emoji deco-13">✨</span>
+        <span class="deco-emoji deco-14">🎁</span>
+        <span class="deco-emoji deco-15">🧷</span>
+        
+        <!-- Middle Right -->
+        <span class="deco-emoji deco-16">🍭</span>
+        <span class="deco-emoji deco-17">🎨</span>
+        <span class="deco-emoji deco-18">🎵</span>
+        <span class="deco-emoji deco-19">🌸</span>
+        <span class="deco-emoji deco-20">🦋</span>
+        
+        <!-- Bottom Left -->
+        <span class="deco-emoji deco-21">🐻</span>
+        <span class="deco-emoji deco-22">🎯</span>
+        <span class="deco-emoji deco-23">💫</span>
+        <span class="deco-emoji deco-24">🌺</span>
+        <span class="deco-emoji deco-25">🎊</span>
+        
+        <!-- Bottom Right -->
+        <span class="deco-emoji deco-26">🐰</span>
+        <span class="deco-emoji deco-27">🎉</span>
+        <span class="deco-emoji deco-28">💖</span>
+        <span class="deco-emoji deco-29">🌼</span>
+        <span class="deco-emoji deco-30">🎭</span>
+        
+        <!-- Extra Scattered -->
+        <span class="deco-emoji deco-31">🧩</span>
+        <span class="deco-emoji deco-32">🎲</span>
+        <span class="deco-emoji deco-33">🪁</span>
+        <span class="deco-emoji deco-34">🎺</span>
+        <span class="deco-emoji deco-35">🎸</span>
+        <span class="deco-emoji deco-36">🥁</span>
+        <span class="deco-emoji deco-37">🎹</span>
+        <span class="deco-emoji deco-38">🎤</span>
+        <span class="deco-emoji deco-39">🎬</span>
+        <span class="deco-emoji deco-40">📚</span>
+    </div>
+    
+    <!-- Colorful Circles Background -->
+    <div class="color-circles-bg">
+        <div class="color-circle circle-1"></div>
+        <div class="color-circle circle-2"></div>
+        <div class="color-circle circle-3"></div>
+        <div class="color-circle circle-4"></div>
+        <div class="color-circle circle-5"></div>
+        <div class="color-circle circle-6"></div>
+        <div class="color-circle circle-7"></div>
+        <div class="color-circle circle-8"></div>
+    </div>
+    
+    <!-- Sparkles Everywhere -->
+    <div class="sparkles-everywhere">
+        <span class="sparkle sp-1">✨</span>
+        <span class="sparkle sp-2">💫</span>
+        <span class="sparkle sp-3">⭐</span>
+        <span class="sparkle sp-4">✨</span>
+        <span class="sparkle sp-5">💫</span>
+        <span class="sparkle sp-6">⭐</span>
+        <span class="sparkle sp-7">✨</span>
+        <span class="sparkle sp-8">💫</span>
+        <span class="sparkle sp-9">⭐</span>
+        <span class="sparkle sp-10">✨</span>
+    </div>
+    
+    <!-- Floating Bubbles -->
+    <div class="bubbles-floating">
+        <span class="bubble bub-1">🫧</span>
+        <span class="bubble bub-2">🫧</span>
+        <span class="bubble bub-3">🫧</span>
+        <span class="bubble bub-4">🫧</span>
+        <span class="bubble bub-5">🫧</span>
+        <span class="bubble bub-6">🫧</span>
+    </div>
+    
+    <!-- Animated Pattern Dots -->
+    <div class="pattern-dots">
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+        <div class="dot dot-4"></div>
+        <div class="dot dot-5"></div>
+        <div class="dot dot-6"></div>
+        <div class="dot dot-7"></div>
+        <div class="dot dot-8"></div>
+        <div class="dot dot-9"></div>
+        <div class="dot dot-10"></div>
+    </div>
+    
+    <!-- Floating Stars -->
+    <div class="floating-stars">
+        <div class="star star-1">⭐</div>
+        <div class="star star-2">✨</div>
+        <div class="star star-3">🌟</div>
+        <div class="star star-4">💫</div>
+        <div class="star star-5">⭐</div>
+        <div class="star star-6">✨</div>
+    </div>
+</section>
+
+<!-- Story Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="fw-bold mb-3">Cerita Kami</h2>
+                <p class="text-muted">
+                    BabyShop3Berlian didirikan dengan misi untuk menyediakan produk perlengkapan bayi berkualitas tinggi 
+                    dengan harga terjangkau. Kami memahami bahwa setiap orang tua menginginkan yang terbaik untuk buah hati mereka.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-circle bg-pink-light mb-3 mx-auto">
+                            <i class="fas fa-heart fa-2x text-pink"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Kualitas Terjamin</h5>
+                        <p class="text-muted">
+                            Semua produk kami telah melewati quality control ketat dan aman untuk bayi Anda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-circle bg-blue-light mb-3 mx-auto">
+                            <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Aman & Terpercaya</h5>
+                        <p class="text-muted">
+                            Transaksi aman dengan berbagai metode pembayaran yang terpercaya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-circle bg-yellow-light mb-3 mx-auto">
+                            <i class="fas fa-truck fa-2x text-warning"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Pengiriman Cepat</h5>
+                        <p class="text-muted">
+                            Pengiriman ke seluruh Indonesia dengan packaging aman dan rapi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="fw-bold mb-4">Nilai-Nilai Kami</h2>
+                <div class="value-item mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="value-icon me-3">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Kepercayaan</h5>
+                            <p class="text-muted mb-0">
+                                Kami membangun kepercayaan dengan memberikan produk berkualitas dan pelayanan terbaik.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="value-item mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="value-icon me-3">
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Kualitas</h5>
+                            <p class="text-muted mb-0">
+                                Setiap produk dipilih dengan cermat untuk memastikan kualitas terbaik untuk bayi Anda.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="value-item mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="value-icon me-3">
+                            <i class="fas fa-users fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Kepuasan Pelanggan</h5>
+                            <p class="text-muted mb-0">
+                                Kepuasan Anda adalah prioritas utama kami. Kami siap membantu 24/7.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 class="fw-bold text-pink mb-2">10,000+</h3>
+                        <p class="text-muted mb-0">Pelanggan Puas</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="fw-bold text-primary mb-2">500+</h3>
+                        <p class="text-muted mb-0">Produk Berkualitas</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="fw-bold text-success mb-2">5 Tahun</h3>
+                        <p class="text-muted mb-0">Pengalaman</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="fw-bold text-warning mb-2">4.9/5</h3>
+                        <p class="text-muted mb-0">Rating Pelanggan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-pink text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Siap Berbelanja?</h2>
+        <p class="lead mb-4">Temukan produk terbaik untuk buah hati Anda sekarang!</p>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-light btn-lg">
+            <i class="fas fa-shopping-bag me-2"></i>Lihat Semua Produk
+        </a>
+    </div>
+</section>

@@ -1,0 +1,288 @@
+@model BabyShopWeb2.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container py-5">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Beranda</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Produk</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Category" asp-route-id="@Model.CategoryId">@Model.Category.Name</a></li>
+            <li class="breadcrumb-item active">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <!-- Product Details -->
+    <div class="row mb-5">
+        <div class="col-lg-6">
+            <div class="product-image-detail">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded">
+                }
+                else
+                {
+                    <div class="product-placeholder-large">
+                        <i class="@Model.Category.IconClass fa-10x text-pink"></i>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="product-details">
+                <h1 class="fw-bold text-dark mb-3">@Model.Name</h1>
+                <p class="text-muted mb-3">
+                    <i class="fas fa-tag me-2"></i>@Model.Category.Name
+                </p>
+                
+                <div class="price-section mb-4">
+                    @if (Model.DiscountPrice.HasValue)
+                    {
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="price-original text-muted text-decoration-line-through fs-5 me-3">Rp @Model.Price.ToString("N0")</span>
+                            <span class="badge bg-danger">DISKON</span>
+                        </div>
+                        <div class="price-discount text-pink fw-bold fs-2">Rp @Model.DiscountPrice.Value.ToString("N0")</div>
+                        <div class="text-success small">Hemat Rp @((Model.Price - Model.DiscountPrice.Value).ToString("N0"))</div>
+                    }
+                    else
+                    {
+                        <div class="price-current text-pink fw-bold fs-2">Rp @Model.Price.ToString("N0")</div>
+                    }
+                </div>
+
+                <div class="stock-info mb-4">
+                    @if (Model.Stock <= 0)
+                    {
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Produk ini sedang habis stok
+                        </div>
+                    }
+                    else if (Model.Stock <= 5)
+                    {
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-circle me-2"></i>Stok terbatas! Tersisa @Model.Stock item
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>Stok tersedia (@Model.Stock item)
+                        </div>
+                    }
+                </div>
+
+                <div class="description mb-4">
+                    <h5 class="fw-bold mb-3">Deskripsi Produk</h5>
+                    <p class="text-muted">@Model.Description</p>
+                </div>
+
+                @if (Model.Stock > 0)
+                {
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post" class="add-to-cart-form">
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label fw-medium">Jumlah</label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="decreaseQuantity()">-</button>
+                                    <input type="number" name="quantity" id="quantity" class="form-control text-center" value="1" min="1" max="@Model.Stock">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="increaseQuantity()">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="submit" class="btn btn-pink btn-lg me-md-2">
+                                <i class="fas fa-cart-plus me-2"></i>Tambah ke Keranjang
+                            </button>
+                            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                                <i class="fas fa-arrow-left me-2"></i>Kembali
+                            </a>
+                        </div>
+                        
+                        <!-- Admin Actions -->
+                        <div class="admin-actions-detail mt-3 pt-3 border-top">
+                            <h6 class="text-muted mb-2">Admin Actions:</h6>
+                            <div class="d-grid gap-2 d-md-flex">
+                                <a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-warning me-md-2">
+                                    <i class="fas fa-edit me-2"></i>Edit Produk
+                                </a>
+                                <button type="button" class="btn btn-danger" onclick="confirmDeleteProduct(@Model.Id, '@Model.Name')">
+                                    <i class="fas fa-trash me-2"></i>Hapus Produk
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-secondary btn-lg" disabled>
+                            <i class="fas fa-times me-2"></i>Stok Habis
+                        </button>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-arrow-left me-2"></i>Kembali ke Produk
+                        </a>
+                    </div>
+                    
+                    <!-- Admin Actions -->
+                    <div class="admin-actions-detail mt-3 pt-3 border-top">
+                        <h6 class="text-muted mb-2">Admin Actions:</h6>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-warning me-md-2">
+                                <i class="fas fa-edit me-2"></i>Edit Produk
+                            </a>
+                            <button type="button" class="btn btn-danger" onclick="confirmDeleteProduct(@Model.Id, '@Model.Name')">
+                                <i class="fas fa-trash me-2"></i>Hapus Produk
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    @if (ViewBag.RelatedProducts != null && ((List<BabyShopWeb2.Models.Product>)ViewBag.RelatedProducts).Any())
+    {
+        <div class="related-products">
+            <h3 class="fw-bold text-dark mb-4">Produk Terkait</h3>
+            <div class="row g-4">
+                @foreach (var relatedProduct in (List<BabyShopWeb2.Models.Product>)ViewBag.RelatedProducts)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="product-card">
+                            <div class="product-image">
+                                @if (!string.IsNullOrEmpty(relatedProduct.ImageUrl))
+                                {
+                                    <img src="@relatedProduct.ImageUrl" alt="@relatedProduct.Name" class="img-fluid">
+                                }
+                                else
+                                {
+                                    <div class="product-placeholder">
+                                        <i class="@relatedProduct.Category.IconClass fa-3x text-white"></i>
+                                    </div>
+                                }
+                                @if (relatedProduct.DiscountPrice.HasValue)
+                                {
+                                    <span class="discount-badge">DISKON</span>
+                                }
+                            </div>
+                            <div class="product-info p-3">
+                                <h6 class="product-title mb-2">@relatedProduct.Name</h6>
+                                <div class="product-price mb-3">
+                                    @if (relatedProduct.DiscountPrice.HasValue)
+                                    {
+                                        <span class="price-original text-muted text-decoration-line-through">Rp @relatedProduct.Price.ToString("N0")</span>
+                                        <span class="price-discount text-pink fw-bold">Rp @relatedProduct.DiscountPrice.Value.ToString("N0")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price-current text-pink fw-bold">Rp @relatedProduct.Price.ToString("N0")</span>
+                                    }
+                                </div>
+                                <div class="product-actions">
+                                    <a asp-action="Details" asp-route-id="@relatedProduct.Id" class="btn btn-outline-pink btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>Detail
+                                    </a>
+                                    @if (relatedProduct.Stock > 0)
+                                    {
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+                                            <input type="hidden" name="productId" value="@relatedProduct.Id" />
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <button type="submit" class="btn btn-pink btn-sm">
+                                                <i class="fas fa-cart-plus me-1"></i>Beli
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Konfirmasi Hapus Produk</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus produk <strong id="productNameToDelete"></strong>?</p>
+                <p class="text-danger small">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    Tindakan ini tidak dapat dibatalkan dan Anda akan diarahkan ke halaman produk.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <form id="deleteProductForm" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i>Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function increaseQuantity() {
+        const input = document.getElementById('quantity');
+        const max = parseInt(input.getAttribute('max'));
+        const current = parseInt(input.value);
+        if (current < max) {
+            input.value = current + 1;
+        }
+    }
+
+    function decreaseQuantity() {
+        const input = document.getElementById('quantity');
+        const current = parseInt(input.value);
+        if (current > 1) {
+            input.value = current - 1;
+        }
+    }
+    
+    function confirmDeleteProduct(productId, productName) {
+        document.getElementById('productNameToDelete').textContent = productName;
+        document.getElementById('deleteProductForm').action = '/Admin/DeleteProduct/' + productId;
+        new bootstrap.Modal(document.getElementById('deleteProductModal')).show();
+    }
+</script>
+
+<style>
+.product-image-detail {
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-color) 100%);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.product-placeholder-large {
+    padding: 60px 20px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.price-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.related-products {
+    border-top: 2px solid #e9ecef;
+    padding-top: 3rem;
+}
+</style>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test Kalender - Klik Card Tanggal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 50%, #FFF9E6 100%);
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FF6B9D;
+            margin-bottom: 30px;
+        }
+        
+        .test-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .date-picker-btn {
+            background: linear-gradient(135deg, #D4B5FF 0%, #E6D5FF 100%);
+            border: 3px dashed #A29BFE;
+            border-radius: 25px;
+            padding: 30px;
+            cursor: pointer !important;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .date-picker-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 181, 255, 0.5);
+        }
+        
+        .date-picker-btn:active {
+            transform: translateY(-2px) scale(1.03);
+        }
+        
+        .date-display {
+            text-align: center;
+        }
+        
+        .date-display h2 {
+            font-size: 4rem;
+            margin: 0;
+            color: #000;
+        }
+        
+        .date-display p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #000;
+        }
+        
+        .date-display small {
+            font-size: 1rem;
+            color: #6C5CE7;
+            font-weight: 600;
+        }
+        
+        .icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .status {
+            background: #E8F5E9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .status.error {
+            background: #FFEBEE;
+            border-left-color: #F44336;
+        }
+        
+        .log {
+            background: #F5F5F5;
+            border: 1px solid #DDD;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        
+        .log-entry.success {
+            color: #2E7D32;
+        }
+        
+        .log-entry.error {
+            color: #C62828;
+        }
+        
+        .log-entry.info {
+            color: #1976D2;
+        }
+        
+        /* Flatpickr custom styling */
+        .flatpickr-calendar {
+            border-radius: 20px !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+            border: 3px solid #FF6B9D !important;
+        }
+        
+        .flatpickr-day.selected {
+            background: #FF6B9D !important;
+            border-color: #FF6B9D !important;
+        }
+        
+        .flatpickr-day:hover {
+            background: #FFE5EC !important;
+            border-color: #FF6B9D !important;
+        }
+        
+        .flatpickr-months {
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%) !important;
+            border-radius: 17px 17px 0 0 !important;
+        }
+        
+        .flatpickr-current-month {
+            color: white !important;
+        }
+        
+        .flatpickr-weekday {
+            color: #FF6B9D !important;
+            font-weight: 600 !important;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Kalender Interaktif</h1>
+        
+        <div class="test-card">
+            <h2 style="margin-bottom: 20px; color: #FF6B9D;">📅 Klik Card di Bawah Ini</h2>
+            
+            <div class="date-picker-btn" id="datePickerCard">
+                <div class="date-display">
+                    <h2 id="selectedDay">26</h2>
+                    <p id="selectedMonth">Desember 2025</p>
+                    <small><i>👆</i> Klik untuk ubah tanggal</small>
+                </div>
+                <div class="icon">📅</div>
+            </div>
+            
+            <input type="hidden" id="hiddenDatePicker" />
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn" onclick="testCalendar()">🔄 Test Manual</button>
+                <button class="btn" onclick="clearLog()">🗑️ Clear Log</button>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <h3 style="color: #FF6B9D; margin-bottom: 15px;">📊 Status</h3>
+            <div id="status" class="status">
+                <strong>⏳ Menunggu...</strong>
+                <p>Klik card tanggal di atas untuk membuka kalender</p>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <h3 style="color: #FF6B9D; margin-bottom: 15px;">📝 Console Log</h3>
+            <div id="log" class="log">
+                <div class="log-entry info">🚀 Halaman dimuat...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
+    <script>
+        const logDiv = document.getElementById('log');
+        const statusDiv = document.getElementById('status');
+        
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        function updateStatus(message, isError = false) {
+            statusDiv.className = isError ? 'status error' : 'status';
+            statusDiv.innerHTML = `<strong>${isError ? '❌' : '✅'} ${message}</strong>`;
+        }
+        
+        function clearLog() {
+            logDiv.innerHTML = '<div class="log-entry info">🗑️ Log cleared</div>';
+        }
+        
+        function testCalendar() {
+            addLog('🧪 Manual test triggered', 'info');
+            if (window.fp) {
+                fp.open();
+                addLog('✅ Calendar opened manually', 'success');
+            } else {
+                addLog('❌ Flatpickr not initialized', 'error');
+            }
+        }
+        
+        // Wait for DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog('✅ DOM loaded', 'success');
+            
+            const datePickerInput = document.getElementById('hiddenDatePicker');
+            const datePickerCard = document.getElementById('datePickerCard');
+            const selectedDay = document.getElementById('selectedDay');
+            const selectedMonth = document.getElementById('selectedMonth');
+            
+            if (!datePickerInput) {
+                addLog('❌ Hidden input not found!', 'error');
+                updateStatus('Error: Hidden input not found', true);
+                return;
+            }
+            
+            if (!datePickerCard) {
+                addLog('❌ Date card not found!', 'error');
+                updateStatus('Error: Date card not found', true);
+                return;
+            }
+            
+            addLog('✅ All elements found', 'success');
+            
+            // Check if Flatpickr is loaded
+            if (typeof flatpickr === 'undefined') {
+                addLog('❌ Flatpickr library not loaded!', 'error');
+                updateStatus('Error: Flatpickr not loaded', true);
+                return;
+            }
+            
+            addLog('✅ Flatpickr library loaded', 'success');
+            
+            // Initialize Flatpickr
+            try {
+                window.fp = flatpickr(datePickerInput, {
+                    locale: 'id',
+                    dateFormat: 'Y-m-d',
+                    defaultDate: new Date(),
+                    maxDate: 'today',
+                    onChange: function(selectedDates, dateStr, instance) {
+                        addLog(`📅 Date selected: ${dateStr}`, 'success');
+                        
+                        if (selectedDates.length > 0) {
+                            const date = selectedDates[0];
+                            
+                            // Update display
+                            selectedDay.textContent = date.getDate().toString().padStart(2, '0');
+                            selectedMonth.textContent = date.toLocaleDateString('id-ID', { 
+                                month: 'long', 
+                                year: 'numeric' 
+                            });
+                            
+                            addLog(`✅ Display updated: ${selectedDay.textContent} ${selectedMonth.textContent}`, 'success');
+                            updateStatus(`Tanggal dipilih: ${selectedMonth.textContent}`);
+                            
+                            // In real app, this would redirect
+                            const month = date.getMonth() + 1;
+                            const year = date.getFullYear();
+                            const url = `?date=${dateStr}&month=${month}&year=${year}`;
+                            addLog(`🔗 Would redirect to: ${url}`, 'info');
+                        }
+                    },
+                    onOpen: function() {
+                        addLog('📅 Calendar opened!', 'success');
+                        updateStatus('Kalender terbuka - Pilih tanggal');
+                    },
+                    onClose: function() {
+                        addLog('📅 Calendar closed', 'info');
+                    },
+                    onReady: function(selectedDates, dateStr, instance) {
+                        addLog('✅ Flatpickr ready', 'success');
+                        instance.calendarContainer.style.animation = 'fadeInUp 0.3s ease';
+                    }
+                });
+                
+                addLog('✅ Flatpickr initialized successfully', 'success');
+                updateStatus('Siap! Klik card tanggal untuk membuka kalender');
+                
+            } catch (error) {
+                addLog(`❌ Error initializing Flatpickr: ${error.message}`, 'error');
+                updateStatus('Error: Failed to initialize calendar', true);
+                return;
+            }
+            
+            // Attach click handler
+            datePickerCard.addEventListener('click', function(e) {
+                addLog('🖱️ Date card clicked!', 'info');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (window.fp) {
+                    window.fp.open();
+                    addLog('✅ Opening calendar...', 'success');
+                } else {
+                    addLog('❌ Flatpickr not available', 'error');
+                    updateStatus('Error: Calendar not initialized', true);
+                }
+            });
+            
+            addLog('✅ Click handler attached', 'success');
+            
+            // Visual feedback
+            datePickerCard.addEventListener('mouseenter', function() {
+                addLog('👆 Mouse entered card', 'info');
+            });
+            
+            datePickerCard.addEventListener('mouseleave', function() {
+                addLog('👋 Mouse left card', 'info');
+            });
+            
+            addLog('🎉 Initialization complete!', 'success');
+        });
+    </script>
+</body>
+</html>

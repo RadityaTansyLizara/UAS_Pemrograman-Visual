@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Checkout Flow - BabyShop3Berlian</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Test Checkout Flow - BabyShop3Berlian</h1>
+    
+    <div class="test-section info">
+        <h3>Langkah Testing Manual:</h3>
+        <ol>
+            <li>Buka aplikasi di: <a href="http://localhost:5055" target="_blank">http://localhost:5055</a></li>
+            <li>Tambahkan produk ke keranjang</li>
+            <li>Klik "Checkout" di keranjang</li>
+            <li>Isi form checkout dengan data berikut:</li>
+            <ul>
+                <li><strong>Nama:</strong> Test Customer</li>
+                <li><strong>Telepon:</strong> 081234567890</li>
+                <li><strong>Alamat:</strong> Jl. Test No. 123, Jakarta</li>
+                <li><strong>Catatan:</strong> Test order</li>
+            </ul>
+            <li>Klik "Lanjut ke Pembayaran"</li>
+            <li><strong>EXPECTED:</strong> Halaman harus redirect ke Payment (bukan ke Struk)</li>
+            <li><strong>EXPECTED:</strong> Payment page menampilkan metode Cash dan E-Wallet</li>
+            <li><strong>EXPECTED:</strong> QR Code ditampilkan untuk E-Wallet</li>
+            <li><strong>EXPECTED:</strong> Setelah pilih metode dan konfirmasi → redirect ke Struk</li>
+            <li><strong>EXPECTED:</strong> Struk menampilkan metode pembayaran yang dipilih</li>
+            <li><strong>EXPECTED:</strong> Tombol "Download PDF" harus berfungsi</li>
+        </ol>
+    </div>
+    
+    <div class="test-section info">
+        <h3>Expected Flow (NEW):</h3>
+        <div style="background-color: #e8f5e8; padding: 15px; border-radius: 5px; font-weight: bold;">
+            Products → Add to Cart → Checkout Form → Payment Page → Select Method → Confirm Payment → Struk → Download PDF
+        </div>
+        <ul>
+            <li><strong>Checkout</strong> → Redirect ke <strong>Payment Page</strong></li>
+            <li><strong>Payment Page</strong> → Pilih Cash atau E-Wallet (DANA/GoPay/OVO)</li>
+            <li><strong>QR Code</strong> → Ditampilkan untuk E-Wallet payments</li>
+            <li><strong>Confirm Payment</strong> → Redirect ke Struk</li>
+            <li><strong>No Shipping Cost</strong> → Semua gratis ongkir</li>
+        </ul>
+    </div>
+    
+    <div class="test-section info">
+        <h3>Payment Methods Available:</h3>
+        <ul>
+            <li><strong>💵 Cash</strong> - Bayar tunai saat pengambilan barang</li>
+            <li><strong>📱 DANA</strong> - Scan QR Code dengan aplikasi DANA</li>
+            <li><strong>📱 GoPay</strong> - Scan QR Code dengan aplikasi GoPay</li>
+            <li><strong>📱 OVO</strong> - Scan QR Code dengan aplikasi OVO</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h3>Console Output untuk Payment:</h3>
+        <ul>
+            <li><code>=== Payment action called with ID: [id] ===</code></li>
+            <li><code>=== ConfirmPayment called for Order ID: [id], Method: [method] ===</code></li>
+            <li><code>Payment confirmed for order [number] with method [method]</code></li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h3>Quick Links untuk Testing:</h3>
+        <button onclick="window.open('http://localhost:5055', '_blank')">Buka Aplikasi</button>
+        <button onclick="window.open('http://localhost:5055/Product', '_blank')">Halaman Produk</button>
+        <button onclick="window.open('http://localhost:5055/Cart', '_blank')">Keranjang</button>
+        <button onclick="window.open('http://localhost:5055/Order/TestOrder', '_blank')" style="background-color: #ff6b9d; color: white;">Test Order → Payment</button>
+    </div>
+    
+    <div class="test-section">
+        <h3>Debugging Console Output:</h3>
+        <p>Periksa console output aplikasi untuk melihat log debugging dari PlaceOrder method:</p>
+        <ul>
+            <li><code>=== PlaceOrder START ===</code></li>
+            <li><code>Customer: [nama customer]</code></li>
+            <li><code>Creating order...</code></li>
+            <li><code>Order saved with ID: [id]</code></li>
+            <li><code>Redirecting to Struk with ID: [id]</code></li>
+            <li><code>=== PlaceOrder SUCCESS ===</code></li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h3>Kemungkinan Issues:</h3>
+        <ul>
+            <li><strong>Validation Error:</strong> Form validation gagal (periksa required fields)</li>
+            <li><strong>Database Error:</strong> Error saat menyimpan order ke database</li>
+            <li><strong>Cart Empty:</strong> Keranjang kosong saat checkout</li>
+            <li><strong>Redirect Issue:</strong> RedirectToAction tidak berfungsi</li>
+        </ul>
+    </div>
+    
+    <div class="test-section success">
+        <h3>Fixes Applied:</h3>
+        <ul>
+            <li>✅ Fixed email generation untuk Order model</li>
+            <li>✅ Added manual validation untuk required fields</li>
+            <li>✅ Enhanced debugging logging</li>
+            <li>✅ Improved error handling</li>
+            <li>✅ Ensured Notes field tidak null</li>
+            <li>✅ <strong>FIXED: Cart SessionId validation issue</strong></li>
+            <li>✅ <strong>Added [BindNever] to Cart properties in CheckoutViewModel</strong></li>
+            <li>✅ <strong>Replaced ModelState validation with manual validation</strong></li>
+        </ul>
+    </div>
+    
+    <script>
+        // Auto refresh setiap 30 detik untuk monitoring
+        setTimeout(function() {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

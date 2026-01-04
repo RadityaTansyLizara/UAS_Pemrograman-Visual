@@ -1,0 +1,539 @@
+@model BabyShopWeb2.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-baby-theme.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* 📅 Custom Flatpickr Styling */
+        .flatpickr-calendar {
+            border-radius: 20px !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+            border: 3px solid #FF6B9D !important;
+        }
+        
+        .flatpickr-day.selected {
+            background: #FF6B9D !important;
+            border-color: #FF6B9D !important;
+        }
+        
+        .flatpickr-day:hover {
+            background: #FFE5EC !important;
+            border-color: #FF6B9D !important;
+        }
+        
+        .flatpickr-months {
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%) !important;
+            border-radius: 17px 17px 0 0 !important;
+        }
+        
+        .flatpickr-current-month {
+            color: white !important;
+        }
+        
+        .flatpickr-weekday {
+            color: #FF6B9D !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Date Picker Button Styling */
+        .date-picker-btn {
+            cursor: pointer !important;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+        
+        .date-picker-btn:hover {
+            transform: translateY(-5px) scale(1.05) !important;
+            box-shadow: 0 15px 40px rgba(212, 181, 255, 0.5) !important;
+        }
+        
+        .date-picker-btn:active {
+            transform: translateY(-2px) scale(1.03) !important;
+        }
+        
+        .date-picker-btn::after {
+            content: '📅';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: bounce 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        }
+    </style>
+}
+
+<div class="container-fluid" style="animation: fadeInUp 0.6s ease; padding-top: 0.5rem; padding-bottom: 1rem;">
+    
+    <!-- 🎀 Welcome Header -->
+    <div class="row" style="margin-bottom: 1rem;">
+        <div class="col-12">
+            <div class="baby-card" style="background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%); border: none; padding: 0.75rem 1rem; margin-bottom: 0;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="gradient-text" style="font-size: 1.75rem; margin-bottom: 0.25rem;">
+                            🎈 Selamat Datang di Dashboard!
+                        </h2>
+                        <p style="color: #8B8B8B; font-size: 0.9rem; margin: 0;">
+                            <i class="fas fa-calendar-day"></i> @DateTime.Today.ToString("dddd, dd MMMM yyyy")
+                        </p>
+                    </div>
+                    <div class="cute-icon" style="width: 50px; height: 50px; font-size: 30px;">
+                        👶
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 💰 Keuangan Hari Ini -->
+    <div class="section-header">
+        <h4>💰 Keuangan Hari Ini - @((ViewBag.SelectedDate as DateTime?)?.ToString("dd MMMM yyyy") ?? DateTime.Today.ToString("dd MMMM yyyy"))</h4>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-lg-4 col-md-6 mb-3" style="animation-delay: 0.1s;">
+            <div class="stat-card green">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.95rem;">Pemasukan Hari Ini</p>
+                        <h2 style="margin: 10px 0; font-weight: 700; font-size: 2rem;">
+                            Rp @Model.TodayIncome.ToString("N0")
+                        </h2>
+                        <small style="opacity: 0.8;">✨ Realtime</small>
+                    </div>
+                    <div class="cute-icon">
+                        💚
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-3" style="animation-delay: 0.2s;">
+            <div class="stat-card red">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.95rem;">Pengeluaran Hari Ini</p>
+                        <h2 style="margin: 10px 0; font-weight: 700; font-size: 2rem;">
+                            Rp @Model.TodayExpense.ToString("N0")
+                        </h2>
+                        <small style="opacity: 0.8;">📊 Realtime</small>
+                    </div>
+                    <div class="cute-icon">
+                        💸
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-3" style="animation-delay: 0.3s;">
+            <div class="stat-card @((Model.TodayIncome - Model.TodayExpense) >= 0 ? "blue" : "yellow")">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.95rem;">Saldo Hari Ini</p>
+                        <h2 style="margin: 10px 0; font-weight: 700; font-size: 2rem;">
+                            Rp @((Model.TodayIncome - Model.TodayExpense).ToString("N0"))
+                        </h2>
+                        <small style="opacity: 0.8;">💰 Pemasukan - Pengeluaran</small>
+                    </div>
+                    <div class="cute-icon">
+                        @((Model.TodayIncome - Model.TodayExpense) >= 0 ? "🎉" : "😊")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📊 Rekap Bulanan -->
+    <div class="section-header">
+        <h4>📊 Rekap Bulanan - @(new DateTime((int)(ViewBag.SelectedYear ?? DateTime.Today.Year), (int)(ViewBag.SelectedMonth ?? DateTime.Today.Month), 1).ToString("MMMM yyyy"))</h4>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-lg-4 col-md-6 mb-3" style="animation-delay: 0.4s;">
+            <div class="stat-card mint">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.95rem;">Pemasukan Bulan Ini</p>
+                        <h2 style="margin: 10px 0; font-weight: 700; font-size: 2rem;">
+                            Rp @Model.MonthlyIncome.ToString("N0")
+                        </h2>
+                        <small style="opacity: 0.8;">📈 Total pemasukan</small>
+                    </div>
+                    <div class="cute-icon">
+                        🌟
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-3" style="animation-delay: 0.5s;">
+            <div class="stat-card" style="background: linear-gradient(135deg, #FFB4B4 0%, #FFD4D4 100%);">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.95rem;">Pengeluaran Bulan Ini</p>
+                        <h2 style="margin: 10px 0; font-weight: 700; font-size: 2rem;">
+                            Rp @Model.MonthlyExpense.ToString("N0")
+                        </h2>
+                        <small style="opacity: 0.8;">📉 Total pengeluaran</small>
+                    </div>
+                    <div class="cute-icon">
+                        🎈
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-3" style="animation-delay: 0.6s;">
+            <div class="stat-card purple">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p style="margin: 0; opacity: 0.9; font-size: 0.95rem;">Saldo Bulan Ini</p>
+                        <h2 style="margin: 10px 0; font-weight: 700; font-size: 2rem;">
+                            Rp @((Model.MonthlyIncome - Model.MonthlyExpense).ToString("N0"))
+                        </h2>
+                        <small style="opacity: 0.8;">💎 Laba/Rugi bersih</small>
+                    </div>
+                    <div class="cute-icon">
+                        @((Model.MonthlyIncome - Model.MonthlyExpense) >= 0 ? "🦄" : "🌈")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🏪 Statistik Bisnis -->
+    <div class="section-header">
+        <h4>🏪 Statistik Bisnis</h4>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3" style="animation-delay: 0.7s;">
+            <div class="stat-card blue">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 style="margin: 0; font-weight: 700; font-size: 2.5rem;">@Model.TotalProducts</h2>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;">Total Produk</p>
+                    </div>
+                    <div class="cute-icon">
+                        🎁
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-3" style="animation-delay: 0.8s;">
+            <div class="stat-card" style="background: linear-gradient(135deg, #A8D8FF 0%, #B4D7FF 100%);">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 style="margin: 0; font-weight: 700; font-size: 2.5rem;">@Model.TotalOrders</h2>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;">Total Pesanan</p>
+                    </div>
+                    <div class="cute-icon">
+                        🛒
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-3" style="animation-delay: 0.9s;">
+            <div class="stat-card yellow">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 style="margin: 0; font-weight: 700; font-size: 1.5rem;">Rp @Model.TotalRevenue.ToString("N0")</h2>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;">Total Pendapatan</p>
+                    </div>
+                    <div class="cute-icon">
+                        💰
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-3" style="animation-delay: 1s;">
+            <div class="stat-card date-picker-btn" 
+                 style="background: linear-gradient(135deg, #D4B5FF 0%, #E6D5FF 100%); 
+                        cursor: pointer !important; 
+                        border: 3px dashed #A29BFE;" 
+                 id="datePickerCard"
+                 title="Klik untuk memilih tanggal">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 style="margin: 0; font-weight: 700; font-size: 2.5rem;" id="selectedDay">@((ViewBag.SelectedDate as DateTime?)?.ToString("dd") ?? DateTime.Now.ToString("dd"))</h2>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;" id="selectedMonth">@((ViewBag.SelectedDate as DateTime?)?.ToString("MMMM yyyy") ?? DateTime.Now.ToString("MMMM yyyy"))</p>
+                        <small style="opacity: 0.8; font-size: 0.85rem; font-weight: 600; color: #6C5CE7;">
+                            <i class="fas fa-hand-pointer"></i> Klik untuk ubah tanggal
+                        </small>
+                    </div>
+                    <div class="cute-icon" style="font-size: 45px;">
+                        📅
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="hiddenDatePicker" />
+        </div>
+    </div>
+
+    <!-- ⚡ Aksi Cepat -->
+    <div class="section-header">
+        <h4>⚡ Aksi Cepat</h4>
+    </div>
+    
+    <div class="action-grid mb-4">
+        <a asp-action="CreateProduct" class="action-btn">
+            <i class="fas fa-plus-circle" style="color: #FFB6C1;"></i>
+            <div style="font-weight: 600; color: #5A5A5A;">Tambah Produk</div>
+        </a>
+        <a asp-action="Products" class="action-btn">
+            <i class="fas fa-box-open" style="color: #B4D7FF;"></i>
+            <div style="font-weight: 600; color: #5A5A5A;">Lihat Produk</div>
+        </a>
+        <a asp-action="Orders" class="action-btn">
+            <i class="fas fa-shopping-bag" style="color: #C1FFC1;"></i>
+            <div style="font-weight: 600; color: #5A5A5A;">Lihat Pesanan</div>
+        </a>
+        <a asp-controller="Financial" asp-action="CreateTransaction" class="action-btn">
+            <i class="fas fa-coins" style="color: #FFF4B7;"></i>
+            <div style="font-weight: 600; color: #5A5A5A;">Tambah Transaksi</div>
+        </a>
+        <a asp-controller="Admin" asp-action="Financial" class="action-btn">
+            <i class="fas fa-chart-pie" style="color: #E6D5FF;"></i>
+            <div style="font-weight: 600; color: #5A5A5A;">Detail Keuangan</div>
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="action-btn">
+            <i class="fas fa-globe" style="color: #C4FFE4;"></i>
+            <div style="font-weight: 600; color: #5A5A5A;">Lihat Website</div>
+        </a>
+    </div>
+
+    <!-- 🕐 Pesanan Terbaru -->
+    <div class="section-header">
+        <h4>🕐 Pesanan Terbaru</h4>
+    </div>
+    
+    <div class="baby-card">
+        @if (Model.RecentOrders.Any())
+        {
+            <div class="table-responsive">
+                <table class="table baby-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>No. Pesanan</th>
+                            <th>Pelanggan</th>
+                            <th>Tanggal</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.RecentOrders)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="color: #FFB6C1;">@order.OrderNumber</strong>
+                                </td>
+                                <td>
+                                    <div>
+                                        <strong>@order.CustomerName</strong>
+                                        <br>
+                                        <small style="color: #8B8B8B;">@order.CustomerPhone</small>
+                                    </div>
+                                </td>
+                                <td>@order.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <strong style="color: #A8E6CF;">Rp @order.TotalAmount.ToString("N0")</strong>
+                                </td>
+                                <td>
+                                    @switch (order.Status)
+                                    {
+                                        case OrderStatus.Pending:
+                                            <span class="badge-baby badge-baby-warning">⏳ Menunggu</span>
+                                            break;
+                                        case OrderStatus.Processing:
+                                            <span class="badge-baby badge-baby-info">🔄 Diproses</span>
+                                            break;
+                                        case OrderStatus.Shipped:
+                                            <span class="badge-baby badge-baby-info">🚚 Dikirim</span>
+                                            break;
+                                        case OrderStatus.Delivered:
+                                            <span class="badge-baby badge-baby-success">✅ Terkirim</span>
+                                            break;
+                                        case OrderStatus.Cancelled:
+                                            <span class="badge-baby badge-baby-danger">❌ Dibatalkan</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="OrderDetails" asp-route-id="@order.Id" class="btn btn-sm btn-baby-pink">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <h5>Belum ada pesanan</h5>
+                <p>Pesanan akan muncul di sini setelah pelanggan melakukan pembelian 🛍️</p>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎯 Initializing calendar...');
+            
+            // 📅 Initialize Flatpickr Date Picker
+            const datePickerInput = document.getElementById('hiddenDatePicker');
+            const datePickerCard = document.getElementById('datePickerCard');
+            const selectedDay = document.getElementById('selectedDay');
+            const selectedMonth = document.getElementById('selectedMonth');
+            
+            if (!datePickerInput || !datePickerCard) {
+                console.error('❌ Date picker elements not found!');
+                return;
+            }
+            
+            console.log('✅ Date picker elements found');
+            
+            // Get current date from URL or use today
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentDate = urlParams.get('date') || '@DateTime.Today.ToString("yyyy-MM-dd")';
+            
+            console.log('📅 Current date:', currentDate);
+            
+            // Check if flatpickr is loaded
+            if (typeof flatpickr === 'undefined') {
+                console.error('❌ Flatpickr library not loaded!');
+                return;
+            }
+            
+            console.log('✅ Flatpickr library loaded');
+            
+            // Initialize Flatpickr
+            const fp = flatpickr(datePickerInput, {
+                locale: 'id',
+                dateFormat: 'Y-m-d',
+                defaultDate: currentDate,
+                maxDate: 'today',
+                onChange: function(selectedDates, dateStr, instance) {
+                    console.log('📅 Date selected:', dateStr);
+                    
+                    if (selectedDates.length > 0) {
+                        const date = selectedDates[0];
+                        
+                        // Update display
+                        selectedDay.textContent = date.getDate().toString().padStart(2, '0');
+                        selectedMonth.textContent = date.toLocaleDateString('id-ID', { 
+                            month: 'long', 
+                            year: 'numeric' 
+                        });
+                        
+                        // Show loading state
+                        datePickerCard.style.opacity = '0.6';
+                        datePickerCard.style.pointerEvents = 'none';
+                        
+                        // Reload page with selected date
+                        const month = date.getMonth() + 1;
+                        const year = date.getFullYear();
+                        const newUrl = `?date=${dateStr}&month=${month}&year=${year}`;
+                        
+                        console.log('🔄 Redirecting to:', newUrl);
+                        window.location.href = newUrl;
+                    }
+                },
+                onReady: function(selectedDates, dateStr, instance) {
+                    console.log('✅ Calendar ready');
+                    // Add custom styling
+                    instance.calendarContainer.style.animation = 'fadeInUp 0.3s ease';
+                }
+            });
+            
+            console.log('✅ Flatpickr initialized');
+            
+            // Open calendar when clicking the card
+            datePickerCard.addEventListener('click', function(e) {
+                console.log('🖱️ Date card clicked!');
+                e.preventDefault();
+                e.stopPropagation();
+                fp.open();
+            });
+            
+            // Add visual feedback on hover
+            datePickerCard.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            datePickerCard.addEventListener('mouseleave', function() {
+                if (currentDate === new Date().toISOString().split('T')[0]) {
+                    this.style.transform = 'scale(1.02)';
+                } else {
+                    this.style.transform = 'scale(1)';
+                }
+            });
+            
+            console.log('✅ Click handler attached');
+            
+            // ✨ Add sparkle effect on hover
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    for(let i = 0; i < 3; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement('div');
+                            sparkle.className = 'sparkle';
+                            sparkle.style.left = Math.random() * 100 + '%';
+                            sparkle.style.top = Math.random() * 100 + '%';
+                            sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+                            this.appendChild(sparkle);
+                            setTimeout(() => sparkle.remove(), 2000);
+                        }, i * 100);
+                    }
+                });
+            });
+            
+            // 🎨 Highlight current date card if viewing today
+            const today = new Date().toISOString().split('T')[0];
+            if (currentDate === today) {
+                datePickerCard.style.boxShadow = '0 12px 35px rgba(212, 181, 255, 0.5)';
+                datePickerCard.style.transform = 'scale(1.02)';
+            }
+            
+            // 📊 Show loading indicator when filtering
+            const isFiltering = urlParams.has('date') || urlParams.has('month');
+            if (isFiltering) {
+                console.log('🔍 Filter active');
+                // Add filter indicator
+                const filterBadge = document.createElement('div');
+                filterBadge.innerHTML = `
+                    <div style="position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%); 
+                         color: white; padding: 12px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+                         z-index: 1000; animation: fadeInUp 0.5s ease; font-weight: 600;">
+                        <i class="fas fa-filter"></i> Filter Aktif: ${selectedMonth.textContent}
+                        <a href="?" style="color: white; margin-left: 10px; text-decoration: underline;">Reset</a>
+                    </div>
+                `;
+                document.body.appendChild(filterBadge);
+            }
+            
+            console.log('🎉 Calendar initialization complete!');
+        });
+    </script>
+}

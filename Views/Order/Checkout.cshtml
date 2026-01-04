@@ -1,0 +1,282 @@
+@model BabyShopWeb2.Controllers.CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="fw-bold text-dark mb-3">Checkout</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Beranda</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Product" asp-action="Index">Produk</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <form asp-action="PlaceOrder" asp-controller="Order" method="post" id="checkoutForm">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Customer Information -->
+                <div class="card mb-4">
+                    <div class="card-header bg-pink text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user me-2"></i>Informasi Pelanggan
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="CustomerName" class="form-label">Nama Lengkap *</label>
+                                <input asp-for="CustomerName" class="form-control" placeholder="Masukkan nama lengkap">
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CustomerPhone" class="form-label">Nomor Telepon *</label>
+                                <input asp-for="CustomerPhone" type="tel" class="form-control" placeholder="08xxxxxxxxxx">
+                                <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="ShippingAddress" class="form-label">Alamat Pengiriman *</label>
+                                <textarea asp-for="ShippingAddress" class="form-control" rows="3" placeholder="Masukkan alamat lengkap untuk pengiriman"></textarea>
+                                <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Notes" class="form-label">Catatan (Opsional)</label>
+                                <textarea asp-for="Notes" class="form-control" rows="2" placeholder="Catatan tambahan untuk pesanan"></textarea>
+                                <span asp-validation-for="Notes" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="CashierName" class="form-label">Kasir yang Melayani *</label>
+                                <select asp-for="CashierName" class="form-select">
+                                    <option value="">-- Pilih Kasir --</option>
+                                    @foreach (var employee in Model.AvailableEmployees)
+                                    {
+                                        <option value="@employee.FullName">
+                                            @employee.FullName (@employee.Position) - Shift @employee.Shift
+                                        </option>
+                                    }
+                                </select>
+                                <span asp-validation-for="CashierName" class="text-danger"></span>
+                                <small class="text-muted">Pilih karyawan yang sedang bertugas melayani transaksi ini</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="fas fa-list me-2"></i>Item Pesanan
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        @if (Model.Cart.CartItems.Any())
+                        {
+                            @foreach (var item in Model.Cart.CartItems)
+                            {
+                                <div class="order-item p-3 border-bottom">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2">
+                                            <div class="product-image-small">
+                                                @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                                                {
+                                                    <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="img-fluid rounded">
+                                                }
+                                                else
+                                                {
+                                                    <div class="product-placeholder-small">
+                                                        <i class="@(item.Product?.Category?.IconClass ?? "fas fa-box") fa-2x text-pink"></i>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h6 class="fw-bold mb-1">@(item.Product?.Name ?? "Produk")</h6>
+                                            <p class="text-muted small mb-0">@(item.Product?.Category?.Name ?? "Kategori")</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <span class="fw-medium">@item.Quantity x</span>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <span class="text-pink fw-bold">Rp @(item.Product?.Price.ToString("N0") ?? "0")</span>
+                                        </div>
+                                        <div class="col-md-1 text-end">
+                                            <span class="fw-bold">Rp @item.Subtotal.ToString("N0")</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="p-4 text-center">
+                                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">Keranjang Kosong</h5>
+                                <p class="text-muted">Silakan tambahkan produk terlebih dahulu</p>
+                                <a asp-controller="Product" asp-action="Index" class="btn btn-pink">
+                                    <i class="fas fa-shopping-bag me-2"></i>Belanja Sekarang
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Order Summary -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Ringkasan Pesanan</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal (@Model.Cart.TotalItems item)</span>
+                            <span class="fw-bold">Rp @Model.Cart.TotalAmount.ToString("N0")</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span>Ongkos Kirim</span>
+                            <span class="text-success fw-bold">GRATIS</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold fs-5">Total Pembayaran</span>
+                            <span class="fw-bold text-pink fs-4">Rp @Model.Cart.TotalAmount.ToString("N0")</span>
+                        </div>
+
+                        @if (Model.ShippingCost == 0)
+                        {
+                            <div class="alert alert-success small">
+                                <i class="fas fa-check-circle me-1"></i>
+                                Gratis ongkir untuk semua pembelian!
+                            </div>
+                        }
+
+                        <div class="d-grid gap-2">
+                            @if (Model.Cart.CartItems.Any())
+                            {
+                                <button type="submit" class="btn btn-pink btn-lg" id="submitBtn">
+                                    <i class="fas fa-credit-card me-2"></i>
+                                    <span id="submitText">Lanjut ke Pembayaran</span>
+                                    <span id="loadingText" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin me-2"></i>Memproses...
+                                    </span>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                    <i class="fas fa-times me-2"></i>Keranjang Kosong
+                                </button>
+                            }
+                            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-shopping-bag me-2"></i>Lanjut Belanja
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Info -->
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-info-circle me-2 text-pink"></i>Informasi Pemesanan
+                        </h6>
+                        <ul class="list-unstyled small text-muted">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Gratis ongkir untuk semua pembelian
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Pembayaran Cash atau E-Wallet (DANA, GoPay, OVO)
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Konfirmasi pesanan dalam 1x24 jam
+                            </li>
+                            <li>
+                                <i class="fas fa-check text-success me-2"></i>
+                                Garansi return 7 hari
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+.order-item:last-child {
+    border-bottom: none !important;
+}
+
+.product-image-small {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-color) 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-placeholder-small {
+    color: white;
+}
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('checkoutForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const loadingText = document.getElementById('loadingText');
+            
+            console.log('Checkout form initialized');
+            
+            form.addEventListener('submit', function(e) {
+                console.log('Form submit event triggered');
+                console.log('Form action:', form.action);
+                console.log('Form method:', form.method);
+                
+                // Validasi form sebelum submit
+                if (!form.checkValidity()) {
+                    console.log('Form validation failed');
+                    return; // Biarkan browser menangani validasi
+                }
+                
+                console.log('Form validation passed, submitting...');
+                
+                // Disable tombol dan tampilkan loading
+                submitBtn.disabled = true;
+                submitText.style.display = 'none';
+                loadingText.style.display = 'inline';
+                
+                // Mencegah double submit
+                setTimeout(function() {
+                    if (submitBtn.disabled) {
+                        console.log('Timeout reached, re-enabling submit button');
+                        submitBtn.disabled = false;
+                        submitText.style.display = 'inline';
+                        loadingText.style.display = 'none';
+                    }
+                }, 10000); // Reset setelah 10 detik jika tidak ada response
+            });
+        });
+    </script>
+}

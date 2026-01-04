@@ -1,0 +1,152 @@
+@model BabyShopWeb2.Models.Employee
+@{
+    ViewData["Title"] = "Edit Karyawan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <h2 class="mb-1">✏️ Edit Data Karyawan</h2>
+        <p class="text-muted">Perbarui informasi karyawan</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="EditEmployee" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="CreatedAt" />
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="EmployeeId" class="form-label">ID Karyawan <span class="text-danger">*</span></label>
+                                <input asp-for="EmployeeId" class="form-control" />
+                                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FullName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                                <input asp-for="FullName" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Position" class="form-label">Jabatan <span class="text-danger">*</span></label>
+                                <select asp-for="Position" class="form-select">
+                                    <option value="Kasir">Kasir</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="StaffGudang">Staff Gudang</option>
+                                </select>
+                                <span asp-validation-for="Position" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PhoneNumber" class="form-label">No. HP <span class="text-danger">*</span></label>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Alamat <span class="text-danger">*</span></label>
+                            <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="JoinDate" class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
+                                <input asp-for="JoinDate" type="date" class="form-control" />
+                                <span asp-validation-for="JoinDate" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Status" class="form-label">Status <span class="text-danger">*</span></label>
+                                <select asp-for="Status" class="form-select">
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Nonaktif">Nonaktif</option>
+                                    <option value="Cuti">Cuti</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Shift" class="form-label">Shift Kerja <span class="text-danger">*</span></label>
+                                <select asp-for="Shift" class="form-select">
+                                    <option value="Pagi">☀️ Pagi (07:00 - 13:30)</option>
+                                    <option value="Siang">🌤️ Siang (13:30 - 20:00)</option>
+                                </select>
+                                <span asp-validation-for="Shift" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Salary" class="form-label">Gaji (Opsional)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Rp</span>
+                                <input asp-for="Salary" type="number" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Salary" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label">Catatan</label>
+                            <textarea asp-for="Notes" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan Perubahan
+                            </button>
+                            <a asp-action="Employees" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Batal
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">📋 Informasi</h5>
+                    <table class="table table-sm">
+                        <tr>
+                            <td>Dibuat pada:</td>
+                            <td><strong>@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")</strong></td>
+                        </tr>
+                        @if (Model.UpdatedAt.HasValue)
+                        {
+                            <tr>
+                                <td>Terakhir diupdate:</td>
+                                <td><strong>@Model.UpdatedAt.Value.ToString("dd MMM yyyy HH:mm")</strong></td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>Lama bekerja:</td>
+                            <td><strong>@((DateTime.Now - Model.JoinDate).Days) hari</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

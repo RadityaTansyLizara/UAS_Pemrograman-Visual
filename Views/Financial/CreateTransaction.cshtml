@@ -1,0 +1,118 @@
+@model BabyShopWeb2.Models.CreateTransactionViewModel
+@{
+    ViewData["Title"] = "Tambah Transaksi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-plus-circle"></i> Tambah Transaksi Keuangan</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CreateTransaction" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Type" class="form-label">Jenis Transaksi *</label>
+                                <select asp-for="Type" class="form-select" required>
+                                    <option value="">-- Pilih Jenis --</option>
+                                    <option value="@TransactionType.Income">Pemasukan</option>
+                                    <option value="@TransactionType.Expense">Pengeluaran</option>
+                                </select>
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Category" class="form-label">Kategori *</label>
+                                <select asp-for="Category" class="form-select" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <optgroup label="Pemasukan">
+                                        <option value="@TransactionCategory.Sales">Penjualan</option>
+                                        <option value="@TransactionCategory.OtherIncome">Pemasukan Lain</option>
+                                    </optgroup>
+                                    <optgroup label="Pengeluaran">
+                                        <option value="@TransactionCategory.ProductPurchase">Pembelian Produk</option>
+                                        <option value="@TransactionCategory.OperationalCost">Biaya Operasional</option>
+                                        <option value="@TransactionCategory.Salary">Gaji Karyawan</option>
+                                        <option value="@TransactionCategory.Rent">Sewa Tempat</option>
+                                        <option value="@TransactionCategory.Utilities">Utilitas (Listrik, Air, Internet)</option>
+                                        <option value="@TransactionCategory.Marketing">Marketing</option>
+                                        <option value="@TransactionCategory.OtherExpense">Pengeluaran Lain</option>
+                                    </optgroup>
+                                </select>
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Deskripsi *</label>
+                            <input asp-for="Description" class="form-control" placeholder="Contoh: Pembelian stok produk dari supplier" required />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Amount" class="form-label">Jumlah (Rp) *</label>
+                                <input asp-for="Amount" type="number" class="form-control" placeholder="0" min="0" step="1000" required />
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="TransactionDate" class="form-label">Tanggal & Waktu *</label>
+                                <input asp-for="TransactionDate" type="datetime-local" class="form-control" required />
+                                <span asp-validation-for="TransactionDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label">Catatan (Opsional)</label>
+                            <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Catatan tambahan..."></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan Transaksi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Help Card -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h6 class="card-title"><i class="fas fa-info-circle"></i> Panduan</h6>
+                    <ul class="mb-0">
+                        <li><strong>Pemasukan:</strong> Catat semua uang yang masuk (penjualan, pemasukan lain)</li>
+                        <li><strong>Pengeluaran:</strong> Catat semua uang yang keluar (pembelian, biaya operasional, dll)</li>
+                        <li><strong>Transaksi Otomatis:</strong> Penjualan dari order akan tercatat otomatis</li>
+                        <li><strong>Transaksi Manual:</strong> Dapat dihapus jika ada kesalahan input</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Set default datetime to now
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.querySelector('input[type="datetime-local"]');
+            if (dateInput && !dateInput.value) {
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                dateInput.value = now.toISOString().slice(0, 16);
+            }
+        });
+    </script>
+}

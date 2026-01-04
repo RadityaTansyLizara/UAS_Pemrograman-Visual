@@ -1,0 +1,69 @@
+@model BabyShopWeb2.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login Admin";
+}
+
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+<!-- Login Section with Baby Theme -->
+<section class="login-section">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="login-card">
+                    <div class="login-header text-center">
+                        <div class="logo-circle mx-auto">
+                            <i class="fas fa-baby fa-3x"></i>
+                        </div>
+                        <h2 class="mt-4 mb-2">🍼 Admin BabyShop3Berlian</h2>
+                        <p class="text-muted">Silakan login untuk melanjutkan</p>
+                    </div>
+                    
+                    <form asp-action="Login" method="post" class="login-form mt-4">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Username" class="form-label">
+                                <i class="fas fa-user me-2"></i>Username
+                            </label>
+                            <input asp-for="Username" class="form-control form-control-lg" placeholder="Masukkan username" autofocus />
+                            <span asp-validation-for="Username" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="form-group mb-4">
+                            <label asp-for="Password" class="form-label">
+                                <i class="fas fa-lock me-2"></i>Password
+                            </label>
+                            <input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="Masukkan password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-login btn-lg w-100 mb-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </button>
+                        
+                        <div class="text-center">
+                            <a asp-controller="Home" asp-action="Index" class="text-muted">
+                                <i class="fas fa-home me-2"></i>Kembali ke Beranda
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Cute Decorations -->
+                <div class="login-decorations">
+                    <span class="deco-emoji deco-1">🍼</span>
+                    <span class="deco-emoji deco-2">🧸</span>
+                    <span class="deco-emoji deco-3">⭐</span>
+                    <span class="deco-emoji deco-4">💕</span>
+                    <span class="deco-emoji deco-5">🎈</span>
+                    <span class="deco-emoji deco-6">✨</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,233 @@
+@model BabyShopWeb2.Models.Employee
+@{
+    ViewData["Title"] = "Detail Karyawan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <a asp-action="Employees" class="btn btn-sm btn-secondary mb-2">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+        <h2 class="mb-1">👤 Detail Karyawan</h2>
+        <p class="text-muted">Informasi lengkap karyawan</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Informasi Pribadi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="text-muted small">ID Karyawan</label>
+                            <h5>@Model.EmployeeId</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Nama Lengkap</label>
+                            <h5>@Model.FullName</h5>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="text-muted small">Jabatan</label>
+                            <h5><span class="badge bg-info">@Model.Position</span></h5>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Status</label>
+                            <h5>
+                                @if (Model.Status == BabyShopWeb2.Models.EmployeeStatus.Aktif)
+                                {
+                                    <span class="badge bg-success">Aktif</span>
+                                }
+                                else if (Model.Status == BabyShopWeb2.Models.EmployeeStatus.Nonaktif)
+                                {
+                                    <span class="badge bg-danger">Nonaktif</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning">Cuti</span>
+                                }
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="text-muted small">No. HP</label>
+                            <h5>
+                                <i class="fas fa-phone text-primary"></i> @Model.PhoneNumber
+                            </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Email</label>
+                            <h5>
+                                @if (!string.IsNullOrEmpty(Model.Email))
+                                {
+                                    <i class="fas fa-envelope text-primary"></i>
+                                    <text>@Model.Email</text>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="text-muted small">Alamat</label>
+                        <h5>
+                            <i class="fas fa-map-marker-alt text-primary"></i> @Model.Address
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Informasi Pekerjaan</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="text-muted small">Tanggal Masuk</label>
+                            <h5>@Model.JoinDate.ToString("dd MMMM yyyy")</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Lama Bekerja</label>
+                            <h5>
+                                @{
+                                    var workDuration = DateTime.Now - Model.JoinDate;
+                                    var years = workDuration.Days / 365;
+                                    var months = (workDuration.Days % 365) / 30;
+                                    var days = (workDuration.Days % 365) % 30;
+                                }
+                                @if (years > 0)
+                                {
+                                    <text>@years tahun </text>
+                                }
+                                @if (months > 0)
+                                {
+                                    <text>@months bulan </text>
+                                }
+                                @if (days > 0 || (years == 0 && months == 0))
+                                {
+                                    <text>@days hari</text>
+                                }
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="text-muted small">Shift Kerja</label>
+                            <h5>
+                                @if (Model.Shift == BabyShopWeb2.Models.EmployeeShift.Pagi)
+                                {
+                                    <span class="badge bg-primary">☀️ Pagi (07:00 - 13:30)</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning">🌤️ Siang (13:30 - 20:00)</span>
+                                }
+                            </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Gaji</label>
+                            <h5>
+                                @if (Model.Salary.HasValue)
+                                {
+                                    <text>Rp @Model.Salary.Value.ToString("N0")</text>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </h5>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Notes))
+                    {
+                        <div class="mb-0">
+                            <label class="text-muted small">Catatan</label>
+                            <p class="mb-0">@Model.Notes</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-3">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                    </div>
+                    <h4>@Model.FullName</h4>
+                    <p class="text-muted mb-3">@Model.Position</p>
+                    
+                    <div class="d-grid gap-2">
+                        <a asp-action="EditEmployee" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Edit Data
+                        </a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <i class="fas fa-trash"></i> Hapus Karyawan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="card-title">📊 Statistik</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td>Dibuat pada:</td>
+                            <td class="text-end"><small>@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</small></td>
+                        </tr>
+                        @if (Model.UpdatedAt.HasValue)
+                        {
+                            <tr>
+                                <td>Terakhir diupdate:</td>
+                                <td class="text-end"><small>@Model.UpdatedAt.Value.ToString("dd/MM/yyyy HH:mm")</small></td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>Total hari kerja:</td>
+                            <td class="text-end"><strong>@((DateTime.Now - Model.JoinDate).Days) hari</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus karyawan <strong>@Model.FullName</strong>?</p>
+                <p class="text-danger mb-0"><i class="fas fa-exclamation-triangle"></i> Tindakan ini tidak dapat dibatalkan!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <form asp-action="DeleteEmployee" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

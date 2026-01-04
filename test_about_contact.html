@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Halaman Tentang Kami & Kontak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%);
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+        h1 {
+            color: #FF69B4;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #636E72;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #FFF9E6;
+            border-radius: 15px;
+            border-left: 5px solid #FF69B4;
+        }
+        .test-section h2 {
+            color: #2C3E50;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .test-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        .test-step strong {
+            color: #FF69B4;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .success {
+            color: #00B894;
+            font-weight: bold;
+        }
+        .url {
+            background: #2C3E50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #FF69B4;
+        }
+        .feature-list li:before {
+            content: "✓ ";
+            color: #00B894;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🏢 Test Halaman Tentang Kami & Kontak</h1>
+        <p class="subtitle">Verifikasi Navigation & Functionality</p>
+        
+        <div class="test-section">
+            <h2>📋 What Was Created</h2>
+            <ul class="feature-list">
+                <li>Halaman "Tentang Kami" dengan informasi lengkap</li>
+                <li>Halaman "Kontak" dengan form dan info kontak</li>
+                <li>Navigation links yang berfungsi dari semua halaman</li>
+                <li>Responsive design untuk mobile & desktop</li>
+                <li>Animated elements dan hover effects</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Scenario 1: Navigation dari Halaman Produk</h2>
+            
+            <div class="test-step">
+                <strong>Step 1: Buka Halaman Produk</strong>
+                <div class="url">http://localhost:5055/Product</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2: Klik "Tentang Kami" di Navigation</strong>
+                <p class="success">✓ Halaman "Tentang Kami" terbuka</p>
+                <p class="success">✓ URL berubah ke /Home/About</p>
+                <p class="success">✓ Tidak ada error</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3: Klik "Kontak" di Navigation</strong>
+                <p class="success">✓ Halaman "Kontak" terbuka</p>
+                <p class="success">✓ URL berubah ke /Home/Contact</p>
+                <p class="success">✓ Form kontak terlihat</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 4: Klik "Produk" untuk kembali</strong>
+                <p class="success">✓ Kembali ke halaman produk</p>
+                <p class="success">✓ Navigation tetap berfungsi</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Scenario 2: Halaman Tentang Kami</h2>
+            
+            <div class="test-step">
+                <strong>Step 1: Buka Halaman Tentang Kami</strong>
+                <div class="url">http://localhost:5055/Home/About</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2: Verifikasi Sections</strong>
+                <p>Check apakah semua section ada:</p>
+                <ul>
+                    <li>Hero Section dengan judul dan CTA</li>
+                    <li>Cerita Kami dengan 3 value cards</li>
+                    <li>Nilai-Nilai Kami dengan 3 items</li>
+                    <li>Statistics dengan 4 stat cards</li>
+                    <li>CTA Section di bawah</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3: Test Animations</strong>
+                <p class="success">✓ Baby icon floating animation</p>
+                <p class="success">✓ Cards lift on hover</p>
+                <p class="success">✓ Smooth transitions</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 4: Test CTA Buttons</strong>
+                <p>1. Klik "Belanja Sekarang"</p>
+                <p class="success">✓ Redirect ke halaman produk</p>
+                <p>2. Klik "Hubungi Kami"</p>
+                <p class="success">✓ Redirect ke halaman kontak</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Scenario 3: Halaman Kontak</h2>
+            
+            <div class="test-step">
+                <strong>Step 1: Buka Halaman Kontak</strong>
+                <div class="url">http://localhost:5055/Home/Contact</div>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2: Verifikasi Contact Info</strong>
+                <p>Check apakah semua info card ada:</p>
+                <ul>
+                    <li>Alamat dengan icon map</li>
+                    <li>Telepon dengan 2 nomor</li>
+                    <li>Email dengan 2 alamat</li>
+                    <li>Jam Operasional</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3: Test Contact Form</strong>
+                <p>1. Isi semua field:</p>
+                <ul>
+                    <li>Nama: Test User</li>
+                    <li>Email: test@example.com</li>
+                    <li>Subjek: Test Message</li>
+                    <li>Pesan: This is a test message</li>
+                </ul>
+                <p>2. Klik "Kirim Pesan"</p>
+                <p class="success">✓ Success message muncul</p>
+                <p class="success">✓ Tetap di halaman kontak</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 4: Test Clickable Links</strong>
+                <p>1. Klik nomor telepon</p>
+                <p class="success">✓ Opens phone dialer (mobile) atau skype (desktop)</p>
+                <p>2. Klik email address</p>
+                <p class="success">✓ Opens email client</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 5: Test Social Media Icons</strong>
+                <p>Hover pada setiap icon:</p>
+                <p class="success">✓ Icon lift dan scale animation</p>
+                <p class="success">✓ Shadow effect muncul</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 6: Verifikasi Google Maps</strong>
+                <p class="success">✓ Map embed terlihat</p>
+                <p class="success">✓ Map interactive (zoom, pan)</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Scenario 4: Responsive Design</h2>
+            
+            <div class="test-step">
+                <strong>Step 1: Test Mobile View</strong>
+                <p>1. Resize browser ke mobile size (< 768px)</p>
+                <p class="success">✓ Layout berubah ke single column</p>
+                <p class="success">✓ Navigation collapse ke hamburger menu</p>
+                <p class="success">✓ Contact info cards stack vertically</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 2: Test Tablet View</strong>
+                <p>1. Resize browser ke tablet size (768px - 1024px)</p>
+                <p class="success">✓ Layout adapts dengan baik</p>
+                <p class="success">✓ Semua elements tetap accessible</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Step 3: Test Desktop View</strong>
+                <p>1. Full screen browser (> 1024px)</p>
+                <p class="success">✓ Two-column layout untuk contact page</p>
+                <p class="success">✓ Grid layout untuk statistics</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test Scenario 5: Navigation dari Berbagai Halaman</h2>
+            
+            <div class="test-step">
+                <strong>Test dari Halaman Beranda</strong>
+                <p>1. Buka /Home/Index</p>
+                <p>2. Klik "Tentang Kami"</p>
+                <p class="success">✓ Navigate ke /Home/About</p>
+                <p>3. Klik "Kontak"</p>
+                <p class="success">✓ Navigate ke /Home/Contact</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Test dari Halaman Produk</strong>
+                <p>1. Buka /Product</p>
+                <p>2. Klik "Tentang Kami"</p>
+                <p class="success">✓ Navigate ke /Home/About</p>
+                <p>3. Klik "Kontak"</p>
+                <p class="success">✓ Navigate ke /Home/Contact</p>
+            </div>
+
+            <div class="test-step">
+                <strong>Test dari Halaman Cart</strong>
+                <p>1. Buka /Cart</p>
+                <p>2. Klik "Tentang Kami"</p>
+                <p class="success">✓ Navigate ke /Home/About</p>
+                <p>3. Klik "Kontak"</p>
+                <p class="success">✓ Navigate ke /Home/Contact</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Expected Results</h2>
+            <ul class="feature-list">
+                <li>Navigation links berfungsi dari semua halaman</li>
+                <li>Halaman Tentang Kami menampilkan semua sections</li>
+                <li>Halaman Kontak menampilkan form dan info</li>
+                <li>Form submission menampilkan success message</li>
+                <li>Animations dan hover effects berfungsi</li>
+                <li>Responsive design bekerja di semua screen sizes</li>
+                <li>Clickable links (phone, email) berfungsi</li>
+                <li>Google Maps embed terlihat dan interactive</li>
+                <li>Tidak ada error di console browser</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Test Checklist</h2>
+            <div style="background: white; padding: 15px; border-radius: 10px; font-family: monospace;">
+                <strong>Navigation:</strong><br>
+                [ ] Link "Tentang Kami" works<br>
+                [ ] Link "Kontak" works<br>
+                [ ] Works from all pages<br><br>
+                
+                <strong>Tentang Kami Page:</strong><br>
+                [ ] Hero section visible<br>
+                [ ] 3 value cards visible<br>
+                [ ] 4 stat cards visible<br>
+                [ ] Animations working<br>
+                [ ] CTA buttons working<br><br>
+                
+                <strong>Kontak Page:</strong><br>
+                [ ] Contact form visible<br>
+                [ ] 4 info cards visible<br>
+                [ ] Form submission works<br>
+                [ ] Success message shows<br>
+                [ ] Phone/email links work<br>
+                [ ] Social icons visible<br>
+                [ ] Google Maps visible<br><br>
+                
+                <strong>Responsive:</strong><br>
+                [ ] Mobile layout works<br>
+                [ ] Tablet layout works<br>
+                [ ] Desktop layout works<br><br>
+                
+                <strong>Overall:</strong><br>
+                [ ] No console errors<br>
+                [ ] All features working<br>
+                [ ] Ready for production
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📅 Test Kalender Interaktif - BabyShop3Berlian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 50%, #FFF9E6 100%);
+            padding: 30px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FF6B9D;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .test-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 3px solid #FF6B9D;
+        }
+        
+        .test-card h2 {
+            color: #FF6B9D;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .test-card .icon {
+            font-size: 2rem;
+        }
+        
+        .test-steps {
+            background: #FFF9E6;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .test-steps ol {
+            margin-left: 20px;
+        }
+        
+        .test-steps li {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .expected-result {
+            background: #E8F5E9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .expected-result strong {
+            color: #2E7D32;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .url-box {
+            background: #E3F2FD;
+            border: 2px solid #2196F3;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+        
+        .url-box strong {
+            color: #1976D2;
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #74B9FF 0%, #A29BFE 100%);
+            box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 6px 20px rgba(116, 185, 255, 0.4);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: linear-gradient(135deg, #A8E6CF 0%, #C1FFC1 100%);
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        .feature-item .emoji {
+            font-size: 1.5rem;
+        }
+        
+        .warning {
+            background: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            color: #E65100;
+        }
+        
+        .success {
+            background: #E8F5E9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            color: #2E7D32;
+        }
+        
+        .screenshot-placeholder {
+            background: #F5F5F5;
+            border: 2px dashed #CCC;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: #999;
+            margin: 20px 0;
+        }
+        
+        .screenshot-placeholder .icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .test-card {
+                padding: 20px;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📅 Test Kalender Interaktif</h1>
+        <p class="subtitle">Panduan Testing Fitur Kalender di Dashboard Admin BabyShop3Berlian</p>
+        
+        <!-- Quick Access -->
+        <div class="test-card">
+            <h2><span class="icon">🚀</span> Quick Access</h2>
+            <p style="margin-bottom: 20px;">Klik tombol di bawah untuk langsung mengakses dashboard admin:</p>
+            <a href="http://localhost:5055/Admin" class="btn" target="_blank">
+                🏠 Buka Dashboard Admin
+            </a>
+            <a href="http://localhost:5055/Financial" class="btn btn-secondary" target="_blank">
+                💰 Buka Detail Keuangan
+            </a>
+        </div>
+        
+        <!-- Features Implemented -->
+        <div class="test-card">
+            <h2><span class="icon">✨</span> Fitur yang Diimplementasikan</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="emoji">📅</span>
+                    <span>Kalender Interaktif</span>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">🔍</span>
+                    <span>Filter Data Historis</span>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">💰</span>
+                    <span>Keuangan Harian</span>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">📊</span>
+                    <span>Rekap Bulanan</span>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">🎨</span>
+                    <span>Baby Theme Styling</span>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji">🔖</span>
+                    <span>Bookmarkable URLs</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test 1 -->
+        <div class="test-card">
+            <h2><span class="icon">1️⃣</span> Test 1: Membuka Kalender</h2>
+            <div class="test-steps">
+                <strong>Langkah-langkah:</strong>
+                <ol>
+                    <li>Buka dashboard admin: <code>http://localhost:5055/Admin</code></li>
+                    <li>Scroll ke bagian <strong>"🏪 Statistik Bisnis"</strong></li>
+                    <li>Lihat card paling kanan dengan icon 📅</li>
+                    <li>Klik pada card tersebut</li>
+                </ol>
+            </div>
+            <div class="expected-result">
+                <strong>✅ Expected Result:</strong>
+                <ul>
+                    <li>Kalender muncul dengan styling pink dan rounded corners</li>
+                    <li>Header kalender berwarna pink gradient</li>
+                    <li>Tanggal hari ini ter-highlight</li>
+                    <li>Tidak bisa memilih tanggal masa depan</li>
+                    <li>Bahasa Indonesia (Senin, Selasa, dst.)</li>
+                </ul>
+            </div>
+            <div class="screenshot-placeholder">
+                <div class="icon">📸</div>
+                <p>Screenshot: Kalender terbuka dengan styling baby theme</p>
+            </div>
+        </div>
+        
+        <!-- Test 2 -->
+        <div class="test-card">
+            <h2><span class="icon">2️⃣</span> Test 2: Memilih Tanggal Kemarin</h2>
+            <div class="test-steps">
+                <strong>Langkah-langkah:</strong>
+                <ol>
+                    <li>Klik card tanggal untuk membuka kalender</li>
+                    <li>Pilih tanggal kemarin (25 Desember 2025)</li>
+                    <li>Tunggu page reload otomatis</li>
+                    <li>Perhatikan perubahan data</li>
+                </ol>
+            </div>
+            <div class="expected-result">
+                <strong>✅ Expected Result:</strong>
+                <ul>
+                    <li>Page reload dengan smooth transition</li>
+                    <li>Section "💰 Keuangan Hari Ini" menampilkan tanggal: <strong>25 Desember 2025</strong></li>
+                    <li>Data pemasukan dan pengeluaran sesuai tanggal 25 Desember</li>
+                    <li>Section "📊 Rekap Bulanan" tetap menampilkan: <strong>Desember 2025</strong></li>
+                    <li>Filter badge muncul di kanan atas dengan teks: <strong>"Filter Aktif: Desember 2025"</strong></li>
+                    <li>Ada link "Reset" untuk kembali ke hari ini</li>
+                </ul>
+            </div>
+            <div class="url-box">
+                <strong>URL setelah filter:</strong>
+                http://localhost:5055/Admin?date=2025-12-25&month=12&year=2025
+            </div>
+        </div>
+        
+        <!-- Test 3 -->
+        <div class="test-card">
+            <h2><span class="icon">3️⃣</span> Test 3: Memilih Tanggal Bulan Lalu</h2>
+            <div class="test-steps">
+                <strong>Langkah-langkah:</strong>
+                <ol>
+                    <li>Klik card tanggal untuk membuka kalender</li>
+                    <li>Klik arrow kiri (<strong>&lt;</strong>) untuk pindah ke bulan sebelumnya</li>
+                    <li>Pilih tanggal 15 November 2025</li>
+                    <li>Tunggu page reload</li>
+                </ol>
+            </div>
+            <div class="expected-result">
+                <strong>✅ Expected Result:</strong>
+                <ul>
+                    <li>Section "💰 Keuangan Hari Ini" menampilkan: <strong>15 November 2025</strong></li>
+                    <li>Data pemasukan/pengeluaran untuk tanggal 15 November</li>
+                    <li>Section "📊 Rekap Bulanan" menampilkan: <strong>November 2025</strong></li>
+                    <li>Total pemasukan dan pengeluaran untuk seluruh bulan November</li>
+                    <li>Filter badge menampilkan: <strong>"Filter Aktif: November 2025"</strong></li>
+                </ul>
+            </div>
+            <div class="url-box">
+                <strong>URL setelah filter:</strong>
+                http://localhost:5055/Admin?date=2025-11-15&month=11&year=2025
+            </div>
+        </div>
+        
+        <!-- Test 4 -->
+        <div class="test-card">
+            <h2><span class="icon">4️⃣</span> Test 4: Reset ke Hari Ini</h2>
+            <div class="test-steps">
+                <strong>Langkah-langkah:</strong>
+                <ol>
+                    <li>Setelah memilih tanggal historis (Test 2 atau 3)</li>
+                    <li>Lihat filter badge di kanan atas</li>
+                    <li>Klik link <strong>"Reset"</strong></li>
+                </ol>
+            </div>
+            <div class="expected-result">
+                <strong>✅ Expected Result:</strong>
+                <ul>
+                    <li>Kembali ke dashboard hari ini (26 Desember 2025)</li>
+                    <li>URL berubah menjadi: <code>http://localhost:5055/Admin</code> (tanpa parameter)</li>
+                    <li>Filter badge hilang</li>
+                    <li>Data kembali menampilkan hari ini dan bulan ini</li>
+                    <li>Card tanggal ter-highlight (box-shadow lebih terang)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Test 5 -->
+        <div class="test-card">
+            <h2><span class="icon">5️⃣</span> Test 5: Bookmark URL</h2>
+            <div class="test-steps">
+                <strong>Langkah-langkah:</strong>
+                <ol>
+                    <li>Pilih tanggal tertentu (misalnya 20 Desember 2025)</li>
+                    <li>Copy URL dari address bar browser</li>
+                    <li>Buka tab baru</li>
+                    <li>Paste URL dan tekan Enter</li>
+                </ol>
+            </div>
+            <div class="expected-result">
+                <strong>✅ Expected Result:</strong>
+                <ul>
+                    <li>Dashboard langsung menampilkan data untuk tanggal 20 Desember 2025</li>
+                    <li>Tidak perlu klik kalender lagi</li>
+                    <li>Filter badge langsung muncul</li>
+                    <li>URL bisa di-bookmark atau di-share ke orang lain</li>
+                </ul>
+            </div>
+            <div class="url-box">
+                <strong>Contoh URL untuk bookmark:</strong>
+                http://localhost:5055/Admin?date=2025-12-20&month=12&year=2025
+            </div>
+        </div>
+        
+        <!-- Test 6 -->
+        <div class="test-card">
+            <h2><span class="icon">6️⃣</span> Test 6: Data Historis Akurat</h2>
+            <div class="test-steps">
+                <strong>Langkah-langkah:</strong>
+                <ol>
+                    <li>Buka halaman <strong>Detail Keuangan</strong>: <code>http://localhost:5055/Financial</code></li>
+                    <li>Klik tombol <strong>"Tambah Transaksi"</strong></li>
+                    <li>Isi form dengan data:
+                        <ul>
+                            <li>Tanggal: <strong>25 Desember 2025</strong></li>
+                            <li>Tipe: <strong>Pemasukan</strong></li>
+                            <li>Kategori: <strong>Lain-lain</strong></li>
+                            <li>Deskripsi: <strong>Test Transaksi Historis</strong></li>
+                            <li>Jumlah: <strong>500000</strong></li>
+                        </ul>
+                    </li>
+                    <li>Klik <strong>"Simpan"</strong></li>
+                    <li>Kembali ke Dashboard Admin</li>
+                    <li>Pilih tanggal <strong>25 Desember 2025</strong> di kalender</li>
+                </ol>
+            </div>
+            <div class="expected-result">
+                <strong>✅ Expected Result:</strong>
+                <ul>
+                    <li>Transaksi "Test Transaksi Historis" muncul di data 25 Desember</li>
+                    <li>Pemasukan Hari Ini bertambah Rp 500.000</li>
+                    <li>Saldo Hari Ini juga bertambah Rp 500.000</li>
+                    <li>Data akurat dan tidak hilang</li>
+                    <li>Bisa dilihat kapan saja dengan memilih tanggal tersebut</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Visual Checks -->
+        <div class="test-card">
+            <h2><span class="icon">🎨</span> Visual Checks</h2>
+            <p style="margin-bottom: 15px;">Pastikan styling sesuai dengan tema baby:</p>
+            <div class="test-steps">
+                <strong>Checklist Visual:</strong>
+                <ol>
+                    <li>✅ Kalender memiliki border pink (#FF6B9D) dengan border-radius 20px</li>
+                    <li>✅ Header kalender gradient pink (#FF6B9D → #C44569)</li>
+                    <li>✅ Tanggal yang dipilih background pink (#FF6B9D)</li>
+                    <li>✅ Hover pada tanggal: background light pink (#FFE5EC)</li>
+                    <li>✅ Card tanggal memiliki icon 📅 di kanan atas dengan bounce animation</li>
+                    <li>✅ Text "Klik untuk ubah tanggal" terlihat jelas</li>
+                    <li>✅ Filter badge di kanan atas dengan gradient pink</li>
+                    <li>✅ Semua text di card berwarna hitam (#000) untuk kontras maksimal</li>
+                    <li>✅ Animasi smooth saat hover dan click</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Troubleshooting -->
+        <div class="test-card">
+            <h2><span class="icon">🔧</span> Troubleshooting</h2>
+            
+            <div class="warning">
+                <strong>⚠️ Kalender tidak muncul?</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Pastikan aplikasi sudah running di <code>http://localhost:5055</code></li>
+                    <li>Clear browser cache (Ctrl + Shift + Delete)</li>
+                    <li>Coba hard refresh (Ctrl + F5)</li>
+                    <li>Cek console browser (F12) untuk error JavaScript</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Data tidak berubah saat pilih tanggal?</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Pastikan page reload setelah pilih tanggal</li>
+                    <li>Cek URL apakah ada parameter <code>?date=...</code></li>
+                    <li>Coba restart aplikasi: <code>dotnet run</code></li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Styling kalender tidak sesuai?</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Pastikan file <code>admin-baby-theme.css</code> sudah ter-load</li>
+                    <li>Cek Network tab di browser (F12) untuk CSS errors</li>
+                    <li>Clear browser cache dan refresh</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Success Criteria -->
+        <div class="test-card">
+            <h2><span class="icon">🎯</span> Success Criteria</h2>
+            <div class="success">
+                <strong>✅ Fitur dianggap berhasil jika:</strong>
+                <ol style="margin-top: 10px; margin-left: 20px;">
+                    <li>Kalender muncul saat klik card tanggal</li>
+                    <li>Styling kalender sesuai tema baby (pink, rounded, cute)</li>
+                    <li>Data "Keuangan Hari Ini" berubah sesuai tanggal yang dipilih</li>
+                    <li>Data "Rekap Bulanan" berubah sesuai bulan dari tanggal yang dipilih</li>
+                    <li>Filter badge muncul saat viewing historical data</li>
+                    <li>Tombol "Reset" berfungsi untuk kembali ke hari ini</li>
+                    <li>URL bookmarkable (bisa di-copy dan di-share)</li>
+                    <li>Data historis akurat dan tidak hilang</li>
+                    <li>Tidak ada error di console browser</li>
+                    <li>Animasi smooth dan responsive</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="test-card">
+            <h2><span class="icon">🔗</span> Quick Test Links</h2>
+            <p style="margin-bottom: 20px;">Klik link di bawah untuk langsung test dengan tanggal tertentu:</p>
+            
+            <a href="http://localhost:5055/Admin" class="btn" target="_blank">
+                📅 Hari Ini (26 Des 2025)
+            </a>
+            <a href="http://localhost:5055/Admin?date=2025-12-25&month=12&year=2025" class="btn" target="_blank">
+                📅 Kemarin (25 Des 2025)
+            </a>
+            <a href="http://localhost:5055/Admin?date=2025-12-20&month=12&year=2025" class="btn" target="_blank">
+                📅 20 Desember 2025
+            </a>
+            <a href="http://localhost:5055/Admin?date=2025-11-15&month=11&year=2025" class="btn" target="_blank">
+                📅 15 November 2025
+            </a>
+            <a href="http://localhost:5055/Admin?date=2025-10-01&month=10&year=2025" class="btn" target="_blank">
+                📅 1 Oktober 2025
+            </a>
+        </div>
+        
+        <!-- Footer -->
+        <div class="test-card" style="text-align: center; background: linear-gradient(135deg, #FFE5EC 0%, #E3F2FD 100%);">
+            <h2 style="margin-bottom: 15px;">🎉 Happy Testing!</h2>
+            <p style="color: #666; font-size: 1.1rem;">
+                Fitur kalender interaktif sudah siap digunakan.<br>
+                Jika ada bug atau masalah, silakan laporkan untuk diperbaiki.
+            </p>
+            <p style="margin-top: 20px; color: #999; font-size: 0.9rem;">
+                📝 Dibuat pada: 26 Desember 2025<br>
+                👨‍💻 Developer: Kiro AI Assistant<br>
+                🏪 Project: BabyShop3Berlian E-commerce
+            </p>
+        </div>
+    </div>
+</body>
+</html>

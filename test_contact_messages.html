@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Contact Messages Feature - BabyShop3Berlian</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFE5F0 0%, #E0F7FF 100%);
+        }
+        .header {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+        }
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #FF69B4;
+            border-radius: 5px;
+        }
+        .step-number {
+            background: #FF69B4;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .url {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+        }
+        .feature {
+            display: flex;
+            align-items: start;
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 8px;
+        }
+        .feature-icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .note {
+            background: #fff9c4;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FFC107;
+            margin: 15px 0;
+        }
+        .success {
+            background: #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            margin: 15px 0;
+        }
+        h2 {
+            color: #FF69B4;
+            border-bottom: 3px solid #FF69B4;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #FF1493;
+        }
+        .screenshot-placeholder {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #666;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎀 Test Contact Messages Feature 🎀</h1>
+        <p>Panduan Testing Fitur Pesan Kontak dari Customer</p>
+    </div>
+
+    <div class="section">
+        <h2>📋 Fitur yang Diimplementasikan</h2>
+        
+        <div class="feature">
+            <div class="feature-icon">💾</div>
+            <div>
+                <strong>Database Storage</strong>
+                <p>Pesan kontak dari customer disimpan ke database SQLite dengan tabel <code>ContactMessages</code></p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📧</div>
+            <div>
+                <strong>Contact Form</strong>
+                <p>Form kontak di halaman Contact menyimpan data: Nama, Email, Subjek, dan Pesan</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">👨‍💼</div>
+            <div>
+                <strong>Admin Messages Page</strong>
+                <p>Halaman khusus admin untuk melihat semua pesan dari customer dengan status baca/belum dibaca</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">👁️</div>
+            <div>
+                <strong>Message Details</strong>
+                <p>Halaman detail pesan dengan fitur mark as read, reply via email, dan delete</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📊</div>
+            <div>
+                <strong>Statistics</strong>
+                <p>Statistik pesan: Total, Belum Dibaca, dan Sudah Dibaca</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🧪 Langkah-langkah Testing</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Stop aplikasi yang sedang berjalan</strong>
+            <p>Tekan <code>Ctrl+C</code> di terminal untuk menghentikan aplikasi</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Build ulang aplikasi</strong>
+            <div class="url">dotnet build</div>
+            <p>Pastikan build berhasil tanpa error</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Jalankan aplikasi</strong>
+            <div class="url">dotnet run</div>
+            <p>Database akan otomatis membuat tabel <code>ContactMessages</code> baru</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Buka halaman Contact</strong>
+            <div class="url">http://localhost:5055/Home/Contact</div>
+            <p>Isi form kontak dengan data test</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">5</span>
+            <strong>Kirim pesan test</strong>
+            <p>Contoh data:</p>
+            <ul>
+                <li><strong>Nama:</strong> Budi Santoso</li>
+                <li><strong>Email:</strong> budi@example.com</li>
+                <li><strong>Subjek:</strong> Pertanyaan tentang produk susu bayi</li>
+                <li><strong>Pesan:</strong> Halo, saya ingin tanya apakah ada stok susu formula untuk bayi 6 bulan?</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">6</span>
+            <strong>Verifikasi success message</strong>
+            <p>Setelah submit, akan muncul alert hijau: "Terima kasih! Pesan Anda telah dikirim..."</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">7</span>
+            <strong>Buka Admin Messages</strong>
+            <div class="url">http://localhost:5055/Admin/Messages</div>
+            <p>Lihat daftar pesan yang masuk dari customer</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">8</span>
+            <strong>Klik "Lihat" pada pesan</strong>
+            <p>Akan membuka halaman detail pesan dengan semua informasi lengkap</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">9</span>
+            <strong>Test fitur-fitur admin</strong>
+            <ul>
+                <li>✅ Mark as Read - Tandai pesan sudah dibaca</li>
+                <li>📧 Reply via Email - Buka email client untuk balas</li>
+                <li>🗑️ Delete - Hapus pesan</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>✨ Fitur Admin Messages</h2>
+
+        <h3>📋 Halaman Daftar Pesan</h3>
+        <ul>
+            <li>Badge menampilkan jumlah pesan belum dibaca</li>
+            <li>Tabel dengan kolom: Status, Nama, Email, Subjek, Tanggal, Aksi</li>
+            <li>Pesan belum dibaca ditandai dengan background biru muda</li>
+            <li>Icon lingkaran biru untuk belum dibaca, abu-abu untuk sudah dibaca</li>
+            <li>Tombol "Lihat" dan "Delete" untuk setiap pesan</li>
+            <li>Statistik di bawah: Total Pesan, Belum Dibaca, Sudah Dibaca</li>
+        </ul>
+
+        <h3>👁️ Halaman Detail Pesan</h3>
+        <ul>
+            <li>Menampilkan subjek, tanggal, dan status pesan</li>
+            <li>Avatar dan informasi pengirim (nama & email)</li>
+            <li>Isi pesan lengkap dalam box dengan background abu-abu</li>
+            <li>Sidebar dengan tombol aksi:
+                <ul>
+                    <li>Balas via Email (mailto link)</li>
+                    <li>Tandai Sudah Dibaca (jika belum dibaca)</li>
+                    <li>Hapus Pesan</li>
+                </ul>
+            </li>
+            <li>Card informasi dengan detail pengirim dan status</li>
+            <li>Otomatis mark as read saat dibuka pertama kali</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎨 Desain & Styling</h2>
+        <ul>
+            <li>Konsisten dengan tema baby shop (pink #FF69B4)</li>
+            <li>Badge dan status dengan warna yang jelas</li>
+            <li>Hover effects pada tombol dan rows</li>
+            <li>Responsive design untuk mobile dan desktop</li>
+            <li>Icons dari Font Awesome untuk visual yang menarik</li>
+            <li>Shadow dan border radius untuk tampilan modern</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>💾 Database Schema</h2>
+        <div class="note">
+            <strong>Tabel: ContactMessages</strong>
+            <ul>
+                <li><code>Id</code> - Primary key (int)</li>
+                <li><code>Name</code> - Nama pengirim (string, max 100)</li>
+                <li><code>Email</code> - Email pengirim (string, max 100)</li>
+                <li><code>Subject</code> - Subjek pesan (string, max 200)</li>
+                <li><code>Message</code> - Isi pesan (string, max 2000)</li>
+                <li><code>CreatedAt</code> - Tanggal kirim (DateTime)</li>
+                <li><code>IsRead</code> - Status baca (bool, default false)</li>
+                <li><code>ReadAt</code> - Tanggal dibaca (DateTime?, nullable)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔗 URL Routes</h2>
+        <div class="url">
+            <strong>Customer:</strong><br>
+            GET /Home/Contact - Tampilkan form kontak<br>
+            POST /Home/Contact - Submit pesan kontak
+        </div>
+        <div class="url">
+            <strong>Admin:</strong><br>
+            GET /Admin/Messages - Daftar semua pesan<br>
+            GET /Admin/MessageDetails/{id} - Detail pesan<br>
+            POST /Admin/MarkAsRead/{id} - Tandai sudah dibaca<br>
+            POST /Admin/DeleteMessage/{id} - Hapus pesan
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📝 Test Scenarios</h2>
+
+        <h3>Scenario 1: Customer mengirim pesan</h3>
+        <ol>
+            <li>Buka halaman Contact</li>
+            <li>Isi semua field form</li>
+            <li>Klik "Kirim Pesan"</li>
+            <li>✅ Verifikasi: Success message muncul</li>
+            <li>✅ Verifikasi: Redirect ke halaman Contact</li>
+        </ol>
+
+        <h3>Scenario 2: Admin melihat pesan baru</h3>
+        <ol>
+            <li>Buka /Admin/Messages</li>
+            <li>✅ Verifikasi: Pesan muncul di tabel</li>
+            <li>✅ Verifikasi: Badge "Belum Dibaca" bertambah</li>
+            <li>✅ Verifikasi: Row pesan berwarna biru muda</li>
+            <li>✅ Verifikasi: Icon lingkaran biru muncul</li>
+        </ol>
+
+        <h3>Scenario 3: Admin membaca pesan</h3>
+        <ol>
+            <li>Klik tombol "Lihat" pada pesan</li>
+            <li>✅ Verifikasi: Detail pesan tampil lengkap</li>
+            <li>✅ Verifikasi: Status berubah "Sudah Dibaca"</li>
+            <li>Kembali ke daftar pesan</li>
+            <li>✅ Verifikasi: Badge "Belum Dibaca" berkurang</li>
+            <li>✅ Verifikasi: Row tidak berwarna biru lagi</li>
+        </ol>
+
+        <h3>Scenario 4: Admin balas via email</h3>
+        <ol>
+            <li>Buka detail pesan</li>
+            <li>Klik "Balas via Email"</li>
+            <li>✅ Verifikasi: Email client terbuka</li>
+            <li>✅ Verifikasi: To: terisi email customer</li>
+            <li>✅ Verifikasi: Subject: terisi "Re: [subjek asli]"</li>
+        </ol>
+
+        <h3>Scenario 5: Admin hapus pesan</h3>
+        <ol>
+            <li>Klik tombol Delete</li>
+            <li>✅ Verifikasi: Konfirmasi dialog muncul</li>
+            <li>Klik OK</li>
+            <li>✅ Verifikasi: Pesan terhapus dari daftar</li>
+            <li>✅ Verifikasi: Success message muncul</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>🎯 Expected Results</h2>
+        <div class="success">
+            <strong>✅ Semua fitur berfungsi dengan baik:</strong>
+            <ul>
+                <li>Customer bisa mengirim pesan dari halaman Contact</li>
+                <li>Pesan tersimpan ke database</li>
+                <li>Admin bisa melihat daftar pesan di /Admin/Messages</li>
+                <li>Admin bisa membuka detail pesan</li>
+                <li>Status baca/belum dibaca berfungsi</li>
+                <li>Statistik pesan akurat</li>
+                <li>Fitur reply via email berfungsi</li>
+                <li>Fitur delete pesan berfungsi</li>
+                <li>Desain konsisten dengan tema baby shop</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📂 Files Created/Modified</h2>
+        <div class="note">
+            <strong>New Files:</strong>
+            <ul>
+                <li>✨ Models/ContactMessage.cs</li>
+                <li>✨ Views/Admin/Messages.cshtml</li>
+                <li>✨ Views/Admin/MessageDetails.cshtml</li>
+            </ul>
+            <strong>Modified Files:</strong>
+            <ul>
+                <li>📝 Data/ApplicationDbContext.cs - Added ContactMessages DbSet</li>
+                <li>📝 Controllers/HomeController.cs - Updated Contact POST action</li>
+                <li>📝 Controllers/AdminController.cs - Added Messages, MessageDetails, MarkAsRead, DeleteMessage actions</li>
+                <li>📝 Views/Shared/_AdminLayout.cshtml - Added Messages menu item</li>
+                <li>📝 Views/Home/Contact.cshtml - Added success message display</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>⚠️ Catatan Penting:</strong>
+        <ul>
+            <li>Pastikan aplikasi di-stop dulu sebelum build ulang</li>
+            <li>Database akan otomatis membuat tabel baru saat aplikasi dijalankan</li>
+            <li>Menu "Pesan Kontak" sudah ditambahkan di sidebar admin (antara Orders dan Keuangan)</li>
+            <li>Pesan otomatis ditandai sudah dibaca saat admin membuka detail pertama kali</li>
+        </ul>
+    </div>
+
+    <div class="success">
+        <h3>🎉 Fitur Contact Messages Siap Digunakan!</h3>
+        <p>Admin sekarang bisa melihat dan mengelola semua pesan dari customer dengan mudah melalui dashboard admin.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+@model BabyShopWeb2.Models.Employee
+@{
+    ViewData["Title"] = "Tambah Karyawan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="mb-4">
+        <h2 class="mb-1">➕ Tambah Karyawan Baru</h2>
+        <p class="text-muted">Isi form di bawah untuk menambahkan karyawan baru</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="CreateEmployee" method="post">
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="EmployeeId" class="form-label">ID Karyawan <span class="text-danger">*</span></label>
+                                <input asp-for="EmployeeId" class="form-control" placeholder="Contoh: EMP001" />
+                                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FullName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                                <input asp-for="FullName" class="form-control" placeholder="Nama lengkap karyawan" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Position" class="form-label">Jabatan <span class="text-danger">*</span></label>
+                                <select asp-for="Position" class="form-select">
+                                    <option value="">-- Pilih Jabatan --</option>
+                                    <option value="Kasir">Kasir</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="StaffGudang">Staff Gudang</option>
+                                </select>
+                                <span asp-validation-for="Position" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PhoneNumber" class="form-label">No. HP <span class="text-danger">*</span></label>
+                                <input asp-for="PhoneNumber" class="form-control" placeholder="08xxxxxxxxxx" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="email@example.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Alamat <span class="text-danger">*</span></label>
+                            <textarea asp-for="Address" class="form-control" rows="3" placeholder="Alamat lengkap karyawan"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="JoinDate" class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
+                                <input asp-for="JoinDate" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                <span asp-validation-for="JoinDate" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Status" class="form-label">Status <span class="text-danger">*</span></label>
+                                <select asp-for="Status" class="form-select">
+                                    <option value="">-- Pilih Status --</option>
+                                    <option value="Aktif" selected>Aktif</option>
+                                    <option value="Nonaktif">Nonaktif</option>
+                                    <option value="Cuti">Cuti</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Shift" class="form-label">Shift Kerja <span class="text-danger">*</span></label>
+                                <select asp-for="Shift" class="form-select">
+                                    <option value="">-- Pilih Shift --</option>
+                                    <option value="Pagi">☀️ Pagi (07:00 - 13:30)</option>
+                                    <option value="Siang">🌤️ Siang (13:30 - 20:00)</option>
+                                </select>
+                                <span asp-validation-for="Shift" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Salary" class="form-label">Gaji (Opsional)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Rp</span>
+                                <input asp-for="Salary" type="number" class="form-control" placeholder="0" />
+                            </div>
+                            <span asp-validation-for="Salary" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label">Catatan</label>
+                            <textarea asp-for="Notes" class="form-control" rows="2" placeholder="Catatan tambahan (opsional)"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                            <a asp-action="Employees" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Batal
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">💡 Tips</h5>
+                    <ul class="mb-0">
+                        <li>ID Karyawan harus unik</li>
+                        <li>Gunakan format ID yang konsisten (contoh: EMP001, EMP002)</li>
+                        <li>Pastikan nomor HP valid dan aktif</li>
+                        <li>Shift kerja dapat diubah sewaktu-waktu</li>
+                        <li>Data gaji bersifat opsional dan rahasia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "Terima Kasih - Newsletter";
+}
+
+<link rel="stylesheet" href="~/css/newsletter-thankyou.css" asp-append-version="true" />
+
+<!-- Thank You Section -->
+<section class="newsletter-thankyou-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="thankyou-card-cute">
+                    <!-- Success Icon -->
+                    <div class="success-icon-cute">
+                        <div class="icon-circle-success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="confetti">
+                            <span class="confetti-piece">🎉</span>
+                            <span class="confetti-piece">✨</span>
+                            <span class="confetti-piece">🎊</span>
+                            <span class="confetti-piece">💖</span>
+                            <span class="confetti-piece">⭐</span>
+                            <span class="confetti-piece">🎈</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Thank You Message -->
+                    <h1 class="thankyou-title">Terima Kasih!</h1>
+                    <p class="thankyou-subtitle">Anda telah berhasil berlangganan newsletter kami</p>
+                    
+                    <!-- Benefits -->
+                    <div class="newsletter-benefits">
+                        <h3 class="benefits-title">Yang Akan Anda Dapatkan:</h3>
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🎁</div>
+                                <div class="benefit-text">
+                                    <strong>Promo Eksklusif</strong>
+                                    <p>Dapatkan diskon khusus subscriber hingga 20%</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">📰</div>
+                                <div class="benefit-text">
+                                    <strong>Update Produk Terbaru</strong>
+                                    <p>Jadilah yang pertama tahu produk baru kami</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">💡</div>
+                                <div class="benefit-text">
+                                    <strong>Tips Parenting</strong>
+                                    <p>Artikel dan tips merawat bayi dari ahli</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🎉</div>
+                                <div class="benefit-text">
+                                    <strong>Event & Giveaway</strong>
+                                    <p>Kesempatan memenangkan hadiah menarik</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Next Steps -->
+                    <div class="next-steps">
+                        <p class="next-steps-text">
+                            <i class="fas fa-envelope me-2"></i>
+                            Cek email Anda untuk konfirmasi dan dapatkan kode diskon 15% untuk pembelian pertama!
+                        </p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="thankyou-actions">
+                        <a asp-controller="Product" asp-action="Index" class="btn-continue-shopping">
+                            <i class="fas fa-shopping-bag me-2"></i>Mulai Belanja
+                        </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn-back-home">
+                            <i class="fas fa-home me-2"></i>Kembali ke Beranda
+                        </a>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="social-follow">
+                        <p class="social-title">Ikuti Kami di Social Media</p>
+                        <div class="social-icons-cute">
+                            <a href="#" class="social-icon-cute facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon-cute instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon-cute twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon-cute whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

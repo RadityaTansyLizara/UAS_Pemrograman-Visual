@@ -1,0 +1,384 @@
+@model BabyShopWeb2.Models.Order
+@{
+    ViewData["Title"] = $"Pembayaran - {Model.OrderNumber}";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="fw-bold text-pink mb-2">
+                    <i class="fas fa-credit-card me-2"></i>Pembayaran
+                </h1>
+                <p class="lead text-muted">Pilih metode pembayaran untuk pesanan Anda</p>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Ringkasan Pesanan</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>No. Pesanan:</strong> @Model.OrderNumber</p>
+                            <p><strong>Pelanggan:</strong> @Model.CustomerName</p>
+                            <p><strong>Telepon:</strong> @Model.CustomerPhone</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Total Pembayaran:</strong></p>
+                            <h3 class="text-pink fw-bold">Rp @Model.TotalAmount.ToString("N0")</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="card mb-4">
+                <div class="card-header bg-pink text-white">
+                    <h5 class="mb-0">Pilih Metode Pembayaran</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="ConfirmPayment" method="post">
+                        <input type="hidden" name="orderId" value="@Model.Id" />
+                        
+                        <!-- Cash Payment -->
+                        <div class="payment-option mb-3 p-3 border rounded">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" value="Cash" id="cash">
+                                <label class="form-check-label" for="cash">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-money-bill-wave fa-2x text-success me-3"></i>
+                                        <div>
+                                            <h6 class="mb-1">Pembayaran Tunai (Cash)</h6>
+                                            <small class="text-muted">Bayar saat pengambilan barang</small>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- DANA -->
+                        <div class="payment-option mb-3 p-3 border rounded">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" value="DANA" id="dana">
+                                <label class="form-check-label" for="dana">
+                                    <div class="d-flex align-items-center">
+                                        <div class="payment-logo bg-primary text-white rounded me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <strong>DANA</strong>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">DANA</h6>
+                                            <small class="text-muted">Bayar dengan aplikasi DANA</small>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- GoPay -->
+                        <div class="payment-option mb-3 p-3 border rounded">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" value="GoPay" id="gopay">
+                                <label class="form-check-label" for="gopay">
+                                    <div class="d-flex align-items-center">
+                                        <div class="payment-logo bg-success text-white rounded me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <strong>GP</strong>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">GoPay</h6>
+                                            <small class="text-muted">Bayar dengan aplikasi Gojek</small>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- OVO -->
+                        <div class="payment-option mb-3 p-3 border rounded">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" value="OVO" id="ovo">
+                                <label class="form-check-label" for="ovo">
+                                    <div class="d-flex align-items-center">
+                                        <div class="payment-logo bg-warning text-dark rounded me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <strong>OVO</strong>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">OVO</h6>
+                                            <small class="text-muted">Bayar dengan aplikasi OVO</small>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- QR Code Section (Hidden by default) -->
+                        <div id="qr-section" style="display: none;" class="mt-4 p-4 bg-light rounded">
+                            <div class="text-center mb-4">
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fas fa-qrcode me-2"></i>Scan QR Code untuk Pembayaran
+                                </h5>
+                                <p class="text-muted mb-0" id="qr-instruction">Scan QR Code dengan aplikasi yang Anda pilih</p>
+                            </div>
+                            
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="qr-container bg-white p-4 rounded shadow-sm text-center">
+                                        <div id="qr-payment-logo" class="mb-3">
+                                            <!-- Payment logo will be inserted here -->
+                                        </div>
+                                        <div id="qrcode" class="d-inline-block p-3 bg-white border rounded mb-3">
+                                            <!-- QR Code will be generated here -->
+                                        </div>
+                                        <div class="payment-amount mb-3">
+                                            <p class="text-muted mb-1">Total Pembayaran</p>
+                                            <h3 class="text-pink fw-bold mb-0">Rp @Model.TotalAmount.ToString("N0")</h3>
+                                        </div>
+                                        <div class="payment-details bg-light p-3 rounded">
+                                            <p class="mb-1 small"><strong>No. Pesanan:</strong> @Model.OrderNumber</p>
+                                            <p class="mb-0 small"><strong>Nama:</strong> @Model.CustomerName</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info mt-4" role="alert">
+                                <h6 class="alert-heading">
+                                    <i class="fas fa-info-circle me-2"></i>Cara Pembayaran:
+                                </h6>
+                                <ol class="mb-0 ps-3" id="payment-steps">
+                                    <li>Buka aplikasi <span id="app-name">e-wallet</span> Anda</li>
+                                    <li>Pilih menu "Scan QR" atau "Bayar"</li>
+                                    <li>Scan QR Code di atas</li>
+                                    <li>Periksa detail pembayaran</li>
+                                    <li>Konfirmasi pembayaran di aplikasi</li>
+                                    <li>Klik tombol "Konfirmasi Pembayaran" di bawah setelah berhasil transfer</li>
+                                </ol>
+                            </div>
+
+                            <div class="alert alert-warning mt-3" role="alert">
+                                <i class="fas fa-clock me-2"></i>
+                                <strong>Penting:</strong> Selesaikan pembayaran dalam 15 menit untuk menghindari pembatalan otomatis.
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-pink btn-lg px-5" id="confirmBtn" disabled>
+                                <i class="fas fa-check-circle me-2"></i>Konfirmasi Pembayaran
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="text-center">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Kembali Belanja
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.payment-option {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+    border-color: #ff6b9d !important;
+    background-color: #fff5f8;
+}
+
+.payment-option.selected {
+    border-color: #ff6b9d !important;
+    background-color: #fff5f8;
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.payment-logo {
+    font-size: 12px;
+}
+
+.qr-container {
+    border: 2px solid #e0e0e0;
+}
+
+#qrcode canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+.payment-method-logo {
+    width: 80px;
+    height: 80px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.dana-logo {
+    background: linear-gradient(135deg, #1E88E5, #1565C0);
+    color: white;
+}
+
+.gopay-logo {
+    background: linear-gradient(135deg, #00AA13, #008A0E);
+    color: white;
+}
+
+.ovo-logo {
+    background: linear-gradient(135deg, #4E2A84, #3D1F6B);
+    color: white;
+}
+
+@@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.qr-container {
+    animation: pulse 2s ease-in-out infinite;
+}
+</style>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentOptions = document.querySelectorAll('input[name="paymentMethod"]');
+            const confirmBtn = document.getElementById('confirmBtn');
+            const qrSection = document.getElementById('qr-section');
+            const qrcodeDiv = document.getElementById('qrcode');
+            const qrPaymentLogo = document.getElementById('qr-payment-logo');
+            const appName = document.getElementById('app-name');
+            let currentQR = null;
+
+            paymentOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    // Remove previous selections
+                    document.querySelectorAll('.payment-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+
+                    // Add selection to current option
+                    this.closest('.payment-option').classList.add('selected');
+
+                    // Enable confirm button
+                    confirmBtn.disabled = false;
+                    const methodName = this.value;
+                    confirmBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i>Konfirmasi Pembayaran ' + methodName;
+
+                    // Handle QR code for e-wallets
+                    if (methodName !== 'Cash') {
+                        qrSection.style.display = 'block';
+                        
+                        // Clear previous QR code
+                        qrcodeDiv.innerHTML = '';
+                        
+                        // Generate QR Code data based on payment method
+                        let qrData = '';
+                        let logoHTML = '';
+                        let appNameText = '';
+                        
+                        switch(methodName) {
+                            case 'DANA':
+                                qrData = `DANA://pay?merchant=BabyShop3Berlian&order=@Model.OrderNumber&amount=@Model.TotalAmount&customer=@Model.CustomerName`;
+                                logoHTML = '<div class="payment-method-logo dana-logo">DANA</div>';
+                                appNameText = 'DANA';
+                                break;
+                            case 'GoPay':
+                                qrData = `gojek://gopay/merchanttransfer?toid=BabyShop3Berlian&amount=@Model.TotalAmount&description=Order-@Model.OrderNumber`;
+                                logoHTML = '<div class="payment-method-logo gopay-logo"><i class="fas fa-motorcycle"></i> GoPay</div>';
+                                appNameText = 'GoPay (Gojek)';
+                                break;
+                            case 'OVO':
+                                qrData = `ovoid://payment?merchant=BabyShop3Berlian&orderid=@Model.OrderNumber&amount=@Model.TotalAmount&name=@Model.CustomerName`;
+                                logoHTML = '<div class="payment-method-logo ovo-logo">OVO</div>';
+                                appNameText = 'OVO';
+                                break;
+                        }
+                        
+                        // Update logo and app name
+                        qrPaymentLogo.innerHTML = logoHTML;
+                        appName.textContent = appNameText;
+                        
+                        // Generate new QR Code
+                        try {
+                            currentQR = new QRCode(qrcodeDiv, {
+                                text: qrData,
+                                width: 250,
+                                height: 250,
+                                colorDark: "#000000",
+                                colorLight: "#ffffff",
+                                correctLevel: QRCode.CorrectLevel.H
+                            });
+                        } catch (error) {
+                            console.error('Error generating QR code:', error);
+                            qrcodeDiv.innerHTML = '<div class="alert alert-danger">Gagal membuat QR Code. Silakan refresh halaman.</div>';
+                        }
+
+                        // Scroll to QR code
+                        setTimeout(() => {
+                            qrSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                    } else {
+                        qrSection.style.display = 'none';
+                    }
+                });
+            });
+
+            // Handle form submission
+            document.querySelector('form').addEventListener('submit', function(e) {
+                const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+                
+                if (!selectedMethod) {
+                    e.preventDefault();
+                    alert('Silakan pilih metode pembayaran terlebih dahulu');
+                    return;
+                }
+
+                // For cash payment, show confirmation
+                if (selectedMethod.value === 'Cash') {
+                    if (!confirm('Konfirmasi pembayaran tunai?\n\nPembayaran akan dilakukan saat pengambilan barang.')) {
+                        e.preventDefault();
+                        return;
+                    }
+                } else {
+                    // For e-wallet payments
+                    if (!confirm('Apakah Anda sudah menyelesaikan pembayaran melalui ' + selectedMethod.value + '?\n\nPastikan pembayaran sudah berhasil sebelum konfirmasi.')) {
+                        e.preventDefault();
+                        return;
+                    }
+                }
+
+                // Disable button and show loading
+                confirmBtn.disabled = true;
+                confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memproses...';
+            });
+
+            // Add click handlers to payment option divs
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+        });
+    </script>
+}

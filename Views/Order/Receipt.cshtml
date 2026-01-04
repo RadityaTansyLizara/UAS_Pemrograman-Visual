@@ -1,0 +1,237 @@
+@model BabyShopWeb2.Models.Order
+@{
+    ViewData["Title"] = $"Struk Pesanan {Model.OrderNumber}";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Success Message -->
+            <div class="text-center mb-4">
+                <div class="success-icon mb-3">
+                    <i class="fas fa-check-circle fa-4x text-success"></i>
+                </div>
+                <h2 class="fw-bold text-dark mb-2">Pesanan Berhasil Dibuat!</h2>
+                <p class="text-muted">Berikut adalah struk pesanan Anda</p>
+            </div>
+
+            <!-- Receipt Card -->
+            <div class="card receipt-card mb-4">
+                <div class="card-header bg-pink text-white text-center">
+                    <h3 class="mb-0">
+                        <i class="fas fa-baby me-2"></i>BabyShop3Berlian
+                    </h3>
+                    <p class="mb-0 small">Jl. Ganesha No. 99, Kp. Rengasbandung, Desa Karangsambung, Kec. Kedungwaringin, Bekasi | Telp: +62 812-3456-7890</p>
+                </div>
+                <div class="card-body">
+                    <!-- Order Header -->
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <h5 class="text-pink fw-bold">STRUK PEMBELIAN</h5>
+                            <p class="mb-1"><strong>No. Pesanan:</strong> @Model.OrderNumber</p>
+                            <p class="mb-1"><strong>Tanggal:</strong> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</p>
+                            <p class="mb-0"><strong>Status:</strong> <span class="badge bg-warning">Menunggu</span></p>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h6 class="text-pink fw-bold">INFORMASI PELANGGAN</h6>
+                            <p class="mb-1"><strong>Nama:</strong> @Model.CustomerName</p>
+                            <p class="mb-1"><strong>Telepon:</strong> @Model.CustomerPhone</p>
+                            <p class="mb-0"><strong>Alamat:</strong> @Model.ShippingAddress</p>
+                        </div>
+                    </div>
+
+                    <!-- Order Items -->
+                    <h6 class="text-pink fw-bold mb-3">DETAIL PEMBELIAN</h6>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Produk</th>
+                                    <th class="text-center">Qty</th>
+                                    <th class="text-end">Harga</th>
+                                    <th class="text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="product-image-receipt me-3">
+                                                    @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                                                    {
+                                                        <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="img-fluid rounded">
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="product-placeholder-receipt">
+                                                            <i class="@(item.Product?.Category?.IconClass ?? "fas fa-box") text-pink"></i>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-1">@(item.Product?.Name ?? "Produk")</h6>
+                                                    <small class="text-muted">@(item.Product?.Category?.Name ?? "Kategori")</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle">@item.Quantity</td>
+                                        <td class="text-end align-middle">Rp @item.UnitPrice.ToString("N0")</td>
+                                        <td class="text-end align-middle fw-bold">Rp @item.Subtotal.ToString("N0")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="row justify-content-end mt-4">
+                        <div class="col-md-5">
+                            <div class="bg-light p-3 rounded">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span>Rp @Model.SubTotal.ToString("N0")</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Ongkos Kirim:</span>
+                                    <span>@(Model.ShippingCost == 0 ? "GRATIS" : "Rp " + Model.ShippingCost.ToString("N0"))</span>
+                                </div>
+                                <hr class="my-2">
+                                <div class="d-flex justify-content-between fw-bold fs-5">
+                                    <span>TOTAL:</span>
+                                    <span class="text-pink">Rp @Model.TotalAmount.ToString("N0")</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center mt-4 pt-3 border-top">
+                        <p class="mb-1 fw-bold">Terima kasih telah berbelanja di BabyShop3Berlian!</p>
+                        <p class="small text-muted mb-0">Untuk pertanyaan, hubungi customer service kami</p>
+                        <p class="small text-muted">Dicetak pada: @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mb-4">
+                <a asp-action="DownloadReceipt" asp-route-id="@Model.Id" class="btn btn-pink btn-lg me-3">
+                    <i class="fas fa-download me-2"></i>Download PDF
+                </a>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                    <i class="fas fa-shopping-bag me-2"></i>Belanja Lagi
+                </a>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="fw-bold text-pink mb-3">
+                        <i class="fas fa-info-circle me-2"></i>Langkah Selanjutnya
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-4 text-center">
+                            <div class="step-item">
+                                <div class="step-icon mb-2">
+                                    <i class="fas fa-phone fa-2x text-pink"></i>
+                                </div>
+                                <h6 class="fw-bold">1. Konfirmasi</h6>
+                                <p class="small text-muted">Tim kami akan menghubungi Anda dalam 1x24 jam</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="step-item">
+                                <div class="step-icon mb-2">
+                                    <i class="fas fa-credit-card fa-2x text-pink"></i>
+                                </div>
+                                <h6 class="fw-bold">2. Pembayaran</h6>
+                                <p class="small text-muted">Lakukan pembayaran sesuai instruksi yang diberikan</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="step-item">
+                                <div class="step-icon mb-2">
+                                    <i class="fas fa-shipping-fast fa-2x text-pink"></i>
+                                </div>
+                                <h6 class="fw-bold">3. Pengiriman</h6>
+                                <p class="small text-muted">Pesanan akan dikirim dalam 1-2 hari kerja</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center mt-4">
+                <p class="text-muted">
+                    Ada pertanyaan? Hubungi kami di 
+                    <a href="tel:+6281234567890" class="text-pink fw-bold">+62 812-3456-7890</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.success-icon {
+    animation: bounceIn 1s ease-out;
+}
+
+@@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.receipt-card {
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border: none;
+}
+
+.product-image-receipt {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-color) 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-image-receipt img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-placeholder-receipt {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.step-item {
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    height: 100%;
+}
+
+.step-icon {
+    opacity: 0.8;
+}
+
+@@media print {
+    .btn, .step-item, .card:last-child {
+        display: none !important;
+    }
+    
+    .receipt-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+</style>

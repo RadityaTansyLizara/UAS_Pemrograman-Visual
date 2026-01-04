@@ -1,0 +1,219 @@
+@model BabyShopWeb2.Models.Cart
+@{
+    ViewData["Title"] = "Keranjang Belanja";
+}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="fw-bold text-dark mb-3">Keranjang Belanja</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Beranda</a></li>
+                    <li class="breadcrumb-item active">Keranjang</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    @if (Model.CartItems.Any())
+    {
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Cart Items -->
+                <div class="card mb-4">
+                    <div class="card-header bg-pink text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-shopping-cart me-2"></i>Item dalam Keranjang (@Model.TotalItems)
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <div class="cart-item p-3 border-bottom">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <div class="product-image-small">
+                                            @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                                            {
+                                                <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="img-fluid rounded">
+                                            }
+                                            else
+                                            {
+                                                <div class="product-placeholder-small">
+                                                    <i class="@(item.Product?.Category?.IconClass ?? "fas fa-box") fa-2x text-pink"></i>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold mb-1">@(item.Product?.Name ?? "Produk")</h6>
+                                        <p class="text-muted small mb-1">@(item.Product?.Category?.Name ?? "Kategori")</p>
+                                        <p class="text-pink fw-bold mb-0">Rp @(item.Product?.Price.ToString("N0") ?? "0")</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <form asp-action="UpdateQuantity" method="post" class="quantity-form">
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <div class="input-group input-group-sm">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity(@item.ProductId, @(item.Quantity - 1))">-</button>
+                                                <input type="number" name="quantity" value="@item.Quantity" class="form-control text-center" min="1" max="@(item.Product?.Stock ?? 999)" onchange="updateQuantity(@item.ProductId, this.value)">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity(@item.ProductId, @(item.Quantity + 1))">+</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="fw-bold text-pink mb-0">Rp @item.Subtotal.ToString("N0")</p>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <form asp-action="RemoveItem" method="post" class="d-inline">
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Hapus item ini dari keranjang?')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Cart Actions -->
+                <div class="d-flex justify-content-between">
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Lanjut Belanja
+                    </a>
+                    <form asp-action="ClearCart" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Kosongkan semua item dalam keranjang?')">
+                            <i class="fas fa-trash me-2"></i>Kosongkan Keranjang
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Order Summary -->
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Ringkasan Pesanan</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal (@Model.TotalItems item)</span>
+                            <span class="fw-bold">Rp @Model.TotalAmount.ToString("N0")</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Ongkos Kirim</span>
+                            @if (Model.TotalAmount >= 200000)
+                            {
+                                <span class="text-success fw-bold">GRATIS</span>
+                            }
+                            else
+                            {
+                                <span>Rp 15.000</span>
+                            }
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="fw-bold">Total</span>
+                            <span class="fw-bold text-pink fs-5">
+                                Rp @((Model.TotalAmount >= 200000 ? Model.TotalAmount : Model.TotalAmount + 15000).ToString("N0"))
+                            </span>
+                        </div>
+
+                        @if (Model.TotalAmount < 200000)
+                        {
+                            <div class="alert alert-info small">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Belanja Rp @((200000 - Model.TotalAmount).ToString("N0")) lagi untuk gratis ongkir!
+                            </div>
+                        }
+
+                        <div class="d-grid">
+                            <a asp-controller="Order" asp-action="Checkout" class="btn btn-pink btn-lg">
+                                <i class="fas fa-credit-card me-2"></i>Checkout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo Info -->
+                <div class="card mt-3">
+                    <div class="card-body text-center">
+                        <i class="fas fa-shipping-fast fa-2x text-pink mb-2"></i>
+                        <h6 class="fw-bold">Gratis Ongkir</h6>
+                        <p class="small text-muted mb-0">Untuk pembelian minimal Rp 200.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- Empty Cart -->
+        <div class="text-center py-5">
+            <i class="fas fa-shopping-cart fa-5x text-muted mb-4"></i>
+            <h3 class="text-muted mb-3">Keranjang Belanja Kosong</h3>
+            <p class="text-muted mb-4">Belum ada produk dalam keranjang belanja Anda</p>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-pink btn-lg">
+                <i class="fas fa-shopping-bag me-2"></i>Mulai Belanja
+            </a>
+        </div>
+    }
+</div>
+
+<script>
+    function updateQuantity(productId, quantity) {
+        if (quantity < 1) return;
+        
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '@Url.Action("UpdateQuantity", "Cart")';
+        
+        const productIdInput = document.createElement('input');
+        productIdInput.type = 'hidden';
+        productIdInput.name = 'productId';
+        productIdInput.value = productId;
+        
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'hidden';
+        quantityInput.name = 'quantity';
+        quantityInput.value = quantity;
+        
+        form.appendChild(productIdInput);
+        form.appendChild(quantityInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<style>
+.cart-item:last-child {
+    border-bottom: none !important;
+}
+
+.product-image-small {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-color) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-placeholder-small {
+    color: white;
+}
+
+.quantity-form {
+    max-width: 120px;
+}
+</style>
