@@ -1,293 +1,210 @@
-# BabyShop3Berlian - E-Commerce Website Perlengkapan Bayi
 
-Website e-commerce lengkap untuk toko perlengkapan bayi dengan sistem belanja online, keranjang, checkout, dan struk PDF.
+| Variable | Isi |
+| -------- | --- |
+| *Nama* | RADITYA TANSY LIZARA  |
+| *NIM* | 312310454 |
+| *Kelas* | TI.23.A5 |
+| *Mata Kuliah* | Pemrograman Visual Desktop (UAS)|
+| *Dosen Pengampu* | Dr. Muhamad Fatchan, S.Kom., M.Kom|
+
+# BabyShop3Berlian
+
+## 🍼 E-Commerce Website Perlengkapan Bayi
+
+Website **BabyShop3Berlian** adalah aplikasi **e-commerce berbasis ASP.NET Core MVC** yang dirancang khusus untuk toko perlengkapan bayi. Website ini menyediakan fitur belanja online lengkap mulai dari katalog produk, keranjang belanja, checkout, hingga pembuatan struk pembelian dalam format **PDF**.
+
+Project ini dikembangkan sebagai **Ujian Akhir Semester (UAS)** pada mata kuliah **Pemrograman Visual Desktop**.
+
+---
 
 ## 🌟 Fitur Utama
 
-### 🛒 E-Commerce Lengkap
-- **Katalog Produk**: Tampilan produk dengan kategori, filter, dan pencarian
-- **Keranjang Belanja**: Sistem keranjang dengan session management
-- **Checkout**: Proses pemesanan dengan form pelanggan
-- **Struk PDF**: Generate dan download struk pembelian dalam format PDF
-- **Manajemen Stok**: Tracking stok produk real-time
+### 🛒 Fitur E-Commerce
+
+* Katalog produk dengan kategori, filter, dan pencarian
+* Keranjang belanja berbasis session
+* Proses checkout dengan validasi data pelanggan
+* Generate dan download **struk pembelian (PDF)**
+* Manajemen stok produk secara real-time
 
 ### 🎨 Desain & UI
-- **Desain Modern**: Interface yang clean dan menarik dengan tema pink
-- **Responsive Design**: Tampilan optimal di semua perangkat
-- **Smooth Navigation**: Navigasi halus dengan smooth scrolling
-- **Interactive Elements**: Animasi dan hover effects yang menarik
-- **Real-time Updates**: Cart count dan notifikasi real-time
 
-### 📱 Fitur Teknis
-- **Database**: SQLite dengan Entity Framework Core
-- **Session Management**: Keranjang berbasis session
-- **PDF Generation**: iTextSharp untuk generate struk
-- **Seed Data**: 12 produk sample dalam 4 kategori
-- **Responsive Design**: Bootstrap 5 dengan custom CSS
+* Desain modern, clean, dan bertema pink (baby friendly)
+* Responsive design (mobile, tablet, desktop)
+* Navigasi halus dan user-friendly
+* Animasi ringan dan hover effects
+
+### ⚙️ Fitur Teknis
+
+* Database SQLite dengan Entity Framework Core
+* Session management untuk keranjang belanja
+* PDF generation menggunakan iTextSharp
+* Seed data otomatis (produk & kategori)
+
+---
 
 ## 🛍️ Fitur Belanja
 
 ### Halaman Produk
-- **Katalog Lengkap**: Semua produk dengan filter kategori dan pencarian
-- **Detail Produk**: Informasi lengkap, harga, stok, dan produk terkait
-- **Kategori**: 4 kategori utama (Pakaian, Mainan, Perlengkapan Makan, Perawatan)
-- **Status Stok**: Indikator stok tersedia, terbatas, atau habis
+
+* Katalog produk lengkap
+* Detail produk (harga, stok, deskripsi)
+* 4 kategori utama:
+
+  * Pakaian Bayi
+  * Mainan Edukatif
+  * Perlengkapan Makan
+  * Perawatan Bayi
 
 ### Keranjang Belanja
-- **Add to Cart**: Tambah produk ke keranjang dari berbagai halaman
-- **Update Quantity**: Ubah jumlah item dalam keranjang
-- **Remove Items**: Hapus item individual atau kosongkan keranjang
-- **Cart Summary**: Ringkasan total dengan perhitungan ongkir
-- **Free Shipping**: Gratis ongkir untuk pembelian di atas Rp 200.000
+
+* Tambah produk ke keranjang
+* Update jumlah item
+* Hapus item dari keranjang
+* Ringkasan total belanja
+* Gratis ongkir untuk pembelian di atas Rp 200.000
 
 ### Checkout & Order
-- **Customer Form**: Form informasi pelanggan dengan validasi
-- **Order Summary**: Ringkasan pesanan sebelum konfirmasi
-- **Order Success**: Halaman konfirmasi dengan detail pesanan
-- **PDF Receipt**: Download struk dalam format PDF
-- **Order Tracking**: Nomor pesanan unik untuk tracking
 
-## 📊 Data & Models
+* Form data pelanggan dengan validasi
+* Ringkasan pesanan sebelum konfirmasi
+* Halaman sukses pemesanan
+* Download struk pembelian dalam format PDF
+
+---
+
+## 📊 Database & Model
 
 ### Database Models
-- **Product**: Produk dengan kategori, harga, stok, gambar
-- **Category**: Kategori produk dengan icon dan deskripsi
-- **Cart & CartItem**: Keranjang belanja dengan item
-- **Order & OrderItem**: Pesanan dengan detail item
-- **Order Status**: Status pesanan (Pending, Processing, Shipped, dll)
+
+* **Product** : Data produk (nama, harga, stok, gambar)
+* **Category** : Kategori produk
+* **Cart & CartItem** : Keranjang belanja
+* **Order & OrderItem** : Data pesanan
 
 ### Sample Data
-- **4 Kategori**: Pakaian Bayi, Mainan Edukatif, Perlengkapan Makan, Perawatan Bayi
-- **12 Produk**: 3 produk per kategori dengan variasi harga dan diskon
-- **Realistic Pricing**: Harga sesuai market produk bayi Indonesia
-- **Stock Management**: Stok bervariasi untuk testing
+
+* 4 kategori produk
+* 12 produk contoh (3 produk per kategori)
+* Harga dan stok realistis untuk simulasi
+
+---
 
 ## 🛠️ Teknologi yang Digunakan
 
 ### Backend
-- **ASP.NET Core MVC 8.0**: Framework web utama
-- **Entity Framework Core**: ORM untuk database
-- **SQLite**: Database ringan untuk development
-- **iTextSharp**: Library untuk generate PDF
+
+* ASP.NET Core MVC 8.0
+* Entity Framework Core
+* SQLite Database
+* iTextSharp (PDF Generator)
 
 ### Frontend
-- **HTML5, CSS3, JavaScript**: Frontend technologies
-- **Bootstrap 5**: CSS framework untuk responsive design
-- **Font Awesome 6**: Icon library
-- **Google Fonts (Poppins)**: Typography
 
-### Services & Architecture
-- **Dependency Injection**: Service pattern untuk cart dan PDF
-- **Session Management**: ASP.NET Core session untuk cart
-- **Repository Pattern**: Data access dengan DbContext
-- **MVC Pattern**: Model-View-Controller architecture
+* HTML5, CSS3, JavaScript
+* Bootstrap 5
+* Font Awesome 6
+* Google Fonts (Poppins)
 
-## 🚀 Cara Menjalankan
+### Arsitektur
 
-### Prerequisites
-- .NET 8.0 SDK
-- Visual Studio Code atau Visual Studio
+* MVC (Model-View-Controller)
+* Dependency Injection
+* Session-based Cart System
 
-### Installation
-1. Clone atau download project
-2. Buka terminal di folder project
-3. Restore dependencies:
-   ```bash
-   dotnet restore
-   ```
-4. Build project:
-   ```bash
-   dotnet build
-   ```
-5. Jalankan aplikasi:
-   ```bash
-   dotnet run
-   ```
-6. Buka browser dan akses: `http://localhost:5055`
+---
 
-### Database
-- Database SQLite akan dibuat otomatis saat pertama kali run
-- Sample data akan di-seed secara otomatis
-- File database: `babyshop.db` di root folder
+## 🚀 Cara Menjalankan Aplikasi
 
-## 📱 Halaman & Fitur
+### Prasyarat
 
-### 🏠 Homepage
-- Hero section dengan CTA
-- Features section (4 keunggulan toko)
-- Kategori produk (4 kategori dengan link)
-- Produk terbaru (8 produk terbaru)
-- Testimonials (3 review pelanggan)
-- Call-to-action section
+* .NET SDK 8.0
+* Visual Studio / Visual Studio Code
 
-### 🛍️ Product Pages
-- **All Products** (`/Product`): Semua produk dengan filter dan search
-- **Product Details** (`/Product/Details/{id}`): Detail produk dengan related products
-- **Category** (`/Product/Category/{id}`): Produk per kategori
+### Langkah Menjalankan
 
-### 🛒 Shopping Cart
-- **Cart** (`/Cart`): Keranjang belanja dengan update quantity
-- **Add to Cart**: POST endpoint untuk tambah produk
-- **Update/Remove**: Manage items dalam keranjang
+1. Clone repository ini
+2. Buka folder project
+3. Jalankan perintah berikut:
 
-### 📋 Order & Checkout
-- **Checkout** (`/Order/Checkout`): Form checkout dengan validasi
-- **Order Success** (`/Order/OrderSuccess/{id}`): Konfirmasi pesanan
-- **Download Receipt** (`/Order/DownloadReceipt/{id}`): Download PDF
-
-## 🎨 Design System
-
-### Color Palette
-- **Primary Pink**: `#ff6b9d`
-- **Pink Light**: `#ffb3d1`
-- **Pink Dark**: `#e55a87`
-- **Light Gray**: `#f8f9fa`
-- **Dark Gray**: `#6c757d`
-
-### Typography
-- **Font Family**: Poppins (Google Fonts)
-- **Weights**: 300, 400, 500, 600, 700
-
-### Components
-- **Product Cards**: Hover effects, discount badges, stock indicators
-- **Buttons**: Primary, outline, dan disabled states
-- **Forms**: Validation styling, focus states
-- **Alerts**: Success, error, dan info messages
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 576px
-- **Tablet**: 576px - 768px
-- **Desktop**: > 768px
-
-## 🔧 Kustomisasi
-
-### Mengubah Warna Tema
-Edit variabel CSS di `wwwroot/css/site.css`:
-```css
-:root {
-    --pink-color: #ff6b9d;
-    --pink-light: #ffb3d1;
-    --pink-dark: #e55a87;
-}
+```bash
+dotnet restore
+dotnet build
+dotnet run
 ```
 
-### Menambah Produk
-1. Tambah data di `Data/ApplicationDbContext.cs` dalam method `SeedData`
-2. Atau tambah melalui database langsung
-3. Restart aplikasi untuk reload data
+4. Buka browser dan akses:
 
-### Mengubah Konten
-- **Homepage**: Edit `Views/Home/Index.cshtml`
-- **Layout**: Edit `Views/Shared/_Layout.cshtml`
-- **Styling**: Edit `wwwroot/css/site.css`
+```
+http://localhost:5055
+```
+
+### Database
+
+* Database SQLite dibuat otomatis saat aplikasi dijalankan
+* File database: `babyshop.db`
+
+---
 
 ## 📂 Struktur Project
 
 ```
 BabyShopWeb2/
 ├── Controllers/
-│   ├── HomeController.cs          # Homepage
-│   ├── ProductController.cs       # Katalog produk
-│   ├── CartController.cs          # Keranjang belanja
-│   └── OrderController.cs         # Checkout & orders
 ├── Models/
-│   ├── Product.cs                 # Model produk
-│   ├── Category.cs                # Model kategori
-│   ├── Cart.cs & CartItem.cs      # Model keranjang
-│   ├── Order.cs & OrderItem.cs    # Model pesanan
-│   └── ErrorViewModel.cs          # Error handling
 ├── Views/
-│   ├── Home/
-│   │   └── Index.cshtml           # Homepage
-│   ├── Product/
-│   │   ├── Index.cshtml           # Katalog produk
-│   │   ├── Details.cshtml         # Detail produk
-│   │   └── Category.cshtml        # Produk per kategori
-│   ├── Cart/
-│   │   └── Index.cshtml           # Keranjang belanja
-│   ├── Order/
-│   │   ├── Checkout.cshtml        # Form checkout
-│   │   └── OrderSuccess.cshtml    # Konfirmasi pesanan
-│   └── Shared/
-│       ├── _Layout.cshtml         # Layout utama
-│       └── Error.cshtml           # Error page
 ├── Services/
-│   ├── CartService.cs             # Service keranjang
-│   └── PdfService.cs              # Service PDF generation
 ├── Data/
-│   └── ApplicationDbContext.cs    # Database context
 ├── wwwroot/
 │   ├── css/
-│   │   └── site.css               # Custom styles
 │   ├── js/
-│   │   └── site.js                # Custom JavaScript
-│   ├── images/
-│   │   └── products/              # Folder gambar produk
-│   └── lib/                       # Bootstrap, jQuery, dll
-├── Program.cs                     # Startup configuration
-├── appsettings.json              # Configuration
-└── README.md                     # Dokumentasi
+│   └── images/
+├── Program.cs
+├── appsettings.json
+└── README.md
 ```
 
-## 🔒 Security Features
+---
 
-- **Input Validation**: Model validation dengan Data Annotations
-- **CSRF Protection**: Anti-forgery tokens pada forms
-- **Session Security**: Secure session configuration
-- **SQL Injection Prevention**: Entity Framework parameterized queries
+## 🔒 Keamanan
 
-## 📈 Performance Features
+* Validasi input menggunakan Data Annotations
+* Proteksi CSRF dengan Anti-forgery Token
+* Query database aman melalui Entity Framework
 
-- **Lazy Loading**: Entity Framework lazy loading
-- **Caching**: Memory caching untuk session
-- **Optimized Queries**: Include statements untuk related data
-- **Minified Assets**: CSS dan JS optimization
+---
 
-## 🧪 Testing
+## 📈 Performa
 
-### Manual Testing Checklist
-- [ ] Homepage loading dan navigation
-- [ ] Product catalog dengan filter
-- [ ] Add to cart functionality
-- [ ] Cart management (update, remove)
-- [ ] Checkout process
-- [ ] PDF generation
-- [ ] Responsive design di berbagai device
+* Optimasi query database
+* Session management efisien
+* Asset frontend terorganisir
 
-### Sample Test Data
-- 4 kategori produk
-- 12 produk dengan variasi harga
-- Beberapa produk dengan diskon
-- Stok bervariasi untuk testing
+---
 
-## 📞 Kontak & Support
+## 🧪 Pengujian Manual
 
-Untuk pertanyaan atau dukungan teknis:
-- **Email**: info@babyshop3berlian.com
-- **WhatsApp**: +62 812-3456-7890
-- **Alamat**: Jl. Ganesha No. 99, Kp. Rengasbandung, Desa Karangsambung, Kec. Kedungwaringin, Bekasi
+* Homepage dan navigasi
+* Katalog produk & filter
+* Keranjang belanja
+* Proses checkout
+* Generate PDF struk
+* Tampilan responsive
+
+---
+
+## 🚀 Pengembangan Selanjutnya
+
+* Login & registrasi pengguna
+* Admin dashboard
+* Payment gateway
+* Email notifikasi
+* Review & rating produk
+* Wishlist
+
+---
 
 ## 📄 Lisensi
 
-© 2025 BabyShop3Berlian. All rights reserved.
-
-## 🚀 Future Enhancements
-
-### Planned Features
-- User authentication & registration
-- Admin panel untuk manage produk
-- Payment gateway integration
-- Email notifications
-- Order tracking system
-- Product reviews & ratings
-- Wishlist functionality
-- Multi-language support
-
-### Technical Improvements
-- Redis caching
-- Image optimization
-- Search engine optimization
-- Performance monitoring
-- Automated testing
-- CI/CD pipeline
+© 2025 **BabyShop3Berlian**
+Project ini dibuat untuk keperluan akademik (UAS Pemrograman Visual Desktop).
