@@ -7,6 +7,7 @@
 | *Mata Kuliah* | Pemrograman Visual Desktop (UAS)|
 | *Dosen Pengampu* | Dr. Muhamad Fatchan, S.Kom., M.Kom|
 
+Link YouTube : https://youtu.be/0lVyNU-0MVQ
 # BabyShop3Berlian
 
 ## 🍼 E-Commerce Website Perlengkapan Bayi
